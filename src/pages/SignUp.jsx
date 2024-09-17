@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 
+import Input from "../components/Forms/Input";
+import PhoneNumber from "../components/Forms/PhoneNumber";
+
 const SignUp = () => {
   return (
     <>
@@ -10,7 +13,8 @@ const SignUp = () => {
         <h3>J'ai déjà un compte</h3>
       </Link>
       <form>
-        <input type="text" placeholder="Nom" />
+        <Input type="text" placeholder="Mon nom" />
+        <PhoneNumber />
         <input type="tel" />
         <input type="date" name="" id="" />
         <input type="file" name="" id="" />
