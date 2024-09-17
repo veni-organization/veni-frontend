@@ -1,0 +1,59 @@
+/* Propriétés propres au composant importé */
+
+.PhoneInputCountryIconImg {
+  height: 30px;
+  box-shadow: 0px 0px 3px 0px;
+  border-radius: 5px;
+}
+
+.PhoneInputCountry {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.PhoneInput {
+  display: flex;
+  background-color: #121818;
+  padding: 20px 30px;
+}
+
+.PhoneInputCountrySelect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+}
+
+.PhoneInputCountrySelectArrow {
+  display: block;
+  height: 20px;
+}
+
+.PhoneInputInput {
+  border: none;
+  width: 200px;
+  background-color: #121818;
+  color: white;
+  font-size: 20px;
+}
+
+/* Autres propriétés */
+
+.phone-block {
+  background-color: #121818;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.phone-block p {
+  padding-top: 25px;
+  padding-left: 30px;
+}
