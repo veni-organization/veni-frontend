@@ -1,0 +1,9 @@
+.main-button {
+  width: 300px;
+  height: 49px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 0.33);
+  backdrop-filter: blur(15px);
+}
