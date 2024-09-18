@@ -1,13 +1,18 @@
 import "./FormButton.css";
 
-const FormButton = ({ disabled = false, text, setStep, step }) => {
+const FormButton = ({ text, setStep, step, data, handleSignUp }) => {
   return (
     <button
-      onClick={() => {
-        setStep(step + 1);
+      type="button"
+      disabled={!data}
+      onClick={async () => {
+        if (step === 2) {
+          await handleSignUp();
+        } else if (data) {
+          setStep(step + 1);
+        }
       }}
-      disabled={disabled}
-      className="form-button"
+      className={data ? "form-button" : "empty-form-button"}
     >
       {text}
     </button>

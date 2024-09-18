@@ -1,14 +1,14 @@
 import "./Input.css";
 
-const Input = ({ type, placeholder, className, username, setUsername }) => {
+const Input = ({ type, placeholder, className, data, setData }) => {
   return (
     <input
       type={type}
       placeholder={placeholder}
       className={className}
-      value={username}
+      value={data}
       onChange={(e) => {
-        setUsername(e.target.value);
+        setData(e.target.value);
       }}
     />
   );
