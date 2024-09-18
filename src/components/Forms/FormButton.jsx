@@ -1,8 +1,14 @@
 import "./FormButton.css";
 
-const FormButton = ({ onClick, disabled = false, text }) => {
+const FormButton = ({ disabled = false, text, setStep, step }) => {
   return (
-    <button onClick={onClick} disabled={disabled} className="form-button">
+    <button
+      onClick={() => {
+        setStep(step + 1);
+      }}
+      disabled={disabled}
+      className="form-button"
+    >
       {text}
     </button>
   );
