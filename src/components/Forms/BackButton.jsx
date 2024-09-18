@@ -1,5 +1,7 @@
+import { IoIosArrowBack } from "react-icons/io";
+
 const BackButton = () => {
-  return <div></div>;
+  return <IoIosArrowBack />;
 };
 
 export default BackButton;

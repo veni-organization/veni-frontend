@@ -7,3 +7,15 @@
   font-weight: 500;
   line-height: 22px; /* 68.75% */
 }
+
+.name-input {
+  background-color: #121818;
+  color: #fff;
+  border: none;
+  text-align: center;
+  font-size: 32px;
+}
+
+.name-input:focus {
+  outline: none;
+}
