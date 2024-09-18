@@ -1,0 +1,16 @@
+vaadin-date-picker::part(input-field) {
+  background-color: #ffffff00;
+  color: white;
+}
+
+vaadin-date-picker::part(toggle-button)::before {
+  color: #ffffff50;
+}
+
+vaadin-date-picker::part(label) {
+  color: #ffffff50;
+}
+
+vaadin-date-picker-year {
+  display: none;
+}

@@ -1,0 +1,14 @@
+vaadin-time-picker::part(input-field) {
+  background-color: #ffffff00;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+  color: white;
+}
+
+vaadin-time-picker::part(label) {
+  color: #ffffff50;
+}
+
+vaadin-time-picker::part(toggle-button)::before {
+  color: #ffffff50;
+}

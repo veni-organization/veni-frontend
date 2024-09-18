@@ -1,7 +1,11 @@
+import "./MainButton.css";
+
 const MainButton = ({ onClick, disabled = false, text }) => {
-  <button onClick={onClick} disabled={disabled} className="main-button">
-    {text}
-  </button>;
+  return (
+    <button onClick={onClick} disabled={disabled} className="main-button">
+      {text}
+    </button>
+  );
 };
 
 export default MainButton;
