@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import Event from "./pages/Event";
+import EventScreen from "./pages/EventScreen";
 import Create from "./pages/Create";
 import Edit from "./pages/Edit";
 
@@ -19,7 +19,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
-        <Route path="/event/:id" element={<Event />} />
+        <Route path="/event/:id" element={<EventScreen />} />
         <Route path="create" element={<Create />} />
         <Route path="edit/:id" element={<Edit />} />
       </Routes>
