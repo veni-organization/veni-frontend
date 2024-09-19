@@ -9,11 +9,12 @@ const FormButton = ({
   handleVerify,
   checkCode,
   handleCompleteProfile,
+  isDateChanged,
 }) => {
   return (
     <button
       type="button"
-      disabled={!data}
+      disabled={!data || (step === 3 && !isDateChanged)}
       onClick={async () => {
         if (step === 4) {
           return await handleCompleteProfile();
@@ -27,7 +28,15 @@ const FormButton = ({
           setStep(step + 1);
         }
       }}
-      className={data ? "form-button" : "empty-form-button"}
+      className={
+        step === 3
+          ? isDateChanged
+            ? "form-button"
+            : "empty-form-button"
+          : data
+          ? "form-button"
+          : "empty-form-button"
+      }
     >
       {text}
     </button>

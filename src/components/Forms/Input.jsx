@@ -1,8 +1,9 @@
 import "./Input.css";
 
-const Input = ({ type, placeholder, className, data, setData }) => {
+const Input = ({ type, placeholder, className, data, setData, max }) => {
   return (
     <input
+      max={max}
       type={type}
       placeholder={placeholder}
       className={className}

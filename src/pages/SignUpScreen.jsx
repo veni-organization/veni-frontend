@@ -79,7 +79,12 @@ const SignUpScreen = () => {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/complete-profile`,
         formData,
-        { headers: { "Content-Type": "multipart/form-data" } }
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${Cookies.get("token")}`,
+          },
+        }
       );
       console.log(response.data);
     } catch (error) {
@@ -167,15 +172,18 @@ const SignUpScreen = () => {
               data={userBirth}
               setData={(value) => {
                 setUserBirth(value);
+                setIsDateChanged(value !== formatedDate);
               }}
               className="birthday-input"
               placeholder="Ta date de naissance"
+              max={formatedDate}
             />
             <FormButton
               text="Continuer"
               setStep={setStep}
               step={step}
               data={userBirth}
+              isDateChanged={isDateChanged}
             />
           </div>
         )}
@@ -194,7 +202,6 @@ const SignUpScreen = () => {
               data={userAvatar}
               handleCompleteProfile={handleCompleteProfile}
               userBirth={userBirth}
-              formatedDate={formatedDate}
             />
           </div>
         )}
