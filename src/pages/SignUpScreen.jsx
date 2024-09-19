@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import BackButton from "../components/Forms/BackButton";
 import Input from "../components/Forms/Input";
@@ -19,49 +20,67 @@ const SignUp = () => {
   const [userAvatar, setUserAvatar] = useState("");
   const [step, setStep] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
-  const [data, setData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingVerify, setIsLoadingVerify] = useState(false);
   const [showVerification, setShowVerification] = useState(false);
 
+  // This function send username and phonenumber to the server, to be able to continue the process with the code to verify identity
   const handleSignUp = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post("http://localhost:3000/auth/signup", {
-        name: username,
-        phoneNumber: userPhone,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/signup`,
+        {
+          name: username,
+          phoneNumber: userPhone,
+        }
+      );
       console.log(response);
       setShowVerification(true);
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
     } finally {
       setIsLoading(false);
     }
   };
 
+  // This fonction send phonenumber and verification code to get the token
   const handleVerify = async () => {
     setIsLoadingVerify(true);
     try {
-      const response = await axios.post("http://localhost:3000/auth/verify", {
-        phoneNumber: userPhone,
-        verifyCode: checkCode,
-      });
-      console.log(response);
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/verify`,
+        {
+          phoneNumber: userPhone,
+          verifyCode: Number(checkCode),
+        }
+      );
+      Cookies.set("token", response.data.token);
+      setStep(step + 1);
+      console.log(response.data);
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
     } finally {
       setIsLoadingVerify(false);
     }
   };
 
-  // return null;
-
   return (
     <div className="container">
       <form>
         {step === 1 && (
-          <div className="sign-up step1">
+          <div
+            className="sign-up step1"
+            // Allow to press enter on keyboard to go to next step
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                if (username) {
+                  setStep(step + 1);
+                }
+              }
+            }}
+          >
             <div className="top-title">
               <Title text="Entre ton nom ici !" />
             </div>
@@ -108,7 +127,9 @@ const SignUp = () => {
               text="Envoyer"
               setStep={setStep}
               step={step}
+              checkCode={checkCode}
               handleSignUp={handleSignUp}
+              handleVerify={handleVerify}
             />
           </div>
         )}
@@ -119,8 +140,19 @@ const SignUp = () => {
               <BackButton step={step} setStep={setStep} />
               <Title text="Entre ta date de naissance !" />
             </div>
-            <input type="date" />
-            <FormButton text="Continuer" setStep={setStep} step={step} />
+            <Input
+              type="date"
+              value={userBirth}
+              setData={setUserBirth}
+              className="birthday-input"
+              placeholder="Ta date d'anniversaire"
+            />
+            <FormButton
+              text="Continuer"
+              setStep={setStep}
+              step={step}
+              data={userBirth}
+            />
           </div>
         )}
 
@@ -130,8 +162,13 @@ const SignUp = () => {
               <BackButton step={step} setStep={setStep} />
               <Title text="Ajoute ta photo !" />
             </div>
-            <input type="file" />
-            <FormButton text="Confirmer" setStep={setStep} step={step} />
+            <Input type="file" value={userAvatar} setData={setUserAvatar} />
+            <FormButton
+              text="Confirmer"
+              setStep={setStep}
+              step={step}
+              data={userAvatar}
+            />
           </div>
         )}
       </form>
