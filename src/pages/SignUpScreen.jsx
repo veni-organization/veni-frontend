@@ -12,12 +12,17 @@ import FormButton from "../components/Forms/FormButton";
 
 import "./SignUp.css";
 
-const SignUp = () => {
+const SignUpScreen = () => {
+  const timeElapsed = Date.now();
+  const today = new Date(timeElapsed);
+  const formatedDate = today.toISOString().split("T")[0];
+  const [isDateChanged, setIsDateChanged] = useState(false);
+
   const [username, setUsername] = useState("");
   const [userPhone, setUserPhone] = useState("");
   const [checkCode, setCheckCode] = useState("");
-  const [userBirth, setUserBirth] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
+  const [userBirth, setUserBirth] = useState(formatedDate);
+  const [userAvatar, setUserAvatar] = useState(null);
   const [step, setStep] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -62,6 +67,23 @@ const SignUp = () => {
       console.log(error.response.data);
     } finally {
       setIsLoadingVerify(false);
+    }
+  };
+
+  // This fonction send the birth date and the avatar to complete user profile
+  const handleCompleteProfile = async () => {
+    const formData = new FormData();
+    formData.append("birthDate", userBirth);
+    formData.append("avatar", userAvatar);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/complete-profile`,
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -142,10 +164,12 @@ const SignUp = () => {
             </div>
             <Input
               type="date"
-              value={userBirth}
-              setData={setUserBirth}
+              data={userBirth}
+              setData={(value) => {
+                setUserBirth(value);
+              }}
               className="birthday-input"
-              placeholder="Ta date d'anniversaire"
+              placeholder="Ta date de naissance"
             />
             <FormButton
               text="Continuer"
@@ -168,6 +192,9 @@ const SignUp = () => {
               setStep={setStep}
               step={step}
               data={userAvatar}
+              handleCompleteProfile={handleCompleteProfile}
+              userBirth={userBirth}
+              formatedDate={formatedDate}
             />
           </div>
         )}
@@ -176,4 +203,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpScreen;

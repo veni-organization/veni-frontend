@@ -33,13 +33,33 @@
   outline: none;
 }
 
+.birthday-input:focus {
+  outline: none;
+}
+
 .birthday-input {
-  height: 40px;
-  font-size: 20px;
-  background-color: #121818;
   border: none;
-  color: white;
-  font-weight: bold;
-  text-align: center;
+  outline: 0;
+  padding: 0.75rem;
+  position: relative;
+  width: 100%;
+  height: auto;
+  font-size: 20px;
+  color: #fff;
+  background-color: #121818;
   margin: 150px 20px 0 20px;
+  text-align: center;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
 }

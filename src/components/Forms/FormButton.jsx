@@ -8,12 +8,16 @@ const FormButton = ({
   handleSignUp,
   handleVerify,
   checkCode,
+  handleCompleteProfile,
 }) => {
   return (
     <button
       type="button"
       disabled={!data}
       onClick={async () => {
+        if (step === 4) {
+          return await handleCompleteProfile();
+        }
         if (step === 2 && checkCode) {
           return await handleVerify();
         }

@@ -8,7 +8,11 @@ const Input = ({ type, placeholder, className, data, setData }) => {
       className={className}
       value={data}
       onChange={(e) => {
-        setData(e.target.value);
+        if (type !== "file") {
+          setData(e.target.value);
+        } else {
+          setData(e.target.files[0]);
+        }
       }}
     />
   );
