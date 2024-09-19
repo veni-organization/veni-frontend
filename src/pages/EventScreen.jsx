@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Event = () => {
   const { id } = useParams();
-  const [event, setEvent] = useState({});
+  const [event, setEvent] = useState();
 
   useEffect(() => {
     // Get event infos
@@ -27,7 +27,7 @@ const Event = () => {
 
   return (
     <div className="event-container">
-      <EventInfos event={event} />
+      {event && <EventInfos event={event} />}
     </div>
   );
 };

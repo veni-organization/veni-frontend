@@ -1,0 +1,65 @@
+/**********************/
+/*     CONTAINER      */
+/**********************/
+
+.hosts-infos {
+  position: absolute;
+  top: 435px;
+  left: 20px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+/**********************/
+/*       IMAGE        */
+/**********************/
+
+.event-picture {
+  width: 100%;
+  height: 490px;
+  background-size: cover;
+  /* position: relative;
+  z-index: 1; */
+}
+
+.linear-gradient {
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0)
+  );
+  width: 100%;
+  height: 490px;
+  z-index: 4;
+}
+
+.default-avatar {
+  width: 45px;
+  height: 45px;
+  background-color: yellow;
+  border-radius: 50%;
+}
+
+/**********************/
+/*        TEXTE       */
+/**********************/
+.event-name {
+  position: absolute;
+  left: 20px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/**********************/
+/*     RESPONSIVE     */
+/**********************/
+
+/* Desktop*/
+@media only screen and (min-width: 1350px) {
+}
+
+/* Téléphone */
+@media only screen and (max-width: 768px) {
+}
