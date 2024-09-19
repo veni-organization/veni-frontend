@@ -1,3 +1,7 @@
+/**********************/
+/*     CONTAINER      */
+/**********************/
+
 body {
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
@@ -5,4 +9,35 @@ body {
   font-style: normal;
   background-color: #121818;
   color: #ffffff;
+  font-variant-numeric: lining-nums;
+  -moz-font-feature-settings: "lnum" 1;
+  -moz-font-feature-settings: "lnum=1";
+  -ms-font-feature-settings: "lnum" 1;
+  -o-font-feature-settings: "lnum" 1;
+  -webkit-font-feature-settings: "lnum" 1;
+  font-feature-settings: "lnum" 1;
+}
+
+/**********************/
+/*       IMAGE        */
+/**********************/
+
+/**********************/
+/*        TEXTE       */
+/**********************/
+
+/**********************/
+/*     RESPONSIVE     */
+/**********************/
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+  body {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Téléphone */
+@media only screen and (max-width: 768px) {
 }

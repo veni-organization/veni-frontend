@@ -1,0 +1,47 @@
+/**********************/
+/*     CONTAINER      */
+/**********************/
+
+/**********************/
+/*       IMAGE        */
+/**********************/
+.default-avatar {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Random linearGradient */
+.red-linearGradient {
+  background-image: linear-gradient(180deg, #ed4343 0%, #e193ee 100%);
+}
+.pink-linearGradient {
+  background-image: linear-gradient(180deg, #e193ee 0%, #d9dddd 100%);
+}
+.green-linearGradient {
+  background-image: linear-gradient(180deg, #56dbbb 0%, #d9dddd 100%);
+}
+.yellow-linearGradient {
+  background-image: linear-gradient(180deg, #ffd700 0%, #d9dddd 100%);
+}
+
+/**********************/
+/*        TEXTE       */
+/**********************/
+
+.firstLetter {
+  font-weight: bold;
+}
+
+/**********************/
+/*     RESPONSIVE     */
+/**********************/
+
+/* Desktop*/
+@media only screen and (min-width: 1350px) {
+}
+
+/* Téléphone */
+@media only screen and (max-width: 768px) {
+}

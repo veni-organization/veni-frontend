@@ -2,13 +2,40 @@
 /*     CONTAINER      */
 /**********************/
 
+/* MAIN INFOS */
 .hosts-infos {
   position: absolute;
-  top: 435px;
+  top: 445px;
   left: 20px;
   display: flex;
-  gap: 5px;
+  gap: 10px;
   align-items: center;
+}
+.hosts-avatar {
+  display: flex;
+  gap: 5px;
+}
+
+.hosts-name {
+  display: flex;
+  gap: 5px;
+}
+/* DETAILS */
+.event-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px;
+}
+.event-location-container {
+  display: flex;
+  gap: 5px;
+}
+
+.event-description-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 /**********************/
 /*       IMAGE        */
@@ -18,8 +45,6 @@
   width: 100%;
   height: 490px;
   background-size: cover;
-  /* position: relative;
-  z-index: 1; */
 }
 
 .linear-gradient {
@@ -35,13 +60,6 @@
   z-index: 4;
 }
 
-.default-avatar {
-  width: 45px;
-  height: 45px;
-  background-color: yellow;
-  border-radius: 50%;
-}
-
 /**********************/
 /*        TEXTE       */
 /**********************/
@@ -52,12 +70,44 @@
   font-weight: bold;
 }
 
+.event-host-name {
+  font-size: 14px;
+}
+
+.event-date {
+  font-size: 24px;
+}
+.event-location {
+  font-size: 16px;
+}
+
+.event-button-map {
+  font-weight: bold;
+}
 /**********************/
 /*     RESPONSIVE     */
 /**********************/
 
-/* Desktop*/
-@media only screen and (min-width: 1350px) {
+/* Desktop */
+@media only screen and (min-width: 1200px) {
+  .event-infos-container {
+    width: 1024px;
+    display: flex;
+    background-color: aqua;
+  }
+
+  .event-picture {
+    width: 300px;
+    height: 490px;
+    background-size: cover;
+  }
+}
+
+/* Tablette */
+@media only screen and (max-width: 1250px) {
+  .event-infos-container {
+    width: 100vw;
+  }
 }
 
 /* Téléphone */
