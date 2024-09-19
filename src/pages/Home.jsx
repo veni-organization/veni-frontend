@@ -21,6 +21,7 @@ const Home = () => {
       </Link>
       <AddressAutocomplete onSelect={handleAddressSelect} />
       <DateEvent />
+      <input type="date" />
     </>
   );
 };

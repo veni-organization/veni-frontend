@@ -1,0 +1,23 @@
+.option-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  color: white;
+}
+
+.option-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 10px;
+  flex: 3;
+}
+
+.option-labels h3 {
+  font-size: 18px;
+}
+
+.option-labels p {
+  font-size: 14px;
+}
