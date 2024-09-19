@@ -7,3 +7,28 @@
   font-weight: 500;
   line-height: 22px; /* 68.75% */
 }
+
+.name-input {
+  background-color: #121818;
+  color: #fff;
+  border: none;
+  text-align: center;
+  font-size: 32px;
+  margin-top: 200px;
+}
+
+.name-input:focus {
+  outline: none;
+}
+
+.verification-input {
+  background-color: #121818;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.verification-input:focus {
+  outline: none;
+}

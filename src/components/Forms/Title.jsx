@@ -1,20 +1,10 @@
-import React, { useState } from "react";
+import "./Title.css";
 
-const Title = () => {
-  const [title, setTitle] = useState("");
-
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder="Mon événement"
-        value={title}
-        onChange={(event) => {
-          setTitle(event.target.value);
-        }}
-        maxLength={60}
-      />
-    </div>
+const Title = ({ text, title }) => {
+  return title === "false" ? (
+    <p className="title">{text}</p>
+  ) : (
+    <h2 className="title">{text}</h2>
   );
 };
 

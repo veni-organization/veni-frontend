@@ -1,8 +1,16 @@
-const Input = ({ type, placeholder }) => {
+import "./Input.css";
+
+const Input = ({ type, placeholder, className, data, setData }) => {
   return (
-    <div>
-      <input type={type} placeholder={placeholder} />
-    </div>
+    <input
+      type={type}
+      placeholder={placeholder}
+      className={className}
+      value={data}
+      onChange={(e) => {
+        setData(e.target.value);
+      }}
+    />
   );
 };
 
