@@ -9,6 +9,10 @@ const avatar = ({ user, size }) => {
     "pink-linearGradient",
     "green-linearGradient",
     "yellow-linearGradient",
+    "blue-linearGradient",
+    "orange-linearGradient",
+    "purple-linearGradient",
+    "gray-linearGradient",
   ];
 
   // Random gradient select
