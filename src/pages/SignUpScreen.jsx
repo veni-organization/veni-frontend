@@ -64,7 +64,7 @@ const SignUpScreen = () => {
           verifyCode: Number(checkCode),
         }
       );
-      Cookies.set("token", response.data.token);
+      Cookies.set("token", response.data.token, { expires: 365 });
       setStep(step + 1);
       setCheckCode("");
       setShowVerification(false);

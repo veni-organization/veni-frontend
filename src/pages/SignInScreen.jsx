@@ -43,7 +43,7 @@ const SignInScreen = () => {
         `${import.meta.env.VITE_API_URL}/auth/verify`,
         { phoneNumber: userPhone, verifyCode: Number(checkCode) }
       );
-      Cookies.set("token", response.data.token);
+      Cookies.set("token", response.data.token, { expires: 365 });
       console.log(response.data);
       navigate("/event/:id");
     } catch (error) {
