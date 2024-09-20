@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
 import EventScreen from "./pages/EventScreen";
+import SignUpScreen from "./pages/SignUpScreen";
 import Create from "./pages/Create";
 import Edit from "./pages/Edit";
 
@@ -18,8 +18,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/signIn" element={<SignIn />} />
-        <Route path="/signUp" element={<SignUp />} />
         <Route path="/event/:id" element={<EventScreen />} />
+        <Route path="/signUp" element={<SignUpScreen />} />
         <Route path="create" element={<Create />} />
         <Route path="edit/:id" element={<Edit />} />
       </Routes>
