@@ -5,8 +5,11 @@ import "./BackButton.css";
 const BackButton = ({ step, setStep }) => {
   return (
     <button
+      // This function get back to the previous step
       onClick={() => {
-        setStep(step - 1);
+        if (step) {
+          setStep(step - 1);
+        }
       }}
       className="back-button"
     >
