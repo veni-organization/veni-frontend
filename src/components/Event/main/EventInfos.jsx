@@ -33,7 +33,7 @@ const EventInfos = ({ event }) => {
             top:
               window.innerWidth < 1200
                 ? name.length > 23
-                  ? "355px"
+                  ? "490px"
                   : "385px" // Mobile
                 : "", // Desktop
           }}
