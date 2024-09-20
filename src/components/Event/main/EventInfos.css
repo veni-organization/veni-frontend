@@ -1,0 +1,144 @@
+@import "../../../assets/colors/colors.css";
+
+/**********************/
+/*     CONTAINER      */
+/**********************/
+
+/* MAIN INFOS */
+.hosts-infos {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.host-title-container {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  background-color: black;
+}
+
+.hosts-avatar {
+  display: flex;
+  gap: 5px;
+}
+
+.hosts-name {
+  display: flex;
+  gap: 5px;
+}
+
+/* DETAILS */
+.event-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px;
+}
+
+.event-location-container {
+  display: flex;
+  gap: 5px;
+}
+
+.event-description-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/**********************/
+/*       IMAGE        */
+/**********************/
+
+.event-picture {
+  width: 100%;
+  height: 490px;
+  background-size: cover;
+}
+
+.event-blur-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  filter: blur(120px); /* Blurs only the background */
+  z-index: -1;
+}
+
+/**********************/
+/*        TEXTE       */
+/**********************/
+.event-name {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.event-host-name {
+  font-size: 14px;
+}
+
+.event-date {
+  font-size: 24px;
+}
+.event-location {
+  font-size: 16px;
+}
+
+.event-button-map {
+  color: var(--green);
+  font-weight: bold;
+}
+/**********************/
+/*     RESPONSIVE     */
+/**********************/
+
+/* Desktop */
+@media only screen and (min-width: 1201px) {
+  .event-infos-container {
+    width: 1024px;
+    display: flex;
+    gap: 70px;
+  }
+
+  .event-picture {
+    width: 360px;
+    height: 450px;
+    background-size: cover;
+  }
+
+  .event-main-infos-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .host-title-container {
+    padding: 0;
+  }
+  .event-details-container {
+    padding: 0;
+  }
+
+  .linear-gradient {
+    background-image: none;
+    width: 0;
+    height: 0;
+  }
+  .host-title-container {
+    position: relative;
+  }
+}
+
+/* Tablette */
+@media only screen and (max-width: 1200px) {
+}
+
+/* Téléphone */
+@media only screen and (max-width: 768px) {
+}
