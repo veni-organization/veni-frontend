@@ -91,7 +91,8 @@ const SignUpScreen = () => {
           },
         }
       );
-      navigate("/event/:id");
+      // navigate("/event/:id");
+      setStep(step + 1);
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -282,6 +283,16 @@ const SignUpScreen = () => {
           </div>
         )}
       </form>
+      {step === 5 && (
+        <div
+          className="going-screen"
+          onClick={() => {
+            navigate("/event/:id");
+          }}
+        >
+          <p>going</p>
+        </div>
+      )}
     </div>
   );
 };

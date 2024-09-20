@@ -22,6 +22,14 @@
   align-items: center;
 }
 
+.going-screen {
+  background-color: #56dbbb;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /**********************/
 /*       IMAGE        */
 /**********************/
@@ -50,6 +58,11 @@
 .avatar p {
   margin-top: 15px;
   font-weight: bold;
+}
+
+.going-screen p {
+  font-size: 70px;
+  color: #000;
 }
 
 /**********************/
