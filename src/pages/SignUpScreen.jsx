@@ -76,7 +76,7 @@ const SignUpScreen = () => {
           (error.response.data.message === "Phone number already registered" &&
             "Numéro déjà utilisé") ||
           (error.response.data.message === "Wrong code" &&
-            "Mauvais code de connexion")
+            "Veuillez vérifier le code saisi")
       );
       console.log(error.response.data);
     } finally {
@@ -178,7 +178,7 @@ const SignUpScreen = () => {
                 <Title text="Code de vérification" title="false" />
                 <Input
                   type="text"
-                  placeholder="123-456"
+                  placeholder="123456"
                   className="verification-input"
                   data={checkCode}
                   setData={setCheckCode}

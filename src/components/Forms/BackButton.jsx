@@ -6,7 +6,9 @@ const BackButton = ({ step, setStep }) => {
   return (
     <button
       onClick={() => {
-        setStep(step - 1);
+        if (step) {
+          setStep(step - 1);
+        }
       }}
       className="back-button"
     >
