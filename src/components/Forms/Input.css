@@ -1,3 +1,26 @@
+/**********************/
+/*     CONTAINER      */
+/**********************/
+
+/**********************/
+/*       IMAGE        */
+/**********************/
+
+.avatar-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  margin-top: 150px;
+}
+
+/**********************/
+/*        TEXTE       */
+/**********************/
+
 .input {
   color: #fff;
   text-align: center;
@@ -7,6 +30,8 @@
   font-weight: 500;
   line-height: 22px; /* 68.75% */
 }
+
+/* CSS for Name Input */
 
 .name-input {
   background-color: #121818;
@@ -21,6 +46,8 @@
   outline: none;
 }
 
+/* CSS for Verification Input */
+
 .verification-input {
   background-color: #121818;
   color: #fff;
@@ -32,6 +59,12 @@
 .verification-input:focus {
   outline: none;
 }
+
+.verification-block {
+  margin-right: 44px;
+}
+
+/* CSS for BirthDate Input */
 
 .birthday-input:focus {
   outline: none;
@@ -62,4 +95,34 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   right: 0;
   top: 0;
   width: auto;
+}
+
+/* CSS for File Input */
+
+input[type="file"] {
+  display: none;
+}
+
+.file-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  background-color: #1e2525;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  margin-top: 150px;
+}
+
+/**********************/
+/*     RESPONSIVE     */
+/**********************/
+
+/* Desktop*/
+@media only screen and (min-width: 1350px) {
+}
+
+/* Téléphone */
+@media only screen and (max-width: 768px) {
 }

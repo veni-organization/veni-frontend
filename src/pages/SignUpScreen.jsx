@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import axios from "axios";
@@ -10,9 +10,11 @@ import PhoneNumber from "../components/Forms/PhoneNumber";
 import Title from "../components/Forms/Title";
 import FormButton from "../components/Forms/FormButton";
 
-import "./SignUp.css";
+import "./SignUpScreen.css";
 
 const SignUpScreen = () => {
+  const navigate = useNavigate();
+
   const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
   const formatedDate = today.toISOString().split("T")[0];
@@ -20,14 +22,15 @@ const SignUpScreen = () => {
 
   const [username, setUsername] = useState("");
   const [userPhone, setUserPhone] = useState("");
+  const [showVerification, setShowVerification] = useState(false);
   const [checkCode, setCheckCode] = useState("");
   const [userBirth, setUserBirth] = useState(formatedDate);
   const [userAvatar, setUserAvatar] = useState(null);
+  const [avatarPreview, setAvatarPreview] = useState(null);
   const [step, setStep] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingVerify, setIsLoadingVerify] = useState(false);
-  const [showVerification, setShowVerification] = useState(false);
 
   // This function send username and phonenumber to the server, to be able to continue the process with the code to verify identity
   const handleSignUp = async () => {
@@ -62,6 +65,8 @@ const SignUpScreen = () => {
       );
       Cookies.set("token", response.data.token);
       setStep(step + 1);
+      setCheckCode("");
+      setShowVerification(false);
       console.log(response.data);
     } catch (error) {
       console.log(error.response.data);
@@ -73,7 +78,7 @@ const SignUpScreen = () => {
   // This fonction send the birth date and the avatar to complete user profile
   const handleCompleteProfile = async () => {
     const formData = new FormData();
-    formData.append("birthDate", userBirth);
+    formData.append("birth", userBirth);
     formData.append("avatar", userAvatar);
     try {
       const response = await axios.post(
@@ -81,15 +86,22 @@ const SignUpScreen = () => {
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${Cookies.get("token")}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
+      navigate("/event/:id");
       console.log(response.data);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  // This function handle the file upload, and create a temporary URL to put the picture instead of the input
+  const handleFileChange = (file) => {
+    setUserAvatar(file);
+    setAvatarPreview(URL.createObjectURL(file));
   };
 
   return (
@@ -175,7 +187,6 @@ const SignUpScreen = () => {
                 setIsDateChanged(value !== formatedDate);
               }}
               className="birthday-input"
-              placeholder="Ta date de naissance"
               max={formatedDate}
             />
             <FormButton
@@ -194,7 +205,29 @@ const SignUpScreen = () => {
               <BackButton step={step} setStep={setStep} />
               <Title text="Ajoute ta photo !" />
             </div>
-            <Input type="file" value={userAvatar} setData={setUserAvatar} />
+            {/* <div className="avatar-preview"> */}
+            {avatarPreview ? (
+              <img
+                className="avatar-preview"
+                src={avatarPreview}
+                alt="Avatar Preview"
+                onClick={() => {
+                  setUserAvatar(null);
+                  setAvatarPreview(null);
+                }}
+              />
+            ) : (
+              <Input
+                type="file"
+                data={userAvatar}
+                setData={(file) => {
+                  handleFileChange(file);
+                }}
+                className="file-input"
+              />
+            )}
+            {/* </div> */}
+
             <FormButton
               text="Confirmer"
               setStep={setStep}
