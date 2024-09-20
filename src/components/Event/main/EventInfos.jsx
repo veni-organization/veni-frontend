@@ -1,11 +1,8 @@
 import "./EventInfos.css";
 import Avatar from "../../profile/Avatar";
 import defaultImg from "../../../assets/img/life_is_a_party.jpg";
-import colors from "../../../assets/colors/colors";
 
 const EventInfos = ({ event }) => {
-  console.log(event);
-  // destructuring event
   const { name, event_date, location, description, hosts, event_picture } =
     event;
   const dateObj = new Date(event_date);
@@ -16,24 +13,32 @@ const EventInfos = ({ event }) => {
     hour: "numeric",
     minute: "numeric",
   }).format(dateObj);
+
   return (
     <div className="event-infos-container">
-      <div className="event-main-infos">
+      <div
+        className="event-blur-background"
+        style={{ backgroundImage: `url(${defaultImg})` }}
+      ></div>
+      <div
+        className="event-picture"
+        style={{
+          backgroundImage: `url(${event_picture ? event_picture : defaultImg})`,
+        }}
+      ></div>
+      <div className="event-main-infos-container">
         <div
-          className="event-picture"
+          className="host-title-container"
           style={{
-            backgroundImage: `url(${
-              event_picture ? event_picture : defaultImg
-            })`,
+            top:
+              window.innerWidth < 1200
+                ? name.length > 23
+                  ? "355px"
+                  : "385px" // Mobile
+                : "", // Desktop
           }}
         >
-          <div className="linear-gradient"></div>
-          <h1
-            className="event-name"
-            style={{ top: name.length > 23 ? "368px" : "400px" }}
-          >
-            {name}
-          </h1>
+          <h1 className="event-name">{name}</h1>
           <div className="hosts-infos">
             <div className="hosts-avatar">
               {hosts.map((host, index) => {
@@ -53,18 +58,16 @@ const EventInfos = ({ event }) => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="event-details-container">
-        <p className="event-date">{formattedDate}</p>
-        <div className="event-location-container">
-          <p className="event-location">{location}</p>
-          <p className="event-button-map" style={{ color: `${colors.Green}` }}>
-            - Voir sur maps
-          </p>
-        </div>
-        <div className="event-description-container">
-          <p style={{ fontWeight: "bold" }}>Description</p>
-          <p style={{ textAlign: "justify" }}>{description}</p>
+        <div className="event-details-container">
+          <p className="event-date">{formattedDate}</p>
+          <div className="event-location-container">
+            <p className="event-location">{location}</p>
+            <p className="event-button-map">- Voir sur maps</p>
+          </div>
+          <div className="event-description-container">
+            <p style={{ fontWeight: "bold" }}>Description</p>
+            <p style={{ textAlign: "justify" }}>{description}</p>
+          </div>
         </div>
       </div>
     </div>
