@@ -33,9 +33,11 @@ const FormButton = ({
           if (step) {
             setStep(step + 1);
           } else {
+            // on the signIn flow, check if its the right code
             if (checkCode) {
               await handleVerify();
             } else {
+              // on the signIn flow, check if the number exists in database
               await handleSignIn();
             }
           }

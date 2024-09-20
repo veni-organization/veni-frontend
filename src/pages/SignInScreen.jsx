@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import axios from "axios";
@@ -11,6 +11,8 @@ import Input from "../components/Forms/Input";
 import FormButton from "../components/Forms/FormButton";
 
 const SignInScreen = () => {
+  const navigate = useNavigate();
+
   const [showVerification, setShowVerification] = useState(false);
   const [userPhone, setUserPhone] = useState("");
   const [checkCode, setCheckCode] = useState("");
@@ -43,6 +45,7 @@ const SignInScreen = () => {
       );
       Cookies.set("token", response.data.token);
       console.log(response.data);
+      navigate("/event/:id");
     } catch (error) {
       setErrorMessage(
         error.response.data.message === "Wrong code" &&
