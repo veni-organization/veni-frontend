@@ -1,6 +1,6 @@
-import "./FormButton.css";
+import "./SignUpFormButton.css";
 
-const FormButton = ({ text, setStep, step, data, handleSignUp }) => {
+const SignUpFormButton = ({ text, setStep, step, data, handleSignUp }) => {
   return (
     <button
       type="button"
@@ -19,4 +19,4 @@ const FormButton = ({ text, setStep, step, data, handleSignUp }) => {
   );
 };
 
-export default FormButton;
+export default SignUpFormButton;

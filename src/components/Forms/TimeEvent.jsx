@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { TimePicker } from "@vaadin/react-components/TimePicker";
 import "./TimeEvent.css";
 
-const TimeEvent = ({ label }) => {
-  const [time, setTime] = useState();
-
+const TimeEvent = ({ label, time, setTime }) => {
   return (
     <TimePicker
       label={label}

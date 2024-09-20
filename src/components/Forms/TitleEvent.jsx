@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-const TitleEvent = () => {
-  const [title, setTitle] = useState("");
-
+const TitleEvent = ({ title, setTitle }) => {
   return (
     <div>
       <input
@@ -10,9 +8,14 @@ const TitleEvent = () => {
         placeholder="Mon événement"
         value={title}
         onChange={(event) => {
-          setTitle(event.target.value);
+          // Update the title field in formData
+          setTitle((prevFormData) => ({
+            ...prevFormData,
+            title: event.target.value,
+          }));
         }}
         maxLength={60}
+        className="title-event"
       />
     </div>
   );

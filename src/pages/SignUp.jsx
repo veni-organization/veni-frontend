@@ -7,7 +7,7 @@ import BackButton from "../components/Forms/BackButton";
 import Input from "../components/Forms/Input";
 import PhoneNumber from "../components/Forms/PhoneNumber";
 import Title from "../components/Forms/Title";
-import FormButton from "../components/Forms/FormButton";
+import FormButton from "../components/Forms/SignUpFormButton";
 
 import "./SignUp.css";
 

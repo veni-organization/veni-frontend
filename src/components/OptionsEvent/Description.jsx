@@ -1,9 +1,7 @@
 import { useState } from "react";
 import "./Description.css";
 
-const Description = () => {
-  const [description, setDescription] = useState("");
-
+const Description = ({ description, setDescription }) => {
   return (
     <div className="description-container">
       <label htmlFor="description">Description</label>
@@ -15,7 +13,7 @@ const Description = () => {
         onChange={(event) => {
           setDescription(event.target.value);
         }}
-        maxlength={360}
+        maxLength={360}
       ></textarea>
     </div>
   );

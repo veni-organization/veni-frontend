@@ -1,0 +1,233 @@
+/**********************/
+/*     CONTAINER      */
+/**********************/
+
+.create-event-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../assets/img/life_is_a_party.jpg);
+  background-size: cover;
+  background-position: center;
+  filter: blur(120px); /* Blurs only the background */
+  z-index: -1;
+}
+
+.create-event-container {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+}
+
+.form-header {
+  height: 40px;
+  display: flex;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.step1-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 40px);
+  position: relative;
+}
+
+.title-event,
+.address-input {
+  background-color: #ffffff00;
+  border: none;
+  position: absolute;
+  top: 32%;
+  left: 0%;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  width: 100vw;
+}
+
+.title-event:focus {
+  outline: none;
+}
+
+.form-button,
+.empty-form-button {
+  width: 342px;
+  justify-content: center;
+  position: absolute;
+  bottom: 160px;
+}
+
+.step2-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 0 16px;
+}
+
+.hours {
+  display: flex;
+  display: none;
+}
+
+.step3-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 0 16px;
+}
+
+.address-input:focus {
+  outline: none;
+}
+
+.step4-screen {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.browse-poster {
+  position: absolute;
+  background-color: #12181833;
+  padding: 16px;
+  padding-left: 24px;
+  padding-right: 24px;
+  bottom: 96px;
+  border-radius: 24px;
+  color: #e193ee;
+}
+
+.step4-screen {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.step5-screen {
+  display: flex;
+  flex-direction: column;
+  background-color: #12181833;
+  border-radius: 16px;
+  margin: 8px;
+  padding: 8px;
+  align-items: center;
+}
+
+.step5-screen > p {
+  font-size: 20px;
+  align-self: center;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 8px;
+}
+
+.link-input {
+  display: flex;
+  gap: 8px;
+}
+
+.links input {
+  background-color: #ffffff10;
+  border: none;
+  font-size: 14px;
+  padding: 8px;
+  color: white;
+  flex: 4;
+  border-radius: 8px;
+}
+
+.none {
+  display: none;
+}
+
+.save-link,
+.delete-link {
+  background-color: #ffffff00;
+  color: white;
+  border: none;
+  font-family: "Raleway", sans-serif;
+}
+
+.links-saved {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+.link-saved {
+  flex: 4;
+  text-overflow: ellipsis;
+}
+
+.main-button {
+  width: 342px;
+  justify-content: center;
+  position: absolute;
+  bottom: 80px;
+}
+
+/**********************/
+/*       IMAGE        */
+/**********************/
+
+.poster-container {
+  position: relative;
+  justify-self: flex-start;
+}
+
+.preview {
+  width: 90vw;
+  height: 112.5vw; /* height:width ratio = 9/16 = .5625  */
+  position: relative;
+}
+
+.icon-overlay {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/**********************/
+/*        TEXTE       */
+/**********************/
+
+/**********************/
+/*     RESPONSIVE     */
+/**********************/
+
+/* Desktop*/
+@media only screen and (min-width: 1350px) {
+}
+
+/* Téléphone */
+@media only screen and (max-width: 768px) {
+}

@@ -9,10 +9,13 @@ const apiKey = import.meta.env.VITE_PLACES_API;
 
 const libraries = ["places"];
 
-const AddressAutocomplete = ({ onSelect }) => {
-  const [searchBox, setSearchBox] = useState(null);
-  const [address, setAddress] = useState("");
-
+const AddressAutocomplete = ({
+  onSelect,
+  searchBox,
+  setSearchBox,
+  address,
+  setAddress,
+}) => {
   const handleLoad = (ref) => {
     setSearchBox(ref);
   };
@@ -68,8 +71,10 @@ const AddressAutocomplete = ({ onSelect }) => {
           type="text"
           placeholder="Enter your address"
           value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          className="form-input"
+          onChange={(event) => {
+            setAddress(event.target.value);
+          }}
+          className="address-input"
         />
       </StandaloneSearchBox>
     </LoadScript>
