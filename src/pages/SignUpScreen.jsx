@@ -55,6 +55,7 @@ const SignUpScreen = () => {
   // This fonction send phonenumber and verification code to get the token
   const handleVerify = async () => {
     setIsLoadingVerify(true);
+    setErrorMessage("");
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/verify`,
@@ -69,6 +70,14 @@ const SignUpScreen = () => {
       setShowVerification(false);
       console.log(response.data);
     } catch (error) {
+      setErrorMessage(
+        (error.response.data.message === "User not found" &&
+          "Merci de renvoyer ton numéro de téléphone") ||
+          (error.response.data.message === "Phone number already registered" &&
+            "Numéro déjà utilisé") ||
+          (error.response.data.message === "Wrong code" &&
+            "Mauvais code de connexion")
+      );
       console.log(error.response.data);
     } finally {
       setIsLoadingVerify(false);
@@ -176,6 +185,7 @@ const SignUpScreen = () => {
                 />
               </div>
             )}
+            <p>{errorMessage}</p>
             <FormButton
               data={userPhone}
               text="Envoyer"
@@ -229,14 +239,15 @@ const SignUpScreen = () => {
           <div
             className="sign-up step4"
             // Allow to press enter on keyboard to go to next step
-            // onKeyDown={(e) => {
-            //   if (e.key === "Enter") {
-            //     e.preventDefault();
-            //     if () {
-            //       setStep(step + 1);
-            //     }
-            //   }
-            // }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                if (userAvatar) {
+                  handleCompleteProfile();
+                  setStep(step + 1);
+                }
+              }
+            }}
           >
             <div className="top-title">
               <BackButton step={step} setStep={setStep} />
