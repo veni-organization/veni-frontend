@@ -185,11 +185,7 @@ const CreateEvent = () => {
                 />
                 <Links className="links" />
               </div>
-              <MainButton
-                text="Valider"
-                onClick={handleSubmit}
-                className="main-button"
-              />
+              <MainButton text="Valider" onClick={handleSubmit} />
             </div>
           )}
         </form>
