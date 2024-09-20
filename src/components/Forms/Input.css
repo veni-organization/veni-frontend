@@ -121,6 +121,9 @@ input[type="file"] {
 
 /* Desktop*/
 @media only screen and (min-width: 1350px) {
+  .verification-block {
+    margin-right: 44px;
+  }
 }
 
 /* Téléphone */

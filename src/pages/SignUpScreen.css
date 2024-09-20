@@ -31,9 +31,25 @@
 /**********************/
 
 .sign-up a {
-  color: white;
+  color: #fff;
   text-decoration: none;
   margin-top: 50px;
+}
+
+.sign-up h3 {
+  font-size: 12px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.avatar p {
+  margin-top: 15px;
+  font-weight: bold;
 }
 
 /**********************/
@@ -42,6 +58,9 @@
 
 /* Desktop*/
 @media only screen and (min-width: 1350px) {
+  .sign-up {
+    margin-top: 100px;
+  }
 }
 
 /* Téléphone */

@@ -143,7 +143,21 @@ const SignUpScreen = () => {
         )}
 
         {step === 2 && (
-          <div className="sign-up step2">
+          <div
+            className="sign-up step2"
+            // Allow to press enter on keyboard to go to next step
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                if (userPhone && checkCode) {
+                  return handleVerify();
+                }
+                if (userPhone) {
+                  return handleSignUp();
+                }
+              }
+            }}
+          >
             <div className="top-title">
               <BackButton step={step} setStep={setStep} />
               <Title text="Entre ton numéro de téléphone !" />
@@ -174,7 +188,18 @@ const SignUpScreen = () => {
         )}
 
         {step === 3 && (
-          <div className="sign-up step3">
+          <div
+            className="sign-up step3"
+            // Allow to press enter on keyboard to go to next step
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                if (userBirth) {
+                  setStep(step + 1);
+                }
+              }
+            }}
+          >
             <div className="top-title">
               <BackButton step={step} setStep={setStep} />
               <Title text="Entre ta date de naissance !" />
@@ -200,22 +225,42 @@ const SignUpScreen = () => {
         )}
 
         {step === 4 && (
-          <div className="sign-up step4">
+          <div
+            className="sign-up step4"
+            // Allow to press enter on keyboard to go to next step
+            // onKeyDown={(e) => {
+            //   if (e.key === "Enter") {
+            //     e.preventDefault();
+            //     if () {
+            //       setStep(step + 1);
+            //     }
+            //   }
+            // }}
+          >
             <div className="top-title">
               <BackButton step={step} setStep={setStep} />
               <Title text="Ajoute ta photo !" />
-            </div>
-            {/* <div className="avatar-preview"> */}
-            {avatarPreview ? (
-              <img
-                className="avatar-preview"
-                src={avatarPreview}
-                alt="Avatar Preview"
+              <p
                 onClick={() => {
-                  setUserAvatar(null);
-                  setAvatarPreview(null);
+                  handleCompleteProfile();
                 }}
-              />
+              >
+                Passer
+              </p>
+            </div>
+            {avatarPreview ? (
+              <div className="avatar">
+                <img
+                  className="avatar-preview"
+                  src={avatarPreview}
+                  alt="Avatar Preview"
+                  onClick={() => {
+                    setUserAvatar(null);
+                    setAvatarPreview(null);
+                  }}
+                />
+                <p>Quelle beauté ! ✨</p>
+              </div>
             ) : (
               <Input
                 type="file"
@@ -226,8 +271,6 @@ const SignUpScreen = () => {
                 className="file-input"
               />
             )}
-            {/* </div> */}
-
             <FormButton
               text="Confirmer"
               setStep={setStep}
