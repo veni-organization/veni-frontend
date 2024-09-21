@@ -1,0 +1,33 @@
+@import url("../../../assets/colors/colors.css");
+
+/**********************/
+/*     CONTAINER      */
+/**********************/
+.feed-list-container {
+  display: flex;
+  gap: 20px;
+}
+
+/**********************/
+/*       BUTTON       */
+/**********************/
+
+.feed-button {
+  padding: 10px 15px;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+}
+
+.feed-selected {
+  background-color: var(--white);
+  color: var(--black);
+}
+/**********************/
+/*        TEXTE       */
+/**********************/
+
+.feed-name {
+  color: var(--black);
+  opacity: 1;
+}
