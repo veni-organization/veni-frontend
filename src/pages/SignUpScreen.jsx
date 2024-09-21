@@ -65,7 +65,6 @@ const SignUpScreen = () => {
         }
       );
       Cookies.set("token", response.data.token, { expires: 365 });
-      Cookies.set("id", response.data.id, { expires: 365 });
       setStep(step + 1);
       setCheckCode("");
       setShowVerification(false);
