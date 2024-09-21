@@ -3,9 +3,10 @@ import poster from "../../assets/img/life_is_a_party.jpg";
 import { MdInsertPhoto } from "react-icons/md";
 import "./Poster.css";
 
-const Poster = () => {
-  const [picture, setPicture] = useState(null);
-
+const Poster = ({ picture, setPicture }) => {
+  {
+    console.log("---->", picture);
+  }
   return (
     <div className="poster-container">
       <input
@@ -22,6 +23,7 @@ const Poster = () => {
       <img
         className="preview"
         src={picture ? URL.createObjectURL(picture) : poster}
+        // picture ? URL.createObjectURL(picture) :
         alt="Preview"
       />
       <label htmlFor="picture" className="icon-overlay">
