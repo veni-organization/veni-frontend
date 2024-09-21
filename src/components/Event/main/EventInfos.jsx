@@ -1,11 +1,25 @@
-import "./EventInfos.css";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../context/AuthContext";
 import Avatar from "../../profile/Avatar";
 import defaultImg from "../../../assets/img/life_is_a_party.jpg";
-import { useEffect, useState } from "react";
+import Rsvp from "./rsvp/Rsvp";
+import "./EventInfos.css";
 
 const EventInfos = ({ event }) => {
-  const { name, event_date, location, description, hosts, event_picture } =
-    event;
+  const [top, setTop] = useState("385px");
+  const {
+    name,
+    event_date,
+    location,
+    description,
+    hosts,
+    event_picture,
+    guests,
+    refused_guests,
+  } = event;
+  const { userId } = useContext(AuthContext);
+  const isUserHost = hosts.some((host) => host._id === userId);
+
   const dateObj = new Date(event_date);
   const formattedDate = new Intl.DateTimeFormat("fr-FR", {
     year: "numeric",
@@ -14,7 +28,6 @@ const EventInfos = ({ event }) => {
     hour: "numeric",
     minute: "numeric",
   }).format(dateObj);
-  const [top, setTop] = useState("385px");
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,12 +57,15 @@ const EventInfos = ({ event }) => {
     <div className="event-infos-container">
       <div
         className="event-blur-background"
-        style={{ backgroundImage: `url(${defaultImg})` }}
+        style={{
+          backgroundImage: `url(${event_picture ? event_picture : defaultImg})`,
+        }}
       ></div>
       <div
         className="event-picture"
         style={{
           backgroundImage: `url(${event_picture ? event_picture : defaultImg})`,
+          backgroundPosition: "center",
         }}
       ></div>
       <div className="event-main-infos-container">
@@ -83,11 +99,16 @@ const EventInfos = ({ event }) => {
           <p className="event-date">{formattedDate}</p>
           <div className="event-location-container">
             <p className="event-location">{location}</p>
-            <p className="event-button-map">- Voir sur maps</p>
+            {!isUserHost && (
+              <Rsvp guests={guests} refused={refused_guests} userId={userId} />
+            )}
           </div>
           <div className="event-description-container">
             <p style={{ fontWeight: "bold" }}>Description</p>
-            <p style={{ textAlign: "justify" }}>{description}</p>
+            {/* pre-line to keep the line breaks */}
+            <p style={{ textAlign: "justify", whiteSpace: "pre-line" }}>
+              {description}
+            </p>
           </div>
         </div>
       </div>

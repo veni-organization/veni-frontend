@@ -10,23 +10,26 @@ import SignUpScreen from "./pages/SignUpScreen";
 import Edit from "./pages/Edit";
 
 import "./App.css";
-import { FormProvider } from "./components/context/CreateEventContext";
+import { FormProvider } from "./context/CreateEventContext";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    <FormProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/signIn" element={<SignInScreen />} />
-          <Route path="/signUp" element={<SignUpScreen />} />
-          <Route path="/event/:id" element={<EventScreen />} />
-          <Route path="/create" element={<CreateEventScreen />} />
-          <Route path="edit/:id" element={<Edit />} />
-        </Routes>
-      </Router>
-    </FormProvider>
+    <AuthProvider>
+      <FormProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/signIn" element={<SignInScreen />} />
+            <Route path="/signUp" element={<SignUpScreen />} />
+            <Route path="/event/:id" element={<EventScreen />} />
+            <Route path="/create" element={<CreateEventScreen />} />
+            <Route path="edit/:id" element={<Edit />} />
+          </Routes>
+        </Router>
+      </FormProvider>
+    </AuthProvider>
   );
 }
 

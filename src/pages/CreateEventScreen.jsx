@@ -16,7 +16,7 @@ import EventFormButton from "../components/Forms/EventFormButton";
 import EventCreationBack from "../components/Forms/EventCreationBack";
 import poster from "../assets/img/life_is_a_party.jpg";
 import "./CreateEventScreen.css";
-import { CreateEventContext } from "../components/context/CreateEventContext";
+import { CreateEventContext } from "../context/CreateEventContext";
 
 const token = Cookies.get("token");
 
