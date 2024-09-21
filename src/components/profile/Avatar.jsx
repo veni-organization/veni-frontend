@@ -22,7 +22,17 @@ const avatar = ({ user, size }) => {
   return (
     <div>
       {avatar ? (
-        <div style={{ backgroundImage: `url(${avatar})` }}></div>
+        <div
+          style={{
+            backgroundImage: `url(${avatar})`,
+            height: size,
+            width: size,
+            borderRadius: "50%",
+            backgroundSize: "cover",
+            border: "2px solid #fff",
+            borderColor: "rgba(255, 255, 255, 0.5)",
+          }}
+        ></div>
       ) : (
         <div
           className={`default-avatar ${randomGradient}`}

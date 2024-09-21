@@ -18,7 +18,7 @@
   flex-direction: column;
   gap: 10px;
   position: absolute;
-  background-color: black;
+  /* background-color: black; */
 }
 
 .hosts-avatar {
@@ -94,12 +94,13 @@
   color: var(--green);
   font-weight: bold;
 }
+
 /**********************/
 /*     RESPONSIVE     */
 /**********************/
 
 /* Desktop */
-@media only screen and (min-width: 1201px) {
+@media only screen and (min-width: 1024px) {
   .event-infos-container {
     width: 1024px;
     display: flex;

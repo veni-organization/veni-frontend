@@ -1,6 +1,7 @@
 import "./EventInfos.css";
 import Avatar from "../../profile/Avatar";
 import defaultImg from "../../../assets/img/life_is_a_party.jpg";
+import { useEffect, useState } from "react";
 
 const EventInfos = ({ event }) => {
   const { name, event_date, location, description, hosts, event_picture } =
@@ -13,6 +14,31 @@ const EventInfos = ({ event }) => {
     hour: "numeric",
     minute: "numeric",
   }).format(dateObj);
+  const [top, setTop] = useState("385px");
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 1024;
+
+      // Dynamic based on the name length and window width
+      if (isMobile) {
+        setTop(name.length > 23 ? "355px" : "385px");
+      } else {
+        setTop(""); // No need for specific top for desktop
+      }
+    };
+
+    // Initial call to set position on load
+    handleResize();
+
+    // Listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event when the component is unmounted
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [name]); // Re-run when the name length changes
 
   return (
     <div className="event-infos-container">
@@ -30,12 +56,7 @@ const EventInfos = ({ event }) => {
         <div
           className="host-title-container"
           style={{
-            top:
-              window.innerWidth < 1200
-                ? name.length > 23
-                  ? "490px"
-                  : "385px" // Mobile
-                : "", // Desktop
+            top,
           }}
         >
           <h1 className="event-name">{name}</h1>
