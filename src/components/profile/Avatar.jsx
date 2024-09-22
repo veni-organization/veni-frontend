@@ -1,7 +1,7 @@
 import "./Avatar.css";
 
 const avatar = ({ user, size }) => {
-  const { name, avatar } = user;
+  const { name, avatar } = user[0];
 
   // Random gradients
   const gradients = [

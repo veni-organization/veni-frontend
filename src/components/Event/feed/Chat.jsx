@@ -1,11 +1,23 @@
+import Message from "./Message";
 import "./Chat.css";
+
 const Chat = ({ chat }) => {
-  return chat.length === 0 ? (
+  console.log("NUMBER MESSAGE ==> ", chat);
+  // check if chat is empty or not an array
+  if (!chat || !Array.isArray(chat.messages) || chat.messages.length === 0) {
+    return (
+      <div className="chat-container">
+        <p style={{ textAlign: "center" }}>Aucun message</p>
+      </div>
+    );
+  }
+
+  return (
     <div className="chat-container">
-      <p style={{ textAlign: "center" }}>Aucun message</p>
+      {chat.messages.map((message, index) => {
+        return <Message key={index} message={message} />;
+      })}
     </div>
-  ) : (
-    <div className="chat-container">MESSAGES !</div>
   );
 };
 

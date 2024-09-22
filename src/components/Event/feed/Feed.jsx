@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import FeedList from "./FeedList";
 import Chat from "./Chat";
 import "./Feed.css";
@@ -9,9 +10,19 @@ const Feed = ({ eventId }) => {
   const [globalChat, setGlobalChat] = useState([]);
 
   useEffect(() => {
-    const handleChats = async () => {};
+    const handleChats = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/message/${eventId}`
+        );
+        setHostChat(response.data.hostFeed);
+        setGlobalChat(response.data.globalFeed);
+      } catch (error) {
+        console.error(error.response.data);
+      }
+    };
     handleChats();
-  });
+  }, [eventId]);
 
   return (
     <div className="feed-container">

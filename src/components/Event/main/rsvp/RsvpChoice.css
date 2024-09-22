@@ -1,0 +1,36 @@
+/**********************/
+/*     CONTAINER      */
+/**********************/
+.rsvp-choice-container {
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  z-index: 100;
+}
+
+.response-choice-container {
+  padding: 10px;
+  border-radius: 50%;
+  background-color: rgba(18, 24, 24);
+}
+
+/**********************/
+/*     RESPONSIVE     */
+/**********************/
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+}
+
+/* Tablette */
+@media only screen and (max-width: 1200px) {
+}
+
+/* Téléphone */
+@media only screen and (max-width: 768px) {
+  .rsvp-choice-container {
+    left: 50%;
+    top: 600px;
+    transform: translateX(-50%);
+  }
+}

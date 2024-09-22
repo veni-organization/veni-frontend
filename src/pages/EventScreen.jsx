@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import EventInfos from "../components/Event/main/EventInfos";
 import Feed from "../components/Event/feed/Feed";
+import "./EventScreen.css";
 
 const Event = () => {
   const { id } = useParams();

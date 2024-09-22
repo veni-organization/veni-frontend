@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
-import Avatar from "../../profile/Avatar";
 import defaultImg from "../../../assets/img/life_is_a_party.jpg";
+import ProfileCard from "../../profile/ProfileCard";
+import BlurBackground from "./img/BlurBackground";
+import EventPicture from "./img/eventPicture";
 import Rsvp from "./rsvp/Rsvp";
 import "./EventInfos.css";
 
@@ -55,20 +57,9 @@ const EventInfos = ({ event }) => {
 
   return (
     <div className="event-infos-container">
-      <div
-        className="event-blur-background"
-        style={{
-          backgroundImage: `url(${event_picture ? event_picture : defaultImg})`,
-        }}
-      ></div>
-      <div
-        className="event-picture"
-        style={{
-          backgroundImage: `url(${event_picture ? event_picture : defaultImg})`,
-          backgroundPosition: "center",
-        }}
-      ></div>
+      <BlurBackground event_picture={event_picture} defaultImg={defaultImg} />
       <div className="event-main-infos-container">
+        <EventPicture event_picture={event_picture} defaultImg={defaultImg} />
         <div
           className="host-title-container"
           style={{
@@ -76,24 +67,7 @@ const EventInfos = ({ event }) => {
           }}
         >
           <h1 className="event-name">{name}</h1>
-          <div className="hosts-infos">
-            <div className="hosts-avatar">
-              {hosts.map((host, index) => {
-                return <Avatar key={index} user={host} size={"24px"} />;
-              })}
-            </div>
-            <div className="hosts-name">
-              {hosts.map((host, index) => {
-                return (
-                  <span key={index}>
-                    <p className="event-host-name">
-                      {host.name} {index < hosts.length - 1 && " & "}
-                    </p>
-                  </span>
-                );
-              })}
-            </div>
-          </div>
+          <ProfileCard users={hosts} />
         </div>
         <div className="event-details-container">
           <p className="event-date">{formattedDate}</p>
