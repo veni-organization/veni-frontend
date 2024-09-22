@@ -2,8 +2,6 @@ import ProfileCard from "../../profile/ProfileCard";
 import "./Message.css";
 
 const Message = ({ message }) => {
-  console.log(message);
-
   return (
     <div className="message-container">
       <div className="message-details">
