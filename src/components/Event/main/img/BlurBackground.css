@@ -1,0 +1,11 @@
+.event-blur-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  filter: blur(120px); /* Blurs only the background */
+  z-index: -1;
+}

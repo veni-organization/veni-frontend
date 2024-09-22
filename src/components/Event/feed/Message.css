@@ -1,0 +1,18 @@
+/**********************/
+/*     CONTAINER      */
+/**********************/
+
+.message-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 10px;
+  gap: 10px;
+}
+
+.message-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

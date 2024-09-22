@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import poster from "../../assets/img/life_is_a_party.jpg";
 
 // Create the context
 export const CreateEventContext = createContext();

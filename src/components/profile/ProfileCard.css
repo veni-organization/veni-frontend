@@ -1,0 +1,24 @@
+/**********************/
+/*     CONTAINER      */
+/**********************/
+
+/* MAIN INFOS */
+.hosts-infos {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.hosts-avatar {
+  display: flex;
+  gap: 5px;
+}
+
+.hosts-name {
+  display: flex;
+  gap: 5px;
+}
+
+.event-host-name {
+  font-size: 14px;
+}

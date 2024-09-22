@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import EventInfos from "../components/Event/main/EventInfos";
-import axios from "axios";
+import Feed from "../components/Event/feed/Feed";
+import "./EventScreen.css";
 
 const Event = () => {
   const { id } = useParams();
@@ -27,7 +29,12 @@ const Event = () => {
 
   return (
     <div className="event-container">
-      {event && <EventInfos event={event} />}
+      {event && (
+        <>
+          <EventInfos event={event} />
+          <Feed eventId={id} />
+        </>
+      )}
     </div>
   );
 };

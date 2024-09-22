@@ -5,11 +5,6 @@
 /**********************/
 
 /* MAIN INFOS */
-.hosts-infos {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
 
 .host-title-container {
   width: 100%;
@@ -21,26 +16,17 @@
   /* background-color: black; */
 }
 
-.hosts-avatar {
-  display: flex;
-  gap: 5px;
-}
-
-.hosts-name {
-  display: flex;
-  gap: 5px;
-}
-
 /* DETAILS */
 .event-details-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 15px;
+  padding: 20px;
 }
 
 .event-location-container {
   display: flex;
+  justify-content: space-between;
   gap: 5px;
 }
 
@@ -49,27 +35,6 @@
   flex-direction: column;
   gap: 10px;
 }
-/**********************/
-/*       IMAGE        */
-/**********************/
-
-.event-picture {
-  width: 100%;
-  height: 490px;
-  background-size: cover;
-}
-
-.event-blur-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background-size: cover;
-  background-position: center;
-  filter: blur(120px); /* Blurs only the background */
-  z-index: -1;
-}
 
 /**********************/
 /*        TEXTE       */
@@ -77,10 +42,6 @@
 .event-name {
   font-size: 32px;
   font-weight: bold;
-}
-
-.event-host-name {
-  font-size: 14px;
 }
 
 .event-date {
@@ -102,7 +63,6 @@
 /* Desktop */
 @media only screen and (min-width: 1024px) {
   .event-infos-container {
-    width: 1024px;
     display: flex;
     gap: 70px;
   }
@@ -114,10 +74,10 @@
   }
 
   .event-main-infos-container {
-    flex: 1;
+    width: 360px;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
   }
   .host-title-container {
     padding: 0;
