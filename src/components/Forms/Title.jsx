@@ -9,6 +9,7 @@ const Title = ({ text, title, step }) => {
       {step === 2 && "Entre ton numéro de téléphone !"}
       {step === 3 && "Entre ta date de naissance !"}
       {step === 4 && "Ajoute ta photo !"}
+      {!step && text}
     </h2>
   );
 };

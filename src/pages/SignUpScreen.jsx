@@ -20,7 +20,6 @@ const SignUpScreen = () => {
   const formatedDate = today.toISOString().split("T")[0];
   const [isDateChanged, setIsDateChanged] = useState(false);
 
-  const [title, setTitle] = useState("");
   const [username, setUsername] = useState("");
   const [userPhone, setUserPhone] = useState("");
   const [showVerification, setShowVerification] = useState(false);
@@ -69,6 +68,7 @@ const SignUpScreen = () => {
       setStep(step + 1);
       setCheckCode("");
       setShowVerification(false);
+      Cookies.remove("phone");
       console.log(response.data);
     } catch (error) {
       setErrorMessage(
@@ -118,7 +118,6 @@ const SignUpScreen = () => {
   return (
     <div className="signup-container">
       <div className="signup-header">
-        {/* Ici mettre le composant Back + Title */}
         <BackButton step={step} setStep={setStep} />
         <Title text="Entre ton nom ici !" step={step} />
         {step === 4 && (
@@ -179,10 +178,6 @@ const SignUpScreen = () => {
               }
             }}
           >
-            {/* <div className="top-title">
-            <BackButton step={step} setStep={setStep} />
-            <Title text="Entre ton numéro de téléphone !" />
-          </div> */}
             <PhoneNumber userPhone={userPhone} setUserPhone={setUserPhone} />
             {showVerification && (
               <div className="verification-block">
@@ -221,10 +216,6 @@ const SignUpScreen = () => {
               }
             }}
           >
-            {/* <div className="top-title">
-            <BackButton step={step} setStep={setStep} />
-            <Title text="Entre ta date de naissance !" />
-          </div> */}
             <Input
               type="date"
               data={userBirth}
@@ -258,17 +249,6 @@ const SignUpScreen = () => {
               }
             }}
           >
-            {/* <div className="top-title">
-            <BackButton step={step} setStep={setStep} />
-            <Title text="Ajoute ta photo !" />
-            <p
-              onClick={() => {
-                handleCompleteProfile();
-              }}
-            >
-              Passer
-            </p>
-          </div> */}
             {avatarPreview ? (
               <div className="avatar">
                 <img
@@ -307,7 +287,7 @@ const SignUpScreen = () => {
         <div
           className="going-screen"
           onClick={() => {
-            navigate("/event/:id");
+            navigate("/event/66f17d419f69907553fc65a1");
           }}
         >
           <p>going</p>
