@@ -158,6 +158,14 @@
   .signup-step4 {
     height: auto;
   }
+  .file-input {
+    margin-bottom: 0;
+    margin-top: 150px;
+  }
+  .avatar {
+    margin-bottom: 0;
+    margin-top: 150px;
+  }
 }
 
 /* Téléphone */
