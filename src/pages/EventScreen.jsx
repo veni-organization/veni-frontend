@@ -8,10 +8,31 @@ import "./EventScreen.css";
 
 const Event = () => {
   const { id } = useParams();
-  const { userId } = useContext(AuthContext);
+  const { userId, token } = useContext(AuthContext);
   const [event, setEvent] = useState();
   const [response, setResponse] = useState(null);
   const [isUserHost, setIsUserHost] = useState(false);
+
+  const handleUserResponse = async (newResponse) => {
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/guest/response/${id}`,
+        {
+          userResponse: newResponse,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (res.status === 202) {
+        setResponse(newResponse);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     // Get event infos
@@ -34,7 +55,7 @@ const Event = () => {
     };
 
     handleEvent();
-  }, [id, userId, isUserHost]);
+  }, [id, userId, isUserHost, response]);
 
   return (
     <div className="event-container">
@@ -44,6 +65,7 @@ const Event = () => {
             event={event}
             response={response}
             setResponse={setResponse}
+            handleUserResponse={handleUserResponse}
             userId={userId}
             isUserHost={isUserHost}
           />

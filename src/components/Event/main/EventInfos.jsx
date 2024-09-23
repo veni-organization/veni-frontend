@@ -6,7 +6,14 @@ import EventPicture from "./img/eventPicture";
 import Rsvp from "./rsvp/Rsvp";
 import "./EventInfos.css";
 
-const EventInfos = ({ event, response, setResponse, userId, isUserHost }) => {
+const EventInfos = ({
+  event,
+  response,
+  setResponse,
+  handleUserResponse,
+  userId,
+  isUserHost,
+}) => {
   const [top, setTop] = useState("385px");
   const {
     name,
@@ -76,6 +83,7 @@ const EventInfos = ({ event, response, setResponse, userId, isUserHost }) => {
                 userId={userId}
                 response={response}
                 setResponse={setResponse}
+                handleUserResponse={handleUserResponse}
               />
             )}
           </div>
