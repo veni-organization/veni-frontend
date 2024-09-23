@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import Header from "./components/header/Header";
 // Import des pages
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -17,6 +18,7 @@ function App() {
   return (
     <AuthProvider>
       <FormProvider>
+        <Header />
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />

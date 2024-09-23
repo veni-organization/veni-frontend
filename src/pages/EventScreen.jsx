@@ -30,10 +30,10 @@ const Event = () => {
   return (
     <div className="event-container">
       {event && (
-        <>
+        <div className="event-content">
           <EventInfos event={event} />
           <Feed eventId={id} />
-        </>
+        </div>
       )}
     </div>
   );

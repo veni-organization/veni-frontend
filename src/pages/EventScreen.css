@@ -2,6 +2,11 @@
 @media only screen and (min-width: 1024px) {
   .event-container {
     display: flex;
+    justify-content: center;
+  }
+
+  .event-content {
     width: 1024px;
+    display: flex;
   }
 }
