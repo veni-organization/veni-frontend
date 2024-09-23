@@ -23,8 +23,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/signIn" element={<SignInScreen />} />
-            <Route path="/signUp" element={<SignUpScreen />} />
+            <Route path="/signin" element={<SignInScreen />} />
+            <Route path="/signup" element={<SignUpScreen />} />
             <Route path="/event/:id" element={<EventScreen />} />
             <Route path="/create" element={<CreateEventScreen />} />
             <Route path="edit/:id" element={<Edit />} />
