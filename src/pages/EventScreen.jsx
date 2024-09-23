@@ -11,6 +11,7 @@ const Event = () => {
   const { userId } = useContext(AuthContext);
   const [event, setEvent] = useState();
   const [response, setResponse] = useState(null);
+  const [isUserHost, setIsUserHost] = useState(false);
 
   useEffect(() => {
     // Get event infos
@@ -21,6 +22,11 @@ const Event = () => {
         );
         if (response.status === 200) {
           setEvent(response.data);
+          for (let i = 0; i < response.data.hosts.length; i++) {
+            if (response.data.hosts[i]._id === userId) {
+              setIsUserHost(true);
+            }
+          }
         }
       } catch (error) {
         console.log(error);
@@ -28,7 +34,7 @@ const Event = () => {
     };
 
     handleEvent();
-  }, [id]);
+  }, [id, userId, isUserHost]);
 
   return (
     <div className="event-container">
@@ -39,8 +45,9 @@ const Event = () => {
             response={response}
             setResponse={setResponse}
             userId={userId}
+            isUserHost={isUserHost}
           />
-          <Feed eventId={id} response={response} />
+          <Feed eventId={id} response={response} isUserHost={isUserHost} />
         </div>
       )}
     </div>

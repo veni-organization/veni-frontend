@@ -6,7 +6,7 @@ import EventPicture from "./img/eventPicture";
 import Rsvp from "./rsvp/Rsvp";
 import "./EventInfos.css";
 
-const EventInfos = ({ event, response, setResponse, userId }) => {
+const EventInfos = ({ event, response, setResponse, userId, isUserHost }) => {
   const [top, setTop] = useState("385px");
   const {
     name,
@@ -18,8 +18,6 @@ const EventInfos = ({ event, response, setResponse, userId }) => {
     guests,
     refused_guests,
   } = event;
-
-  const isUserHost = hosts.some((host) => host._id === userId);
 
   const dateObj = new Date(event_date);
   const formattedDate = new Intl.DateTimeFormat("fr-FR", {
