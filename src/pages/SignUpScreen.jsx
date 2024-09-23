@@ -20,6 +20,7 @@ const SignUpScreen = () => {
   const formatedDate = today.toISOString().split("T")[0];
   const [isDateChanged, setIsDateChanged] = useState(false);
 
+  const [title, setTitle] = useState("");
   const [username, setUsername] = useState("");
   const [userPhone, setUserPhone] = useState("");
   const [showVerification, setShowVerification] = useState(false);
@@ -115,11 +116,25 @@ const SignUpScreen = () => {
   };
 
   return (
-    <div className="container">
-      <form>
+    <div className="signup-container">
+      <div className="signup-header">
+        {/* Ici mettre le composant Back + Title */}
+        <BackButton step={step} setStep={setStep} />
+        <Title text="Entre ton nom ici !" step={step} />
+        {step === 4 && (
+          <p
+            onClick={() => {
+              handleCompleteProfile();
+            }}
+          >
+            Passer
+          </p>
+        )}
+      </div>
+      <form className="signup-form-container">
         {step === 1 && (
           <div
-            className="sign-up step1"
+            className="signup-step1"
             // Allow to press enter on keyboard to go to next step
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -130,9 +145,6 @@ const SignUpScreen = () => {
               }
             }}
           >
-            <div className="top-title">
-              <Title text="Entre ton nom ici !" />
-            </div>
             <Input
               type="text"
               placeholder="Mon nom"
@@ -151,10 +163,9 @@ const SignUpScreen = () => {
             />
           </div>
         )}
-
         {step === 2 && (
           <div
-            className="sign-up step2"
+            className="signup-step2"
             // Allow to press enter on keyboard to go to next step
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -168,10 +179,10 @@ const SignUpScreen = () => {
               }
             }}
           >
-            <div className="top-title">
-              <BackButton step={step} setStep={setStep} />
-              <Title text="Entre ton numéro de téléphone !" />
-            </div>
+            {/* <div className="top-title">
+            <BackButton step={step} setStep={setStep} />
+            <Title text="Entre ton numéro de téléphone !" />
+          </div> */}
             <PhoneNumber userPhone={userPhone} setUserPhone={setUserPhone} />
             {showVerification && (
               <div className="verification-block">
@@ -197,10 +208,9 @@ const SignUpScreen = () => {
             />
           </div>
         )}
-
         {step === 3 && (
           <div
-            className="sign-up step3"
+            className="signup-step3"
             // Allow to press enter on keyboard to go to next step
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -211,10 +221,10 @@ const SignUpScreen = () => {
               }
             }}
           >
-            <div className="top-title">
-              <BackButton step={step} setStep={setStep} />
-              <Title text="Entre ta date de naissance !" />
-            </div>
+            {/* <div className="top-title">
+            <BackButton step={step} setStep={setStep} />
+            <Title text="Entre ta date de naissance !" />
+          </div> */}
             <Input
               type="date"
               data={userBirth}
@@ -234,10 +244,9 @@ const SignUpScreen = () => {
             />
           </div>
         )}
-
         {step === 4 && (
           <div
-            className="sign-up step4"
+            className="signup-step4"
             // Allow to press enter on keyboard to go to next step
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -249,17 +258,17 @@ const SignUpScreen = () => {
               }
             }}
           >
-            <div className="top-title">
-              <BackButton step={step} setStep={setStep} />
-              <Title text="Ajoute ta photo !" />
-              <p
-                onClick={() => {
-                  handleCompleteProfile();
-                }}
-              >
-                Passer
-              </p>
-            </div>
+            {/* <div className="top-title">
+            <BackButton step={step} setStep={setStep} />
+            <Title text="Ajoute ta photo !" />
+            <p
+              onClick={() => {
+                handleCompleteProfile();
+              }}
+            >
+              Passer
+            </p>
+          </div> */}
             {avatarPreview ? (
               <div className="avatar">
                 <img

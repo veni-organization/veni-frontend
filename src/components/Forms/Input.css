@@ -14,7 +14,7 @@
   border-radius: 50%;
   height: 200px;
   width: 200px;
-  margin-top: 150px;
+  /* margin-bottom: 160px; */
 }
 
 /**********************/
@@ -39,7 +39,7 @@
   border: none;
   text-align: center;
   font-size: 32px;
-  margin-top: 200px;
+  /* margin-top: 193px; */
 }
 
 .name-input:focus {
@@ -61,7 +61,8 @@
 }
 
 .verification-block {
-  margin-right: 44px;
+  width: 100vw;
+  padding-left: 80px;
 }
 
 /* CSS for BirthDate Input */
@@ -80,8 +81,8 @@
   font-size: 20px;
   color: #fff;
   background-color: #121818;
-  margin: 150px 20px 0 20px;
   text-align: center;
+  margin-bottom: 160px;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -112,7 +113,7 @@ input[type="file"] {
   border-radius: 50%;
   height: 200px;
   width: 200px;
-  margin-top: 150px;
+  margin-bottom: 160px;
 }
 
 /**********************/
@@ -121,9 +122,6 @@ input[type="file"] {
 
 /* Desktop*/
 @media only screen and (min-width: 1350px) {
-  .verification-block {
-    margin-right: 44px;
-  }
 }
 
 /* Téléphone */
