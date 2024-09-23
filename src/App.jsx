@@ -12,24 +12,30 @@ import Edit from "./pages/Edit";
 import "./App.css";
 import { FormProvider } from "./context/CreateEventContext";
 import { AuthProvider } from "./context/AuthContext";
+import { LoadScript } from "@react-google-maps/api";
+
+const apiKey = import.meta.env.VITE_PLACES_API;
+const libraries = ["places"];
 
 function App() {
   return (
-    <AuthProvider>
-      <FormProvider>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/signIn" element={<SignInScreen />} />
-            <Route path="/signUp" element={<SignUpScreen />} />
-            <Route path="/event/:id" element={<EventScreen />} />
-            <Route path="/create" element={<CreateEventScreen />} />
-            <Route path="edit/:id" element={<Edit />} />
-          </Routes>
-        </Router>
-      </FormProvider>
-    </AuthProvider>
+    <LoadScript googleMapsApiKey={apiKey} libraries={libraries} i>
+      <AuthProvider>
+        <FormProvider>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/signIn" element={<SignInScreen />} />
+              <Route path="/signUp" element={<SignUpScreen />} />
+              <Route path="/event/:id" element={<EventScreen />} />
+              <Route path="/create" element={<CreateEventScreen />} />
+              <Route path="/edit/:id" element={<Edit />} />
+            </Routes>
+          </Router>
+        </FormProvider>
+      </AuthProvider>
+    </LoadScript>
   );
 }
 

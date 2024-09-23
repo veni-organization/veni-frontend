@@ -19,8 +19,6 @@ const Home = () => {
       <Link to="/event/:id">
         <button>Page invité</button>
       </Link>
-      <AddressAutocomplete onSelect={handleAddressSelect} />
-      <DateEvent />
       <input type="date" />
     </>
   );

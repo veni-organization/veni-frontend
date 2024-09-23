@@ -1,5 +1,8 @@
 import { createContext, useState } from "react";
 
+const today = new Date().toISOString().split("T")[0];
+const pictureDefault = "../../";
+
 // Create the context
 export const CreateEventContext = createContext();
 
@@ -7,12 +10,16 @@ export const CreateEventContext = createContext();
 export const FormProvider = ({ children }) => {
   const [formData, setFormData] = useState({
     title: "",
-    date: "",
-    time: "",
+    date: today,
+    time: "00:00",
     endTime: "",
     address: "",
     description: "",
     picture: null,
+    reminder: false,
+    plusOne: false,
+    guestsApproval: false,
+    links: [],
   });
 
   return (

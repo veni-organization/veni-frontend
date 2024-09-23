@@ -41,12 +41,26 @@
   position: relative;
 }
 
+.address-input {
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: "Raleway", sans-serif;
+}
+
 .title-event,
 .address-input {
   background-color: #ffffff00;
   border: none;
   position: absolute;
-  top: 32%;
+  top: 25%;
   left: 0%;
   font-size: 24px;
   color: white;
@@ -133,6 +147,11 @@
   margin-top: 8px;
 }
 
+::placeholder {
+  color: #ffffff50;
+  opacity: 1; /* Firefox */
+}
+
 .links {
   display: flex;
   flex-direction: column;
@@ -143,6 +162,10 @@
 .link-input {
   display: flex;
   gap: 8px;
+}
+
+.link-input input:focus {
+  outline: none;
 }
 
 .links input {
