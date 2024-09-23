@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import RsvpChoice from "./RsvpChoice";
+import ResponseIcon from "./ResponseIcon";
 
-const Rsvp = ({ guests, refused_guests, userId }) => {
-  const [response, setResponse] = useState(null);
-
+const Rsvp = ({ guests, refused_guests, userId, response, setResponse }) => {
   useEffect(() => {
     const checkRsvp = () => {
       if (Array.isArray(guests) && guests.some((guest) => guest === userId)) {
@@ -18,14 +17,12 @@ const Rsvp = ({ guests, refused_guests, userId }) => {
     };
 
     checkRsvp();
-  }, [userId, guests, refused_guests]);
+  }, [userId, guests, refused_guests, response, setResponse]);
 
   return response === null ? (
     <RsvpChoice />
-  ) : response ? (
-    <div>True</div>
   ) : (
-    <div>False</div>
+    <ResponseIcon response={response} setResponse={setResponse} />
   );
 };
 

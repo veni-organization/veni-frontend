@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import EventInfos from "../components/Event/main/EventInfos";
@@ -7,7 +8,9 @@ import "./EventScreen.css";
 
 const Event = () => {
   const { id } = useParams();
+  const { userId } = useContext(AuthContext);
   const [event, setEvent] = useState();
+  const [response, setResponse] = useState(null);
 
   useEffect(() => {
     // Get event infos
@@ -31,8 +34,13 @@ const Event = () => {
     <div className="event-container">
       {event && (
         <div className="event-content">
-          <EventInfos event={event} />
-          <Feed eventId={id} />
+          <EventInfos
+            event={event}
+            response={response}
+            setResponse={setResponse}
+            userId={userId}
+          />
+          <Feed eventId={id} response={response} />
         </div>
       )}
     </div>

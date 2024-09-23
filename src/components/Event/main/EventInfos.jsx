@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../context/AuthContext";
+import { useEffect, useState } from "react";
 import defaultImg from "../../../assets/img/life_is_a_party.jpg";
 import ProfileCard from "../../profile/ProfileCard";
 import BlurBackground from "./img/BlurBackground";
@@ -7,7 +6,7 @@ import EventPicture from "./img/eventPicture";
 import Rsvp from "./rsvp/Rsvp";
 import "./EventInfos.css";
 
-const EventInfos = ({ event }) => {
+const EventInfos = ({ event, response, setResponse, userId }) => {
   const [top, setTop] = useState("385px");
   const {
     name,
@@ -19,7 +18,7 @@ const EventInfos = ({ event }) => {
     guests,
     refused_guests,
   } = event;
-  const { userId } = useContext(AuthContext);
+
   const isUserHost = hosts.some((host) => host._id === userId);
 
   const dateObj = new Date(event_date);
@@ -70,12 +69,20 @@ const EventInfos = ({ event }) => {
           <ProfileCard users={hosts} />
         </div>
         <div className="event-details-container">
-          <p className="event-date">{formattedDate}</p>
+          <div className="event-date-container">
+            <p className="event-date">{formattedDate}</p>
+            {!isUserHost && (
+              <Rsvp
+                guests={guests}
+                refused={refused_guests}
+                userId={userId}
+                response={response}
+                setResponse={setResponse}
+              />
+            )}
+          </div>
           <div className="event-location-container">
             <p className="event-location">{location}</p>
-            {!isUserHost && (
-              <Rsvp guests={guests} refused={refused_guests} userId={userId} />
-            )}
           </div>
           <div className="event-description-container">
             <p style={{ fontWeight: "bold" }}>Description</p>

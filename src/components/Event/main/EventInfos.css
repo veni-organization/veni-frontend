@@ -24,10 +24,10 @@
   padding: 20px;
 }
 
-.event-location-container {
+.event-date-container {
   display: flex;
   justify-content: space-between;
-  gap: 5px;
+  align-items: center;
 }
 
 .event-description-container {
@@ -46,9 +46,11 @@
 
 .event-date {
   font-size: 24px;
+  color: var(--secondary);
 }
 .event-location {
   font-size: 16px;
+  color: var(--green);
 }
 
 .event-button-map {
