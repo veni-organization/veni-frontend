@@ -3,7 +3,7 @@ import "./ResponseIcon.css";
 
 const ResponseIcon = ({ response, handleUserResponse }) => {
   const changeResponse = (newChoice) => {
-    console.log("changeResponse ==> ", newChoice);
+    handleUserResponse(newChoice);
   };
 
   return response ? (

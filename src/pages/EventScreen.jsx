@@ -26,9 +26,7 @@ const Event = () => {
           },
         }
       );
-      if (res.status === 202) {
-        setResponse(newResponse);
-      }
+      setResponse(newResponse);
     } catch (error) {
       console.log(error);
     }

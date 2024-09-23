@@ -57,7 +57,7 @@ const EventInfos = ({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [name]); // Re-run when the name length changes
+  }, [name, response, setResponse, handleUserResponse]); // Re-run when the name length changes
 
   return (
     <div className="event-infos-container">
@@ -79,7 +79,7 @@ const EventInfos = ({
             {!isUserHost && (
               <Rsvp
                 guests={guests}
-                refused={refused_guests}
+                refused_guests={refused_guests}
                 userId={userId}
                 response={response}
                 setResponse={setResponse}

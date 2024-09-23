@@ -22,10 +22,15 @@ const Rsvp = ({
         setResponse(false);
       }
     };
-    console.log("guests ==> ", guests);
-    console.log("USER ID ==> ", userId);
     checkRsvp();
-  }, [userId, guests, refused_guests, response, setResponse]);
+  }, [
+    userId,
+    guests,
+    refused_guests,
+    response,
+    setResponse,
+    handleUserResponse,
+  ]);
 
   if (response === null) {
     return (
