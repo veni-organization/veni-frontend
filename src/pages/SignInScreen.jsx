@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -10,8 +10,12 @@ import PhoneNumber from "../components/Forms/PhoneNumber";
 import Input from "../components/Forms/Input";
 import FormButton from "../components/Forms/FormButton";
 
+import AuthContext from "../context/AuthContext";
+
 const SignInScreen = () => {
   const navigate = useNavigate();
+
+  const { setToken, setUserId } = useContext(AuthContext);
 
   const [showVerification, setShowVerification] = useState(false);
   const [userPhone, setUserPhone] = useState("");
@@ -44,6 +48,9 @@ const SignInScreen = () => {
         { phoneNumber: userPhone, verifyCode: Number(checkCode) }
       );
       Cookies.set("token", response.data.token, { expires: 365 });
+      Cookies.set("id", response.data.id, { expires: 365 });
+      setToken(response.data.token);
+      setUserId(response.data.id);
       console.log(response.data);
       navigate("/event/:id");
     } catch (error) {
