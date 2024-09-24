@@ -1,3 +1,5 @@
+@import url("../../../../assets/colors/colors.css");
+
 /**********************/
 /*     CONTAINER      */
 /**********************/
@@ -7,7 +9,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: rgba(18, 24, 24);
+  background-color: rgba(18, 24, 24, 0.25);
   padding: 5px;
   cursor: pointer;
 }

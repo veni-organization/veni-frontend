@@ -1,4 +1,5 @@
-import { FaCheck, FaXmark } from "react-icons/fa6";
+import { IoCheckmarkOutline, IoCloseOutline } from "react-icons/io5";
+
 import "./RsvpChoice.css";
 
 const RsvpChoice = ({ handleUserResponse }) => {
@@ -14,7 +15,7 @@ const RsvpChoice = ({ handleUserResponse }) => {
             handleUserResponse(false);
           }}
         >
-          <FaXmark size={46} color="#ed4343" />
+          <IoCloseOutline size={46} color="#ed4343" />
         </div>
         <div
           className="response-choice-container"
@@ -22,7 +23,7 @@ const RsvpChoice = ({ handleUserResponse }) => {
             handleUserResponse(true);
           }}
         >
-          <FaCheck size={46} color="#56dbbb" />
+          <IoCheckmarkOutline size={46} color="#56dbbb" />
         </div>
       </div>
     </div>

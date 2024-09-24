@@ -1,10 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Lottie from "react-lottie";
+import confettiData from "../assets/animation/confetti.json";
+import { AuthContext } from "../context/AuthContext";
 import EventInfos from "../components/Event/main/EventInfos";
 import Feed from "../components/Event/feed/Feed";
 import "./EventScreen.css";
+import { useRef } from "react";
 
 const Event = () => {
   const { id } = useParams();
@@ -12,6 +15,22 @@ const Event = () => {
   const [event, setEvent] = useState();
   const [response, setResponse] = useState(null);
   const [isUserHost, setIsUserHost] = useState(false);
+  const lottieRef = useRef();
+
+  const defaultOptions = {
+    loop: false,
+    autoplay: false,
+    animationData: confettiData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  const playAnimation = () => {
+    if (lottieRef.current) {
+      lottieRef.current.goToAndPlay(0); // Repart de zéro et lance l'animation
+    }
+  };
 
   const handleUserResponse = async (newResponse) => {
     try {
@@ -27,6 +46,9 @@ const Event = () => {
         }
       );
       setResponse(newResponse);
+      if (newResponse === true) {
+        playAnimation();
+      }
     } catch (error) {
       console.log(error);
     }
@@ -59,6 +81,12 @@ const Event = () => {
     <div className="event-container">
       {event && (
         <div className="event-content">
+          <Lottie
+            options={defaultOptions}
+            height={200}
+            width={200}
+            ref={lottieRef}
+          />
           <EventInfos
             event={event}
             response={response}
