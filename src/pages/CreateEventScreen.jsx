@@ -1,9 +1,7 @@
-import { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Cookies from "js-cookie";
-import { Navigate, useNavigate } from "react-router-dom";
-import axios from "axios";
-import Input from "../components/Forms/Input";
+import { useState, useContext } from "react";
+
+import { useNavigate } from "react-router-dom";
+
 import DateEvent from "../components/Forms/DateEvent";
 import TimeEvent from "../components/Forms/TimeEvent";
 import AddressInput from "../components/Forms/AddressInput";

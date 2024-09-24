@@ -1,7 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "./AuthContext";
 
 const today = new Date().toISOString().split("T")[0];
 
@@ -11,7 +10,6 @@ export const CreateEventContext = createContext();
 // Create a provider component
 export const FormProvider = ({ children }) => {
   const navigate = useNavigate();
-  const { token } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -27,7 +25,7 @@ export const FormProvider = ({ children }) => {
     links: [],
   });
 
-  const handleCreateEvent = async () => {
+  const handleCreateEvent = async (userToken) => {
     try {
       // formattage de la date
       const eventDate = new Date(formData.date);
@@ -54,12 +52,11 @@ export const FormProvider = ({ children }) => {
         formData2,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userToken}`,
             "Content-Type": "multipart/form-data",
           },
         }
       );
-
       navigate(`/event/${response.data._id}`);
     } catch (error) {
       console.log(error.response.data.message);

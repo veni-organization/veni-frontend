@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 
 import axios from "axios";
@@ -37,12 +37,12 @@ const SignUpScreen = () => {
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [step, setStep] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingVerify, setIsLoadingVerify] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [isLoadingVerify, setIsLoadingVerify] = useState(false);
 
   // This function send username and phonenumber to the server, to be able to continue the process with the code to verify identity
   const handleSignUp = async () => {
-    setIsLoading(true);
+    // setIsLoading(true);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/signup`,
@@ -54,14 +54,12 @@ const SignUpScreen = () => {
       setShowVerification(true);
     } catch (error) {
       console.log(error.response.data);
-    } finally {
-      setIsLoading(false);
     }
   };
 
   // This fonction send phonenumber and verification code to get the token
   const handleVerify = async () => {
-    setIsLoadingVerify(true);
+    // setIsLoadingVerify(true);
     setErrorMessage("");
     try {
       const response = await axios.post(
@@ -87,8 +85,6 @@ const SignUpScreen = () => {
             "Veuillez vérifier le code saisi")
       );
       console.log(error.response.data);
-    } finally {
-      setIsLoadingVerify(false);
     }
   };
 
@@ -108,13 +104,11 @@ const SignUpScreen = () => {
           },
         }
       );
-      // navigate("/event/:id");
       if (!data.isCreateEvent) {
         navigate("/");
       } else {
-        handleCreateEvent();
+        handleCreateEvent(response.data.token);
       }
-
       setStep(step + 1);
     } catch (error) {
       console.log(error);
@@ -125,6 +119,10 @@ const SignUpScreen = () => {
   const handleFileChange = (file) => {
     setUserAvatar(file);
     setAvatarPreview(URL.createObjectURL(file));
+  };
+
+  const handleSignIn = () => {
+    navigate("/signin", { state: { isCreateEvent: true } });
   };
 
   return (
@@ -163,9 +161,7 @@ const SignUpScreen = () => {
               data={username}
               setData={setUsername}
             />
-            <Link to="/signIn">
-              <h3>J'ai déjà un compte</h3>
-            </Link>
+            <h3 onClick={handleSignIn}>J'ai déjà un compte</h3>
             <FormButton
               text="Continuer"
               data={username}
