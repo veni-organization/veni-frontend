@@ -19,7 +19,7 @@ const TimeEvent = ({ label, time, setTime, type }) => {
         }}
         className="time-event-form"
       />
-      {console.log(time)}
+      {/* {console.log(time)} */}
     </div>
   );
 };

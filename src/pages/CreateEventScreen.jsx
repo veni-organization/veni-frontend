@@ -21,6 +21,16 @@ import { CreateEventContext } from "../context/CreateEventContext";
 import { AuthContext } from "../context/AuthContext";
 
 const CreateEvent = () => {
+  const ScrollSaver = () => {
+    // State to store the current scroll position
+    const [scrollPos, setScrollPos] = useState(0);
+    // Effect to restore scroll position on component mount
+    useEffect(() => {
+      // Scroll to the saved position
+      window.scrollTo(0, scrollPos);
+    }, [scrollPos]);
+  };
+
   const navigate = useNavigate();
   const { token } = useContext(AuthContext);
   // import du context
@@ -57,55 +67,57 @@ const CreateEvent = () => {
           step === 4 || step === 5 ? "create-event-background" : "none"
         }
       ></div>
+      <div className="form-header">
+        <EventCreationBack step={step} setStep={setStep} />
+      </div>
       <div className="create-event-container">
-        <div className="form-header">
-          <EventCreationBack step={step} setStep={setStep} />
-        </div>
-        <form className="form-container">
+        <form
+          className={
+            step !== 4 && step !== 5 ? "form-container" : "form-container2"
+          }
+        >
           {step === 1 && (
             <div className="step1-screen">
               <TitleEvent title={formData.title} setTitle={setFormData} />
-              <EventFormButton
-                className="form-button"
-                text="Continuer"
-                data={formData.title}
-                setStep={setStep}
-                step={step}
-              />
+              {/* <EventFormButton
+            className="form-button"
+            text="Continuer"
+            data={formData.title}
+            setStep={setStep}
+            step={step}
+          /> */}
             </div>
           )}
           {step === 2 && (
-            <div>
-              <div className="step2-screen">
-                {/* <Input type="date" />
+            <div className="step2-screen">
+              {/* <Input type="date" />
                 <Input type="time" /> */}
-                <DateEvent date={formData.date} setDate={setFormData} />
-                <TimeEvent
-                  type="time"
-                  label="Heure de début"
-                  time={formData.time}
-                  setTime={setFormData}
-                />
-                {/* <div className="hours">
+              <DateEvent date={formData.date} setDate={setFormData} />
+              <TimeEvent
+                type="time"
+                label="Heure de début"
+                time={formData.time}
+                setTime={setFormData}
+              />
+              {/* <div className="hours">
                   <TimeEvent
                     label="Heure de début"
                     time={formData.time}
                     setTime={setFormData}
                   /> */}
-                {/* <TimeEvent
+              {/* <TimeEvent
                     label="Heure de fin"
                     endTime={formData.endTime}
                     setEndTime={setFormData}
                   /> */}
-                {/* </div> */}
-                <EventFormButton
+              {/* </div> */}
+              {/* <EventFormButton
                   className="form-button"
                   text="Continuer"
                   data={formData.date}
                   setStep={setStep}
                   step={step}
-                />
-              </div>
+                /> */}
             </div>
           )}
           {step === 3 && (
@@ -141,14 +153,13 @@ const CreateEvent = () => {
                   }))
                 }
               />
-              <EventFormButton
+              {/* <EventFormButton
                 className="form-button"
                 text="Continuer"
                 data={formData.picture ? formData.picture : poster}
                 setStep={setStep}
                 step={step}
-              />
-              <p className="browse-poster">Choisir parmis notre collection</p>
+              /> */}
             </div>
           )}
           {step === 5 && (
@@ -208,11 +219,31 @@ const CreateEvent = () => {
                   }
                 />
               </div>
-              <MainButton text="Valider" onClick={handleSubmit} />
             </div>
           )}
         </form>
       </div>
+      {step !== 5 ? (
+        <EventFormButton
+          className="form-button"
+          text="Continuer"
+          data={
+            step === 1
+              ? formData.title
+              : step === 2
+              ? formData.date
+              : step === 3
+              ? formData.address
+              : step === 4
+              ? formData.picture || poster
+              : null
+          }
+          setStep={setStep}
+          step={step}
+        />
+      ) : (
+        <MainButton text="Valider" onClick={handleSubmit} />
+      )}
     </>
   );
 };
