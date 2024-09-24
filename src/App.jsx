@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import Header from "./components/header/Header";
 // Import des pages
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
@@ -22,6 +23,7 @@ function App() {
     <LoadScript googleMapsApiKey={apiKey} libraries={libraries} i>
       <AuthProvider>
         <Router>
+          <Header />
           <FormProvider>
             <Routes>
               <Route path="/" element={<Home />} />

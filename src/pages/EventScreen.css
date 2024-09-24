@@ -1,7 +1,33 @@
+.animation-container {
+  position: fixed;
+  /* position: -webkit-sticky; */
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: aqua; */
+}
+
 /* Desktop */
 @media only screen and (min-width: 1024px) {
   .event-container {
     display: flex;
+    justify-content: center;
+  }
+
+  .event-content {
     width: 1024px;
+    display: flex;
+  }
+
+  .animation-container {
+    position: absolute;
+    left: 64%;
+    transform: translateX(-50%);
+    top: 150px;
+    height: 600px;
+    width: 600px;
   }
 }
