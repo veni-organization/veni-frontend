@@ -22,9 +22,11 @@ import { CreateEventContext } from "../context/CreateEventContext";
 const token = Cookies.get("token");
 
 const CreateEvent = () => {
-  // call useContext with all the states
-  // add state in context to remember what users created
+  const navigate = useNavigate();
+  // import du context
+  const { formData, setFormData } = useContext(CreateEventContext);
 
+  // states du formulaire
   const [step, setStep] = useState(1);
   // const [title, setTitle] = useState("");
   // const [date, setDate] = useState();
@@ -35,27 +37,24 @@ const CreateEvent = () => {
   // const [description, setDescription] = useState("");
   // const [picture, setPicture] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { formData, setFormData } = useContext(CreateEventContext);
-  // console.log("Initial FormData:", formData);
-  // console.log(formData, "LLALALA");
-
-  const navigate = useNavigate();
 
   // Fonction pour créer l'événement en DB
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // si User pas connecté alors il est d'abord renvoyé sur le flow de connexion
+    // si User pas connecté alors il est d'abord renvoyé sur le flow d'inscription
     if (isLoggedIn === false) {
-      return navigate(`/login`);
+      return navigate(`/signUp`);
       // sinon on envoit le formData en DB et on va sur la page de l'event
     } else {
       try {
+        // formattage de la date
         const eventDate = new Date(formData.date);
         eventDate.setHours(Number(formData.time.slice(0, 2)));
         eventDate.setMinutes(Number(formData.time.slice(3)));
         // console.log(eventDate);
 
+        // envoi du formData
         const formData2 = new FormData();
         formData2.append("name", formData.title);
         formData2.append("eventDate", eventDate);
@@ -70,7 +69,7 @@ const CreateEvent = () => {
         formData2.append("links", formData.links);
 
         const response = await axios.post(
-          `${import.meta.env.VITE_API_URL}/create`,
+          `${import.meta.env.VITE_API_URL}/event/create`,
           formData2,
           {
             headers: {
@@ -79,7 +78,7 @@ const CreateEvent = () => {
             },
           }
         );
-        navigate(`/event${response.data.id}`);
+        navigate(`/event/${response.data.id}`);
       } catch (error) {
         console.log(error.message);
       }
