@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -11,9 +11,12 @@ import Title from "../components/Forms/Title";
 import FormButton from "../components/Forms/FormButton";
 
 import "./SignUpScreen.css";
+import { CreateEventContext } from "../context/CreateEventContext";
 
 const SignUpScreen = () => {
   const navigate = useNavigate();
+
+  const { formData } = useContext(CreateEventContext);
 
   const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
@@ -70,6 +73,23 @@ const SignUpScreen = () => {
       setShowVerification(false);
       Cookies.remove("phone");
       console.log(response.data);
+      if (formData.title && formData.date && formData.address) {
+        try {
+          const response = await axios.post(
+            `${import.meta.env.VITE_API_URL}/create/event`,
+            { formData },
+            {
+              headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`,
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+          console.log(response);
+        } catch (error) {
+          console.log(error.response.data);
+        }
+      }
     } catch (error) {
       setErrorMessage(
         (error.response.data.message === "User not found" &&
