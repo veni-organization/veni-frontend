@@ -10,7 +10,7 @@
   font-weight: 700;
   border: none;
   font-family: "Raleway", sans-serif;
-  margin-top: 150px;
+  /* margin-top: 150px; */
 }
 
 .empty-form-button {
@@ -25,6 +25,6 @@
   font-weight: 700;
   border: none;
   font-family: "Raleway", sans-serif;
-  margin-top: 150px;
+  /* margin-top: 150px; */
   opacity: 0.33;
 }
