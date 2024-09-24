@@ -7,7 +7,6 @@ import { AuthContext } from "../context/AuthContext";
 import EventInfos from "../components/Event/main/EventInfos";
 import Feed from "../components/Event/feed/Feed";
 import "./EventScreen.css";
-import { useRef } from "react";
 
 const Event = () => {
   const { id } = useParams();
@@ -15,7 +14,12 @@ const Event = () => {
   const [event, setEvent] = useState();
   const [response, setResponse] = useState(null);
   const [isUserHost, setIsUserHost] = useState(false);
-  const lottieRef = useRef();
+
+  // États pour contrôler l'animation Lottie
+  const [isStopped, setIsStopped] = useState(true); // L'animation est stoppée au départ
+  const [isPaused, setIsPaused] = useState(true); // L'animation est en pause au départ
+
+  // const lottieRef = useRef();
 
   const defaultOptions = {
     loop: false,
@@ -24,12 +28,6 @@ const Event = () => {
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
-  };
-
-  const playAnimation = () => {
-    if (lottieRef.current) {
-      lottieRef.current.goToAndPlay(0); // Repart de zéro et lance l'animation
-    }
   };
 
   const handleUserResponse = async (newResponse) => {
@@ -46,8 +44,10 @@ const Event = () => {
         }
       );
       setResponse(newResponse);
+      // Si la réponse est "true", démarrer l'animation
       if (newResponse === true) {
-        playAnimation();
+        setIsStopped(false); // Démarrer l'animation
+        setIsPaused(false); // La laisser jouer
       }
     } catch (error) {
       console.log(error);
@@ -78,15 +78,24 @@ const Event = () => {
   }, [id, userId, isUserHost, response]);
 
   return (
-    <div className="event-container">
+    <div
+      className="event-container"
+      style={{ overflow: isStopped ? "hidden" : "visible" }}
+    >
       {event && (
         <div className="event-content">
-          <Lottie
-            options={defaultOptions}
-            height={200}
-            width={200}
-            ref={lottieRef}
-          />
+          <div
+            className="animation-container"
+            style={{ display: isStopped ? "none" : "block" }}
+          >
+            <Lottie
+              options={defaultOptions}
+              height={"100%"}
+              width={"100%"}
+              isStopped={isStopped} // Contrôle si l'animation est arrêtée
+              isPaused={isPaused} // Contrôle si l'animation est en pause
+            />
+          </div>
           <EventInfos
             event={event}
             response={response}

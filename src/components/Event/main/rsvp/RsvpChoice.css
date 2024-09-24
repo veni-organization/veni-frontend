@@ -34,6 +34,10 @@
   border-radius: 50%;
   background-color: rgb(18, 24, 24, 0.25);
   border: 1.36px solid rgb(255, 255, 355, 0.2);
+
+  /* bluring */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 /**********************/
