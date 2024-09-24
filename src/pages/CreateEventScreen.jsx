@@ -1,8 +1,9 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Input from "../components/Forms/Input";
 import DateEvent from "../components/Forms/DateEvent";
 import TimeEvent from "../components/Forms/TimeEvent";
 import AddressInput from "../components/Forms/AddressInput";
@@ -35,6 +36,9 @@ const CreateEvent = () => {
   // const [picture, setPicture] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { formData, setFormData } = useContext(CreateEventContext);
+  // console.log("Initial FormData:", formData);
+  // console.log(formData, "LLALALA");
+
   const navigate = useNavigate();
 
   // Fonction pour créer l'événement en DB
@@ -47,25 +51,39 @@ const CreateEvent = () => {
       // sinon on envoit le formData en DB et on va sur la page de l'event
     } else {
       try {
-        const formData = new FormData();
-        formData.append("title", formData.title);
-        formData.append("date", formData.date);
-        formData.append("time", formData.time);
-        formData.append("endTime", formData.endTime);
-        formData.append("address", formData.address);
-        formData.append("description", formData.description);
-        formData.append("picture", formData.picture);
+        const eventDate = new Date(formData.date);
+        eventDate.setHours(Number(formData.time.slice(0, 2)));
+        eventDate.setMinutes(Number(formData.time.slice(3)));
+        // console.log(eventDate);
 
-        const response = await axios.post("api-url", formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        const formData2 = new FormData();
+        formData2.append("name", formData.title);
+        formData2.append("eventDate", eventDate);
+        // formData2.append("time", formData.time);
+        // formData2.append("endTime", formData.endTime);
+        formData2.append("location", formData.address);
+        formData2.append("description", formData.description);
+        formData2.append("eventPicture", formData.picture);
+        formData2.append("reminder", formData.reminder);
+        formData2.append("plusOne", formData.plusOne);
+        formData2.append("guestsApproval", formData.guestsApproval);
+        formData2.append("links", formData.links);
+
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URL}/create`,
+          formData2,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         navigate(`/event${response.data.id}`);
       } catch (error) {
         console.log(error.message);
       }
+      // }
     }
   };
 
@@ -96,20 +114,27 @@ const CreateEvent = () => {
           {step === 2 && (
             <div>
               <div className="step2-screen">
+                {/* <Input type="date" />
+                <Input type="time" /> */}
                 <DateEvent date={formData.date} setDate={setFormData} />
-                <input type="time" />
-                <div className="hours">
+                <TimeEvent
+                  type="time"
+                  label="Heure de début"
+                  time={formData.time}
+                  setTime={setFormData}
+                />
+                {/* <div className="hours">
                   <TimeEvent
                     label="Heure de début"
                     time={formData.time}
                     setTime={setFormData}
-                  />
-                  <TimeEvent
+                  /> */}
+                {/* <TimeEvent
                     label="Heure de fin"
                     endTime={formData.endTime}
                     setEndTime={setFormData}
-                  />
-                </div>
+                  /> */}
+                {/* </div> */}
                 <EventFormButton
                   className="form-button"
                   text="Continuer"
@@ -170,20 +195,56 @@ const CreateEvent = () => {
                 <Option
                   label="Send auto-reminders"
                   labelDesc="Guests will receive a text 1 week & 1 day before the event."
+                  checked={formData.reminder}
+                  setChecked={(newReminder) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      reminder: newReminder,
+                    }))
+                  }
                 />
                 <Option
                   label="Accept +1"
-                  labelDesc="Guest can add a “+1” when they reply."
+                  labelDesc="Guests can bring a plus one."
+                  checked={formData.plusOne}
+                  setChecked={(newPlusOne) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      plusOne: newPlusOne,
+                    }))
+                  }
                 />
                 <Option
                   label="Guest approval"
-                  labelDesc="Approve every guest before they can access to the event page."
+                  labelDesc="Guests need approval to join."
+                  checked={formData.guestsApproval}
+                  setChecked={(newApproval) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      guestsApproval: newApproval,
+                    }))
+                  }
                 />
                 <Description
                   description={formData.description}
-                  setDescription={formData.setDescription}
+                  setDescription={(newDescription) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      description: newDescription,
+                    }))
+                  }
                 />
-                <Links className="links" />
+                <Links
+                  className="links"
+                  links={formData.links}
+                  setLinks={(newLinks) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      links: newLinks,
+                    }))
+                  }
+                />
+                {/* {console.log("---->", formData.links)} */}
               </div>
               <MainButton text="Valider" onClick={handleSubmit} />
             </div>

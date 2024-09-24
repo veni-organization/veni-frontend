@@ -1,16 +1,43 @@
-vaadin-date-picker::part(input-field) {
-  background-color: #ffffff00;
-  color: white;
+.event-date-form:focus {
+  outline: none;
 }
 
-vaadin-date-picker::part(toggle-button)::before {
+.event-date-block {
+  position: relative;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0.75rem;
+  position: absolute;
+  top: 25%;
+}
+
+.event-date-block label {
   color: #ffffff50;
 }
 
-vaadin-date-picker::part(label) {
-  color: #ffffff50;
+.event-date-form {
+  margin-top: 8px;
+  border: none;
+  outline: 0;
+  color: #fff;
+  background-color: #121818;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 40px;
 }
 
-vaadin-date-picker-year {
-  display: none;
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
 }
