@@ -1,4 +1,4 @@
-import "./EventPicture.css";
+import "./eventPicture.css";
 
 const EventPicture = ({ event_picture, defaultImg }) => {
   return (

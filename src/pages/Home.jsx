@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
-import AddressAutocomplete from "../components/Forms/AddressInput";
-import DateEvent from "../components/Forms/DateEvent";
 
 const Home = () => {
-  const handleAddressSelect = (address) => {
-    console.log("Selected Address:", address);
-  };
-
   return (
     <>
       <h2>Page Home</h2>
@@ -19,9 +13,6 @@ const Home = () => {
       <Link to="/event/:id">
         <button>Page invité</button>
       </Link>
-      <AddressAutocomplete onSelect={handleAddressSelect} />
-      <DateEvent />
-      <input type="date" />
     </>
   );
 };

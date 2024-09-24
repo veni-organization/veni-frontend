@@ -10,7 +10,8 @@ import PhoneNumber from "../components/Forms/PhoneNumber";
 import Input from "../components/Forms/Input";
 import FormButton from "../components/Forms/FormButton";
 
-import { AuthContext } from "../context/AuthContext";
+import { "./SignInScreen.css";
+import { AuthContext } } from "../context/AuthContext";
 
 const SignInScreen = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const SignInScreen = () => {
         error.response.data.message === "User not found" &&
           "Ce numéro n'est pas enregistré"
       );
+      Cookies.set("phone", userPhone);
       console.log(error.response.data);
     }
   };
@@ -63,34 +65,36 @@ const SignInScreen = () => {
   };
 
   return (
-    <div className="container">
-      <div className="top-title">
+    <div className="signin-container">
+      <div className="signin-header">
         <Link to={"/signUp"}>
           <BackButton />
         </Link>
         <Title text="Entre ton numéro de téléphone !" />
       </div>
-      <PhoneNumber userPhone={userPhone} setUserPhone={setUserPhone} />
-      {showVerification && (
-        <div>
-          <Title text={"Code de vérification"} title="false" />
-          <Input
-            type="text"
-            placeholder="123456"
-            className="verification-input"
-            data={checkCode}
-            setData={setCheckCode}
-          />
-        </div>
-      )}
-      <p>{errorMessage}</p>
-      <FormButton
-        data={userPhone}
-        text="Envoyer"
-        checkCode={checkCode}
-        handleSignIn={handleSignIn}
-        handleVerify={handleVerify}
-      />
+      <div className="form-signin-container">
+        <PhoneNumber userPhone={userPhone} setUserPhone={setUserPhone} />
+        {showVerification && (
+          <div className="verification-input">
+            <Title text="Code de vérification" title="false" />
+            <Input
+              type="text"
+              placeholder="123456"
+              className="verification-input"
+              data={checkCode}
+              setData={setCheckCode}
+            />
+          </div>
+        )}
+        <p>{errorMessage}</p>
+        <FormButton
+          data={userPhone}
+          text="Envoyer"
+          checkCode={checkCode}
+          handleSignIn={handleSignIn}
+          handleVerify={handleVerify}
+        />
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -11,16 +11,18 @@ import Title from "../components/Forms/Title";
 import FormButton from "../components/Forms/FormButton";
 
 import "./SignUpScreen.css";
+import { CreateEventContext } from "../context/CreateEventContext";
 
 const SignUpScreen = () => {
   const navigate = useNavigate();
+
+  const { formData } = useContext(CreateEventContext);
 
   const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
   const formatedDate = today.toISOString().split("T")[0];
   const [isDateChanged, setIsDateChanged] = useState(false);
 
-  const [title, setTitle] = useState("");
   const [username, setUsername] = useState("");
   const [userPhone, setUserPhone] = useState("");
   const [showVerification, setShowVerification] = useState(false);
@@ -69,7 +71,25 @@ const SignUpScreen = () => {
       setStep(step + 1);
       setCheckCode("");
       setShowVerification(false);
+      Cookies.remove("phone");
       console.log(response.data);
+      if (formData.title && formData.date && formData.address) {
+        try {
+          const response = await axios.post(
+            `${import.meta.env.VITE_API_URL}/create/event`,
+            { formData },
+            {
+              headers: {
+                Authorization: `Bearer ${Cookies.get("token")}`,
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+          console.log(response);
+        } catch (error) {
+          console.log(error.response.data);
+        }
+      }
     } catch (error) {
       setErrorMessage(
         (error.response.data.message === "User not found" &&
@@ -118,7 +138,6 @@ const SignUpScreen = () => {
   return (
     <div className="signup-container">
       <div className="signup-header">
-        {/* Ici mettre le composant Back + Title */}
         <BackButton step={step} setStep={setStep} />
         <Title text="Entre ton nom ici !" step={step} />
         {step === 4 && (
@@ -179,10 +198,6 @@ const SignUpScreen = () => {
               }
             }}
           >
-            {/* <div className="top-title">
-            <BackButton step={step} setStep={setStep} />
-            <Title text="Entre ton numéro de téléphone !" />
-          </div> */}
             <PhoneNumber userPhone={userPhone} setUserPhone={setUserPhone} />
             {showVerification && (
               <div className="verification-block">
@@ -221,10 +236,6 @@ const SignUpScreen = () => {
               }
             }}
           >
-            {/* <div className="top-title">
-            <BackButton step={step} setStep={setStep} />
-            <Title text="Entre ta date de naissance !" />
-          </div> */}
             <Input
               type="date"
               data={userBirth}
@@ -258,17 +269,6 @@ const SignUpScreen = () => {
               }
             }}
           >
-            {/* <div className="top-title">
-            <BackButton step={step} setStep={setStep} />
-            <Title text="Ajoute ta photo !" />
-            <p
-              onClick={() => {
-                handleCompleteProfile();
-              }}
-            >
-              Passer
-            </p>
-          </div> */}
             {avatarPreview ? (
               <div className="avatar">
                 <img
@@ -307,7 +307,7 @@ const SignUpScreen = () => {
         <div
           className="going-screen"
           onClick={() => {
-            navigate("/event/:id");
+            navigate("/event/66f17d419f69907553fc65a1");
           }}
         >
           <p>going</p>

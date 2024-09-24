@@ -1,0 +1,28 @@
+.signup-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}
+
+.signin-header {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.form-signin-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.verification-input p {
+  font-size: initial;
+}
+
+.verification-input {
+  margin-right: 10px;
+}

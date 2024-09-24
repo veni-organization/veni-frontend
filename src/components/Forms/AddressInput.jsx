@@ -5,11 +5,7 @@ import {
   StandaloneSearchBox,
 } from "@react-google-maps/api";
 
-const apiKey = import.meta.env.VITE_PLACES_API;
-
-const libraries = ["places"];
-
-const AddressAutocomplete = ({
+const AddressInput = ({
   onSelect,
   searchBox,
   setSearchBox,
@@ -38,6 +34,8 @@ const AddressAutocomplete = ({
         longitude: place.geometry.location.lng(),
       };
 
+      // console.log(place, "BASTIEN");
+
       addressComponents.forEach((component) => {
         const types = component.types;
         if (types.includes("street_number")) {
@@ -62,23 +60,22 @@ const AddressAutocomplete = ({
   };
 
   return (
-    <LoadScript googleMapsApiKey={apiKey} libraries={libraries}>
-      <StandaloneSearchBox
-        onLoad={handleLoad}
-        onPlacesChanged={handlePlacesChanged}
-      >
-        <input
-          type="text"
-          placeholder="Enter your address"
-          value={address}
-          onChange={(event) => {
-            setAddress(event.target.value);
-          }}
-          className="address-input"
-        />
-      </StandaloneSearchBox>
-    </LoadScript>
+    <StandaloneSearchBox
+      onLoad={handleLoad}
+      onPlacesChanged={handlePlacesChanged}
+    >
+      <input
+        type="text"
+        placeholder="Enter your address"
+        value={address}
+        onChange={(event) => {
+          console.log(event);
+          setAddress(event.target.value);
+        }}
+        className="address-input"
+      />
+    </StandaloneSearchBox>
   );
 };
 
-export default AddressAutocomplete;
+export default AddressInput;
