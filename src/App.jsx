@@ -23,6 +23,7 @@ function App() {
     <LoadScript googleMapsApiKey={apiKey} libraries={libraries} i>
       <AuthProvider>
         <FormProvider>
+          <Header />
           <Router>
             <Routes>
               <Route path="/" element={<Home />} />

@@ -10,8 +10,8 @@ import PhoneNumber from "../components/Forms/PhoneNumber";
 import Input from "../components/Forms/Input";
 import FormButton from "../components/Forms/FormButton";
 
-import { "./SignInScreen.css";
-import { AuthContext } } from "../context/AuthContext";
+import "./SignInScreen.css";
+import { AuthContext } from "../context/AuthContext";
 
 const SignInScreen = () => {
   const navigate = useNavigate();
