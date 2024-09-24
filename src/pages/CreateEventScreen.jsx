@@ -207,7 +207,6 @@ const CreateEvent = () => {
                     }))
                   }
                 />
-                {/* {console.log("---->", formData.links)} */}
               </div>
               <MainButton text="Valider" onClick={handleSubmit} />
             </div>

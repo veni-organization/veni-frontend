@@ -17,11 +17,10 @@ import { AuthContext } from "../context/AuthContext";
 const SignUpScreen = () => {
   const location = useLocation();
   const data = location.state;
-  console.log("CREATEVENT ==>", String(data.isCreateEvent));
 
   const navigate = useNavigate();
 
-  const { formData, handleCreateEvent } = useContext(CreateEventContext);
+  const { handleCreateEvent } = useContext(CreateEventContext);
   const { setToken } = useContext(AuthContext);
 
   const timeElapsed = Date.now();
@@ -52,7 +51,6 @@ const SignUpScreen = () => {
           phoneNumber: userPhone,
         }
       );
-      console.log(response);
       setShowVerification(true);
     } catch (error) {
       console.log(error.response.data);
@@ -79,7 +77,6 @@ const SignUpScreen = () => {
       setCheckCode("");
       setShowVerification(false);
       Cookies.remove("phone");
-      console.log(response.data);
     } catch (error) {
       setErrorMessage(
         (error.response.data.message === "User not found" &&
@@ -119,7 +116,6 @@ const SignUpScreen = () => {
       }
 
       setStep(step + 1);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -134,7 +130,6 @@ const SignUpScreen = () => {
   return (
     <div className="signup-container">
       <div className="signup-header">
-        {console.log(formData)}
         <BackButton step={step} setStep={setStep} />
         <Title text="Entre ton nom ici !" step={step} />
         {step === 4 && (

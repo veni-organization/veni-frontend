@@ -48,7 +48,7 @@ export const FormProvider = ({ children }) => {
       formData2.append("plusOne", formData.plusOne);
       formData2.append("guestsApproval", formData.guestsApproval);
       formData2.append("links", formData.links);
-      console.log("TOKEN ===> ", token);
+
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/event/create`,
         formData2,

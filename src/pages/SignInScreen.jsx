@@ -31,7 +31,6 @@ const SignInScreen = () => {
         { phoneNumber: userPhone }
       );
       setShowVerification(true);
-      console.log(response.data);
     } catch (error) {
       setErrorMessage(
         error.response.data.message === "User not found" &&
@@ -53,7 +52,6 @@ const SignInScreen = () => {
       Cookies.set("id", response.data.id, { expires: 365 });
       setToken(response.data.token);
       setUserId(response.data.id);
-      console.log(response.data);
       navigate("/event/:id");
     } catch (error) {
       setErrorMessage(
