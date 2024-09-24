@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 
 import axios from "axios";
@@ -12,11 +12,17 @@ import FormButton from "../components/Forms/FormButton";
 
 import "./SignInScreen.css";
 import { AuthContext } from "../context/AuthContext";
+import { CreateEventContext } from "../context/CreateEventContext";
 
 const SignInScreen = () => {
+  const location = useLocation();
+  const data = location.state;
+  console.log("ici data ===> ", data);
+
   const navigate = useNavigate();
 
   const { setToken, setUserId } = useContext(AuthContext);
+  const { handleCreateEvent } = useContext(CreateEventContext);
 
   const [showVerification, setShowVerification] = useState(false);
   const [userPhone, setUserPhone] = useState("");
@@ -31,7 +37,6 @@ const SignInScreen = () => {
         { phoneNumber: userPhone }
       );
       setShowVerification(true);
-      console.log(response.data);
     } catch (error) {
       setErrorMessage(
         error.response.data.message === "User not found" &&
@@ -49,12 +54,16 @@ const SignInScreen = () => {
         `${import.meta.env.VITE_API_URL}/auth/verify`,
         { phoneNumber: userPhone, verifyCode: Number(checkCode) }
       );
-      Cookies.set("token", response.data.token, { expires: 365 });
-      Cookies.set("id", response.data.id, { expires: 365 });
       setToken(response.data.token);
       setUserId(response.data.id);
-      console.log(response.data);
-      navigate("/event/:id");
+      Cookies.set("token", response.data.token, { expires: 365 });
+      Cookies.set("id", response.data.id, { expires: 365 });
+      if (!data.isCreateEvent) {
+        navigate("/");
+      } else {
+        handleCreateEvent(response.data.token);
+      }
+      // navigate("/event/:id");
     } catch (error) {
       setErrorMessage(
         error.response.data.message === "Wrong code" &&

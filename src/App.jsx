@@ -22,9 +22,14 @@ function App() {
   return (
     <LoadScript googleMapsApiKey={apiKey} libraries={libraries} i>
       <AuthProvider>
+<<<<<<< HEAD
         <FormProvider>
           <Header />
           <Router>
+=======
+        <Router>
+          <FormProvider>
+>>>>>>> main
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/profile" element={<Profile />} />
@@ -34,8 +39,8 @@ function App() {
               <Route path="/create" element={<CreateEventScreen />} />
               <Route path="/edit/:id" element={<Edit />} />
             </Routes>
-          </Router>
-        </FormProvider>
+          </FormProvider>
+        </Router>
       </AuthProvider>
     </LoadScript>
   );

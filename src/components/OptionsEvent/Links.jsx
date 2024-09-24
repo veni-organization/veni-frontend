@@ -13,26 +13,16 @@ const Links = ({ links, setLinks }) => {
 
   const handleDeleteLink = (event, index) => {
     event.preventDefault();
-    setLinks((prevLinks) =>
-      prevLinks.filter((_, linkIndex) => linkIndex !== index)
-    );
+    setLinks((prevLinks) => [
+      ...prevLinks.filter((_, linkIndex) => linkIndex !== index),
+    ]);
   };
 
   return (
     <div className="links">
-      <label htmlFor="links">Liens</label>
-      {links.map((link, index) => (
-        <div key={index} className="links-saved">
-          <p className="link-saved">{link.label}</p>
-          <button
-            onClick={(event) => handleDeleteLink(event, index)}
-            className="delete-link"
-          >
-            Supprimer
-          </button>
-        </div>
-      ))}
-      {console.log("links --->", links)}
+      <label htmlFor="links">
+        Liens ({Array.isArray(links) ? links.length : 0})
+      </label>
       <div className="link-input">
         <input
           type="url"
@@ -48,6 +38,19 @@ const Links = ({ links, setLinks }) => {
           Valider
         </button>
       </div>
+      {Array.isArray(links) &&
+        links.map((link, index) => (
+          <div key={index} className="links-saved">
+            <p className="link-saved">{link.label}</p>
+            <button
+              onClick={(event) => handleDeleteLink(event, index)}
+              className="delete-link"
+            >
+              Supprimer
+            </button>
+          </div>
+        ))}
+      {/* {console.log("links --->", links)} */}
     </div>
   );
 };
