@@ -1,21 +1,21 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 
-const Links = () => {
-  const [links, setLinks] = useState([]);
-  const [newLinks, setNewLinks] = useState("");
+const Links = ({ links, setLinks }) => {
+  const [newLink, setNewLink] = useState("");
 
-  const newLink = (event) => {
+  const handleAddLink = (event) => {
     event.preventDefault();
     if (newLink) {
-      setLinks([...links, { label: newLinks, completion: false }]);
-      setNewLinks("");
+      setLinks([...links, { label: newLink }]);
+      setNewLink("");
     }
   };
 
-  const deleteLink = (event, index) => {
+  const handleDeleteLink = (event, index) => {
     event.preventDefault();
-    const updatedList = links.filter((_, linkIndex) => linkIndex !== index);
-    setLinks(updatedList);
+    setLinks((prevLinks) =>
+      prevLinks.filter((_, linkIndex) => linkIndex !== index)
+    );
   };
 
   return (
@@ -25,26 +25,25 @@ const Links = () => {
         <div key={index} className="links-saved">
           <p className="link-saved">{link.label}</p>
           <button
-            onClick={(event) => deleteLink(event, index)}
+            onClick={(event) => handleDeleteLink(event, index)}
             className="delete-link"
           >
             Supprimer
           </button>
         </div>
       ))}
+      {console.log("links --->", links)}
       <div className="link-input">
         <input
           type="url"
           id="links"
           placeholder="+ ajoute les liens pertinents"
-          value={newLinks}
-          onChange={(event) => {
-            setNewLinks(event.target.value);
-          }}
+          value={newLink}
+          onChange={(event) => setNewLink(event.target.value)}
         />
         <button
-          className={newLinks.length === 0 ? "none" : "save-link"}
-          onClick={(event) => newLink(event)}
+          className={newLink.length === 0 ? "none" : "save-link"}
+          onClick={handleAddLink}
         >
           Valider
         </button>

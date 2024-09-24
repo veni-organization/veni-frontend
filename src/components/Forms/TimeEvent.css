@@ -1,14 +1,35 @@
-vaadin-time-picker::part(input-field) {
+.time-event-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  top: 50%;
+}
+
+.time-event-block label {
+  color: #ffffff50;
+}
+
+.time-event-form {
   background-color: #ffffff00;
-  border-bottom: 1px solid white;
-  border-radius: 0;
+  font-size: 28px;
+  border: none;
   color: white;
+  font-family: "Raleway", sans-serif;
 }
 
-vaadin-time-picker::part(label) {
-  color: #ffffff50;
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
 }
 
-vaadin-time-picker::part(toggle-button)::before {
-  color: #ffffff50;
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: block;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: transparent;
 }
