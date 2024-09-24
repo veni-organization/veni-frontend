@@ -19,12 +19,10 @@ const libraries = ["places"];
 
 function App() {
   return (
-
-   
     <LoadScript googleMapsApiKey={apiKey} libraries={libraries} i>
       <AuthProvider>
-        <FormProvider>
-          <Router>
+        <Router>
+          <FormProvider>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/profile" element={<Profile />} />
@@ -34,11 +32,10 @@ function App() {
               <Route path="/create" element={<CreateEventScreen />} />
               <Route path="/edit/:id" element={<Edit />} />
             </Routes>
-          </Router>
-        </FormProvider>
+          </FormProvider>
+        </Router>
       </AuthProvider>
     </LoadScript>
-
   );
 }
 

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 
 import axios from "axios";
@@ -12,11 +12,16 @@ import FormButton from "../components/Forms/FormButton";
 
 import "./SignUpScreen.css";
 import { CreateEventContext } from "../context/CreateEventContext";
+import { AuthContext } from "../context/AuthContext";
 
 const SignUpScreen = () => {
+  const location = useLocation();
+  const data = location.state;
+
   const navigate = useNavigate();
 
-  const { formData } = useContext(CreateEventContext);
+  const { handleCreateEvent } = useContext(CreateEventContext);
+  const { setToken } = useContext(AuthContext);
 
   const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
@@ -46,7 +51,6 @@ const SignUpScreen = () => {
           phoneNumber: userPhone,
         }
       );
-      console.log(response);
       setShowVerification(true);
     } catch (error) {
       console.log(error.response.data);
@@ -67,29 +71,12 @@ const SignUpScreen = () => {
           verifyCode: Number(checkCode),
         }
       );
+      setToken(response.data.token);
       Cookies.set("token", response.data.token, { expires: 365 });
       setStep(step + 1);
       setCheckCode("");
       setShowVerification(false);
       Cookies.remove("phone");
-      console.log(response.data);
-      if (formData.title && formData.date && formData.address) {
-        try {
-          const response = await axios.post(
-            `${import.meta.env.VITE_API_URL}/create/event`,
-            { formData },
-            {
-              headers: {
-                Authorization: `Bearer ${Cookies.get("token")}`,
-                "Content-Type": "multipart/form-data",
-              },
-            }
-          );
-          console.log(response);
-        } catch (error) {
-          console.log(error.response.data);
-        }
-      }
     } catch (error) {
       setErrorMessage(
         (error.response.data.message === "User not found" &&
@@ -122,8 +109,13 @@ const SignUpScreen = () => {
         }
       );
       // navigate("/event/:id");
+      if (!data.isCreateEvent) {
+        navigate("/");
+      } else {
+        handleCreateEvent();
+      }
+
       setStep(step + 1);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -307,7 +299,7 @@ const SignUpScreen = () => {
         <div
           className="going-screen"
           onClick={() => {
-            navigate("/event/66f17d419f69907553fc65a1");
+            navigate("/event/");
           }}
         >
           <p>going</p>

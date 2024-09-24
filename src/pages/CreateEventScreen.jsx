@@ -18,13 +18,14 @@ import EventCreationBack from "../components/Forms/EventCreationBack";
 import poster from "../assets/img/life_is_a_party.jpg";
 import "./CreateEventScreen.css";
 import { CreateEventContext } from "../context/CreateEventContext";
-
-const token = Cookies.get("token");
+import { AuthContext } from "../context/AuthContext";
 
 const CreateEvent = () => {
   const navigate = useNavigate();
+  const { token } = useContext(AuthContext);
   // import du context
-  const { formData, setFormData } = useContext(CreateEventContext);
+  const { formData, setFormData, handleCreateEvent } =
+    useContext(CreateEventContext);
 
   // states du formulaire
   const [step, setStep] = useState(1);
@@ -36,53 +37,16 @@ const CreateEvent = () => {
   // const [address, setAddress] = useState("");
   // const [description, setDescription] = useState("");
   // const [picture, setPicture] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Fonction pour créer l'événement en DB
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     // si User pas connecté alors il est d'abord renvoyé sur le flow d'inscription
-    if (isLoggedIn === false) {
-      return navigate(`/signUp`);
-      // sinon on envoit le formData en DB et on va sur la page de l'event
+    if (!token) {
+      navigate("/signup", { state: { isCreateEvent: true } });
     } else {
-      try {
-        // formattage de la date
-        const eventDate = new Date(formData.date);
-        eventDate.setHours(Number(formData.time.slice(0, 2)));
-        eventDate.setMinutes(Number(formData.time.slice(3)));
-        // console.log(eventDate);
-
-        // envoi du formData
-        const formData2 = new FormData();
-        formData2.append("name", formData.title);
-        formData2.append("eventDate", eventDate);
-        // formData2.append("time", formData.time);
-        // formData2.append("endTime", formData.endTime);
-        formData2.append("location", formData.address);
-        formData2.append("description", formData.description);
-        formData2.append("eventPicture", formData.picture);
-        formData2.append("reminder", formData.reminder);
-        formData2.append("plusOne", formData.plusOne);
-        formData2.append("guestsApproval", formData.guestsApproval);
-        formData2.append("links", formData.links);
-
-        const response = await axios.post(
-          `${import.meta.env.VITE_API_URL}/event/create`,
-          formData2,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        navigate(`/event/${response.data.id}`);
-      } catch (error) {
-        console.log(error.message);
-      }
-      // }
+      handleCreateEvent();
     }
   };
 
@@ -243,7 +207,6 @@ const CreateEvent = () => {
                     }))
                   }
                 />
-                {/* {console.log("---->", formData.links)} */}
               </div>
               <MainButton text="Valider" onClick={handleSubmit} />
             </div>
