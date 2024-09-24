@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 import "./FormButton.css";
 
 const FormButton = ({
@@ -12,6 +14,7 @@ const FormButton = ({
   isDateChanged,
   handleSignIn,
 }) => {
+  const phone = Cookies.get("phone");
   return (
     <button
       type="button"

@@ -1,4 +1,5 @@
 // Imports React
+import Cookies from "js-cookie";
 
 // Imports externes
 import PhoneInput from "react-phone-number-input";
@@ -6,11 +7,12 @@ import PhoneInput from "react-phone-number-input";
 import "./PhoneNumber.css";
 
 const PhoneNumber = ({ userPhone, setUserPhone }) => {
+  const phone = Cookies.get("phone");
   return (
     <div className="phone-block">
       <p>Choisis ton pays</p>
       <PhoneInput
-        value={userPhone}
+        value={phone ? phone : userPhone}
         onChange={setUserPhone}
         defaultCountry="FR"
         international

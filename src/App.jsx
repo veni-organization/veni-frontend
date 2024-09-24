@@ -19,6 +19,8 @@ const libraries = ["places"];
 
 function App() {
   return (
+
+   
     <LoadScript googleMapsApiKey={apiKey} libraries={libraries} i>
       <AuthProvider>
         <FormProvider>
@@ -36,6 +38,7 @@ function App() {
         </FormProvider>
       </AuthProvider>
     </LoadScript>
+
   );
 }
 
