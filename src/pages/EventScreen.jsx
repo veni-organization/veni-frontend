@@ -18,6 +18,7 @@ const Event = () => {
   // États pour contrôler l'animation Lottie
   const [isStopped, setIsStopped] = useState(true); // L'animation est stoppée au départ
   const [isPaused, setIsPaused] = useState(true); // L'animation est en pause au départ
+  const [isAnimationVisible, setIsAnimationVisible] = useState(false); // Nouvel état pour gérer la visibilité
 
   // const lottieRef = useRef();
 
@@ -43,11 +44,22 @@ const Event = () => {
           },
         }
       );
-      setResponse(newResponse);
-      // Si la réponse est "true", démarrer l'animation
-      if (newResponse === true) {
-        setIsStopped(false); // Démarrer l'animation
-        setIsPaused(false); // La laisser jouer
+
+      if (res.status === 202 || res.status === 200) {
+        setResponse(newResponse);
+        // Si la réponse est "true", démarrer l'animation
+        if (newResponse === true) {
+          setIsStopped(false); // Démarrer l'animation
+          setIsPaused(false); // La laisser jouer
+          setIsAnimationVisible(true); // Rendre l'animation visible
+
+          // Masquer l'animation après 5 secondes (ou la durée de l'animation si connue)
+          setTimeout(() => {
+            setIsAnimationVisible(false); // Masquer l'animation
+            setIsStopped(true); // Réinitialiser l'état pour permettre un redémarrage si nécessaire
+            setIsPaused(true); // Mettre en pause après la fin
+          }, 4000); // Temps en millisecondes (5000ms = 5s)
+        }
       }
     } catch (error) {
       console.log(error);
@@ -68,6 +80,11 @@ const Event = () => {
               setIsUserHost(true);
             }
           }
+          for (let i = 0; i < response.data.guests.length; i++) {
+            if (response.data.guests[i]._id === userId) {
+              setResponse(true);
+            }
+          }
         }
       } catch (error) {
         console.log(error);
@@ -80,13 +97,13 @@ const Event = () => {
   return (
     <div
       className="event-container"
-      style={{ overflow: isStopped ? "hidden" : "visible" }}
+      // style={{ overflow: isStopped ? "hidden" : "visible" }}
     >
       {event && (
         <div className="event-content">
           <div
             className="animation-container"
-            style={{ display: isStopped ? "none" : "block" }}
+            style={{ display: isAnimationVisible ? "block" : "none" }}
           >
             <Lottie
               options={defaultOptions}

@@ -21,7 +21,7 @@ const SignUpScreen = () => {
   const navigate = useNavigate();
 
   const { handleCreateEvent } = useContext(CreateEventContext);
-  const { setToken } = useContext(AuthContext);
+  const { setToken, setUserId } = useContext(AuthContext);
 
   const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
@@ -51,7 +51,9 @@ const SignUpScreen = () => {
           phoneNumber: userPhone,
         }
       );
-      setShowVerification(true);
+      if (response.status === 200) {
+        setShowVerification(true);
+      }
     } catch (error) {
       console.log(error.response.data);
     }
@@ -70,7 +72,9 @@ const SignUpScreen = () => {
         }
       );
       setToken(response.data.token);
+      setUserId(response.data.id);
       Cookies.set("token", response.data.token, { expires: 365 });
+      Cookies.set("id", response.data.id, { expires: 365 });
       setStep(step + 1);
       setCheckCode("");
       setShowVerification(false);
@@ -104,7 +108,7 @@ const SignUpScreen = () => {
           },
         }
       );
-      if (!data.isCreateEvent) {
+      if (!data) {
         navigate("/");
       } else {
         handleCreateEvent(response.data.token);
