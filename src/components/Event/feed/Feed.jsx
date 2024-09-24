@@ -29,7 +29,12 @@ const Feed = ({ eventId, response, isUserHost }) => {
       <p style={{ fontWeight: "bold", marginBottom: "20px" }}>Flux</p>
       <FeedList actualFeed={actualFeed} setActualFeed={setActualFeed} />
       {actualFeed === "host" ? (
-        <Chat chat={hostChat} response={response} isUserHost={isUserHost} />
+        <Chat
+          chat={hostChat}
+          response={response}
+          isUserHost={isUserHost}
+          eventId={eventId}
+        />
       ) : (
         <Chat chat={globalChat} response={response} isUserHost={isUserHost} />
       )}

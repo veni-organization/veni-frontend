@@ -17,6 +17,7 @@
   border-radius: 50px;
   background-color: rgba(255, 255, 255, 0.1);
   color: var(--white);
+  cursor: pointer;
 }
 
 .feed-selected {
@@ -30,4 +31,15 @@
 .feed-name {
   color: var(--black);
   opacity: 1;
+}
+
+/**********************/
+/*     RESPONSIVE     */
+/**********************/
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+  .feed-button {
+    cursor: pointer;
+  }
 }

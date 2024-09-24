@@ -17,7 +17,6 @@ import { CreateEventContext } from "../context/CreateEventContext";
 const SignInScreen = () => {
   const location = useLocation();
   const data = location.state;
-  console.log("ici data ===> ", data);
 
   const navigate = useNavigate();
 
@@ -36,7 +35,9 @@ const SignInScreen = () => {
         `${import.meta.env.VITE_API_URL}/auth/signin`,
         { phoneNumber: userPhone }
       );
-      setShowVerification(true);
+      if (response.status === 200) {
+        setShowVerification(true);
+      }
     } catch (error) {
       setErrorMessage(
         error.response.data.message === "User not found" &&
@@ -58,7 +59,7 @@ const SignInScreen = () => {
       setUserId(response.data.id);
       Cookies.set("token", response.data.token, { expires: 365 });
       Cookies.set("id", response.data.id, { expires: 365 });
-      if (!data.isCreateEvent) {
+      if (!data) {
         navigate("/");
       } else {
         handleCreateEvent(response.data.token);

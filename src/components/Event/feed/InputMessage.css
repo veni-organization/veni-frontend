@@ -1,0 +1,15 @@
+.input-message-container {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-message {
+  margin-top: 10px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  width: 100%;
+  white-space: normal;
+  padding-top: 20px;
+  font-size: 16px;
+}

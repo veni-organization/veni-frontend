@@ -46,11 +46,9 @@
 
 .event-date {
   font-size: 24px;
-  color: var(--secondary);
 }
 .event-location {
   font-size: 16px;
-  color: var(--green);
 }
 
 .event-button-map {

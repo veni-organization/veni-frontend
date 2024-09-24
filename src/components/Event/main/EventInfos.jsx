@@ -75,7 +75,19 @@ const EventInfos = ({
         </div>
         <div className="event-details-container">
           <div className="event-date-container">
-            <p className="event-date">{formattedDate}</p>
+            <p
+              className="event-date"
+              style={{
+                color:
+                  response === null
+                    ? "#FF0000"
+                    : response
+                    ? "#56dbbb"
+                    : "#ed4343",
+              }}
+            >
+              {formattedDate}
+            </p>
             {!isUserHost && (
               <Rsvp
                 guests={guests}
@@ -90,6 +102,7 @@ const EventInfos = ({
           <div className="event-location-container">
             <p className="event-location">{location}</p>
           </div>
+          <ProfileCard users={guests} />
           <div className="event-description-container">
             <p style={{ fontWeight: "bold" }}>Description</p>
             {/* pre-line to keep the line breaks */}
