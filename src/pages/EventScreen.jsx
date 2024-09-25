@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Lottie from "react-lottie";
 import confettiData from "../assets/animation/confetti.json";
 import { AuthContext } from "../context/AuthContext";
@@ -14,6 +14,7 @@ const Event = () => {
   const [event, setEvent] = useState();
   const [response, setResponse] = useState(null);
   const [isUserHost, setIsUserHost] = useState(false);
+  const navigate = useNavigate();
 
   // États pour contrôler l'animation Lottie
   const [isStopped, setIsStopped] = useState(true); // L'animation est stoppée au départ
@@ -122,6 +123,14 @@ const Event = () => {
             isUserHost={isUserHost}
           />
           <Feed eventId={id} response={response} isUserHost={isUserHost} />
+
+          <div
+            onClick={() => {
+              navigate(`/edit/${id}`, { state: { event: event } });
+            }}
+          >
+            <p>Go to edit</p>
+          </div>
         </div>
       )}
     </div>

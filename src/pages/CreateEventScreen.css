@@ -13,10 +13,11 @@
 .form-header {
   height: 40px;
   display: flex;
-  /* position: fixed; */
-  justify-content: space-between;
   align-items: center;
   /* background-color: red; */
+  justify-content: space-between;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .form-container {

@@ -4,9 +4,9 @@ import { MdInsertPhoto } from "react-icons/md";
 import "./Poster.css";
 
 const Poster = ({ picture, setPicture }) => {
-  {
-    console.log("---->", picture);
-  }
+  // {
+  //   console.log("---->", picture);
+  // }
   return (
     <div className="poster-container">
       <input
@@ -22,7 +22,13 @@ const Poster = ({ picture, setPicture }) => {
       />
       <img
         className="preview"
-        src={picture ? URL.createObjectURL(picture) : poster}
+        src={
+          typeof picture === "string" && picture.startsWith("http")
+            ? picture
+            : picture
+            ? URL.createObjectURL(picture)
+            : poster
+        }
         // picture ? URL.createObjectURL(picture) :
         alt="Preview"
       />
