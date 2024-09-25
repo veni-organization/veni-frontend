@@ -1,14 +1,38 @@
-import { useRef, useState, useLayoutEffect } from "react";
+import { useRef, useState, useLayoutEffect, useContext } from "react";
+import axios from "axios";
+import { IoIosSend } from "react-icons/io";
+import { AuthContext } from "../../../context/AuthContext";
 import "./InputMessage.css";
 
 const MIN_TEXTAREA_HEIGHT = 8;
 
-const InputMessage = () => {
+const InputMessage = ({ eventId, isUserHost, typeChat, response }) => {
+  const { token } = useContext(AuthContext);
   const [contentMessage, setContentMessage] = useState("");
   const textareaRef = useRef(null);
 
-  const handleChange = (e) => {
-    setContentMessage(e.target.value);
+  const handleNewMessage = async () => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/message${
+          typeChat === "host" ? "/host" : ""
+        }/${eventId}`,
+        {
+          content: contentMessage,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 201) {
+        setContentMessage("");
+      }
+      console.log(response);
+    } catch (error) {
+      console.error(error.response.data);
+    }
   };
 
   useLayoutEffect(() => {
@@ -24,19 +48,30 @@ const InputMessage = () => {
   }, [contentMessage]);
 
   return (
-    <div className="input-message-container">
-      <textarea
-        value={contentMessage}
-        onChange={handleChange}
-        placeholder="Écrire un message..."
-        ref={textareaRef}
-        className="input-message"
-        style={{
-          minHeight: MIN_TEXTAREA_HEIGHT,
-          resize: "none",
-        }}
-      />
-    </div>
+    <>
+      {(typeChat === "host" && isUserHost) ||
+      (typeChat === "global" && response !== null) ? (
+        <div className="input-message-container">
+          <textarea
+            value={contentMessage}
+            onChange={(text) => setContentMessage(text.target.value)}
+            placeholder="Écrire un message..."
+            ref={textareaRef}
+            className="input-message"
+            style={{
+              minHeight: MIN_TEXTAREA_HEIGHT,
+              resize: "none",
+            }}
+          />
+          <IoIosSend
+            onClick={handleNewMessage}
+            size={35}
+            color="rgba(255, 255, 255, 0.3)"
+            className="send-icon-message"
+          />
+        </div>
+      ) : null}
+    </>
   );
 };
 

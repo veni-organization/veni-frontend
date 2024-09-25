@@ -82,7 +82,7 @@ const EventInfos = ({
               style={{
                 color:
                   response === null
-                    ? "#FF0000"
+                    ? "#FFBB12"
                     : response
                     ? "#56dbbb"
                     : "#ed4343",

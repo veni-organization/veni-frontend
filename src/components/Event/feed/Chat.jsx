@@ -10,7 +10,12 @@ const Chat = ({ chat, response, isUserHost, eventId }) => {
       // if user is not the host and hasn't responded, blur the feed
       // if user is not the host and has responded, display the feed
       <>
-        <InputMessage eventId={eventId} isUserHost={isUserHost} />
+        <InputMessage
+          eventId={eventId}
+          isUserHost={isUserHost}
+          typeChat={chat.type}
+          response={response}
+        />
         <div
           className={`chat-container ${
             !isUserHost && (response === null ? "blur-feed" : "")
@@ -26,7 +31,12 @@ const Chat = ({ chat, response, isUserHost, eventId }) => {
 
   return (
     <>
-      <InputMessage eventId={eventId} isUserHost={isUserHost} />
+      <InputMessage
+        eventId={eventId}
+        isUserHost={isUserHost}
+        typeChat={chat.type}
+        response={response}
+      />
       <div
         className={`chat-container ${
           !isUserHost && (response === null ? "blur-feed" : "")
