@@ -1,8 +1,16 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import poster from "../assets/img/life_is_a_party.jpg";
 import axios from "axios";
 
 const today = new Date().toISOString().split("T")[0];
+
+// Edit poster to the correct format so it can be send in formData
+const handlePosterFile = async (url) => {
+  const response = await fetch(url);
+  const blob = await response.blob();
+  return blob;
+};
 
 // Create the context
 export const CreateEventContext = createContext();
@@ -41,7 +49,10 @@ export const FormProvider = ({ children }) => {
       // formData2.append("endTime", formData.endTime);
       formData2.append("location", formData.address);
       formData2.append("description", formData.description);
-      formData2.append("eventPicture", formData.picture);
+
+      // Create a variable to send the eventimage in the formData
+      const pictureFile = formData.picture || (await handlePosterFile(poster));
+      formData2.append("eventPicture", pictureFile);
       // formData2.append("reminder", formData.reminder);
       formData2.append("plusOne", formData.plusOne);
       formData2.append("guestsApproval", formData.guestsApproval);
@@ -57,9 +68,10 @@ export const FormProvider = ({ children }) => {
           },
         }
       );
+      // console.log("RESPONSEHERE !", response);
       navigate(`/event/${response.data._id}`);
     } catch (error) {
-      console.log(error.response.data.message);
+      console.log(error);
     }
   };
 
