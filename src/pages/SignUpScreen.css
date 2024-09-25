@@ -9,12 +9,11 @@
 }
 
 .signup-header {
-  /* height: 60px; */
   margin-top: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  position: relative;
+  padding: 0 16px 0 16px;
 }
 
 .signup-form-container {
@@ -87,8 +86,6 @@
 }
 
 .signup-header p {
-  position: absolute;
-  right: 15px;
   font-size: 14px;
 }
 
@@ -122,7 +119,7 @@
     position: initial;
   }
   .signup-header {
-    margin-top: 100px;
+    padding: 0 30px 0 30px;
   }
   .signup-step1 {
     height: auto;
@@ -168,12 +165,12 @@
   .signup-container {
     position: initial;
   }
-  .signup-header {
+  /* .signup-header {
     margin-top: 100px;
-  }
+  } */
   .signup-step1 {
     height: auto;
-    margin-top: 150px;
+    margin-top: 250px;
   }
   .back-button {
     left: 780px;
@@ -192,7 +189,7 @@
   }
   .birthday-input {
     margin-bottom: 0;
-    margin-top: 150px;
+    margin-top: 250px;
   }
   .signup-header p {
     right: 780px;
@@ -202,10 +199,10 @@
   }
   .file-input {
     margin-bottom: 0;
-    margin-top: 150px;
+    margin-top: 250px;
   }
   .avatar {
     margin-bottom: 0;
-    margin-top: 150px;
+    margin-top: 250px;
   }
 }

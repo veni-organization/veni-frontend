@@ -1,11 +1,17 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 
+import "./Profile.css";
+import EventList from "../components/profile/EventList";
+
 const Profile = () => {
+  const navigate = useNavigate();
+
   const [data, setData] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [typeEvent, setTypeEvent] = useState("actual");
 
   const { token } = useContext(AuthContext);
 
@@ -19,6 +25,7 @@ const Profile = () => {
       });
       console.log(response.data);
       setData(response.data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -28,15 +35,32 @@ const Profile = () => {
     getUser();
   }, []);
 
-  return (
+  return isLoading ? (
+    <p>Chargement ...</p>
+  ) : (
     <>
-      <h2>Je suis sur la page Profil</h2>
-      <button>Modifier son profil</button>
-      <Link to="/">
-        <button>Retourner sur la page Home</button>
-      </Link>
-      <h2>{data.name}</h2>
-      <h2>{data.phone_number}</h2>
+      <div>
+        <span className="veni-logo">veni</span>
+        <button
+          onClick={() => {
+            navigate("/create");
+          }}
+        >
+          Je crée un event
+        </button>
+        <button
+          onClick={() => {
+            navigate("/edit-profile");
+          }}
+        >
+          Modifier son profil
+        </button>
+      </div>
+      <div>
+        <h2>Bonjour {data.name} !</h2>
+        {console.log(data)}
+        <EventList typeEvent={typeEvent} setTypeEvent={setTypeEvent} />
+      </div>
     </>
   );
 };
