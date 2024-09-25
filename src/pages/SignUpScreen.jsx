@@ -37,8 +37,6 @@ const SignUpScreen = () => {
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [step, setStep] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [isLoadingVerify, setIsLoadingVerify] = useState(false);
 
   // This function send username and phonenumber to the server, to be able to continue the process with the code to verify identity
   const handleSignUp = async () => {
@@ -134,15 +132,14 @@ const SignUpScreen = () => {
       <div className="signup-header">
         <BackButton step={step} setStep={setStep} />
         <Title text="Entre ton nom ici !" step={step} />
-        {step === 4 && (
-          <p
-            onClick={() => {
-              handleCompleteProfile();
-            }}
-          >
-            Passer
-          </p>
-        )}
+        <p
+          onClick={() => {
+            handleCompleteProfile();
+          }}
+          style={{ visibility: step !== 4 && "hidden" }}
+        >
+          Passer
+        </p>
       </div>
       <form className="signup-form-container">
         {step === 1 && (
@@ -295,6 +292,7 @@ const SignUpScreen = () => {
           </div>
         )}
       </form>
+
       {step === 5 && (
         <div
           className="going-screen"
