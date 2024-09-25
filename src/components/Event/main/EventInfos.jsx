@@ -35,6 +35,8 @@ const EventInfos = ({
     minute: "numeric",
   }).format(dateObj);
 
+  console.log(event_picture);
+
   useEffect(() => {
     const handleResize = () => {
       const isMobile = window.innerWidth < 1024;
