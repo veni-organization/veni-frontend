@@ -36,7 +36,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: green;
   flex-grow: 1;
   padding-bottom: 80px;
   padding-top: 40px;
@@ -44,12 +43,11 @@
 
 .form-container2 {
   display: flex;
-  padding-top: 16px;
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
   padding-bottom: 80px;
-  padding-top: 64px;
+  margin-top: 64px;
   position: fixed;
 }
 
@@ -152,6 +150,10 @@
   gap: 8px;
 }
 
+.none {
+  display: none;
+}
+
 .link-input input:focus {
   outline: none;
 }
@@ -164,10 +166,6 @@
   color: white;
   flex: 4;
   border-radius: 8px;
-}
-
-.none {
-  display: none;
 }
 
 .save-link,

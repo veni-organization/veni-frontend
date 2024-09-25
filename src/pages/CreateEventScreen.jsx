@@ -22,16 +22,6 @@ import { CreateEventContext } from "../context/CreateEventContext";
 const token = Cookies.get("token");
 
 const CreateEvent = () => {
-  const ScrollSaver = () => {
-    // State to store the current scroll position
-    const [scrollPos, setScrollPos] = useState(0);
-    // Effect to restore scroll position on component mount
-    useEffect(() => {
-      // Scroll to the saved position
-      window.scrollTo(0, scrollPos);
-    }, [scrollPos]);
-  };
-
   const navigate = useNavigate();
   // import du context
   const { formData, setFormData } = useContext(CreateEventContext);
