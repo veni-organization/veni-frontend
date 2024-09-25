@@ -1,0 +1,43 @@
+/**********************/
+/*     CONTAINER      */
+/**********************/
+.event-list-container {
+  display: flex;
+  gap: 20px;
+}
+
+/**********************/
+/*       BUTTON       */
+/**********************/
+
+.event-button {
+  padding: 10px 15px;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+}
+
+.event-selected {
+  background-color: #fff;
+  color: #000;
+}
+/**********************/
+/*        TEXTE       */
+/**********************/
+
+.feed-name {
+  color: #000;
+  opacity: 1;
+}
+
+/**********************/
+/*     RESPONSIVE     */
+/**********************/
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+  .feed-button {
+    cursor: pointer;
+  }
+}
