@@ -66,7 +66,9 @@ const InputMessage = ({ eventId, isUserHost, typeChat, response }) => {
           <IoIosSend
             onClick={handleNewMessage}
             size={35}
-            color="rgba(255, 255, 255, 0.3)"
+            color={
+              contentMessage.length >= 1 ? "white" : "rgba(255, 255, 255, 0.3)"
+            }
             className="send-icon-message"
           />
         </div>
