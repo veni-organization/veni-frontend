@@ -36,7 +36,12 @@ const Feed = ({ eventId, response, isUserHost }) => {
           eventId={eventId}
         />
       ) : (
-        <Chat chat={globalChat} response={response} isUserHost={isUserHost} />
+        <Chat
+          chat={globalChat}
+          response={response}
+          isUserHost={isUserHost}
+          eventId={eventId}
+        />
       )}
     </div>
   );
