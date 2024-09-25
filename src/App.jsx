@@ -8,7 +8,7 @@ import CreateEventScreen from "./pages/CreateEventScreen";
 import SignInScreen from "./pages/SignInScreen";
 import EventScreen from "./pages/EventScreen";
 import SignUpScreen from "./pages/SignUpScreen";
-import Edit from "./pages/Edit";
+import EditEventScreen from "./pages/EditEventScreen";
 
 import "./App.css";
 import { FormProvider } from "./context/CreateEventContext";
@@ -32,7 +32,7 @@ function App() {
               <Route path="/signUp" element={<SignUpScreen />} />
               <Route path="/event/:id" element={<EventScreen />} />
               <Route path="/create" element={<CreateEventScreen />} />
-              <Route path="/edit/:id" element={<Edit />} />
+              <Route path="/edit/:id" element={<EditEventScreen />} />
             </Routes>
           </FormProvider>
         </Router>
