@@ -19,16 +19,6 @@ import { CreateEventContext } from "../context/CreateEventContext";
 import { AuthContext } from "../context/AuthContext";
 
 const CreateEvent = () => {
-  const ScrollSaver = () => {
-    // State to store the current scroll position
-    const [scrollPos, setScrollPos] = useState(0);
-    // Effect to restore scroll position on component mount
-    useEffect(() => {
-      // Scroll to the saved position
-      window.scrollTo(0, scrollPos);
-    }, [scrollPos]);
-  };
-
   const navigate = useNavigate();
   const { token } = useContext(AuthContext);
   // import du context

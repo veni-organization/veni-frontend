@@ -14,7 +14,9 @@ const EventFormButton = ({ text, setStep, step, data }) => {
       >
         {text}
       </button>
-      <p className="browse-poster">Choisir parmis notre collection</p>
+      <p className={step === 4 ? "hidden" : "browse-poster"}>
+        Choisir parmis notre collection
+      </p>
     </footer>
   );
 };
