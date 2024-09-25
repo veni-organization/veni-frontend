@@ -13,6 +13,7 @@ import Description from "../components/OptionsEvent/Description";
 import Links from "../components/OptionsEvent/Links";
 import EventFormButton from "../components/Forms/EventFormButton";
 import EventCreationBack from "../components/Forms/EventCreationBack";
+import BlurBackground from "../components/Event/main/img/BlurBackground";
 import poster from "../assets/img/life_is_a_party.jpg";
 import "./CreateEventScreen.css";
 import { CreateEventContext } from "../context/CreateEventContext";
@@ -44,26 +45,57 @@ const CreateEvent = () => {
     if (!token) {
       navigate("/signup", { state: { isCreateEvent: true } });
     } else {
-      handleCreateEvent();
+      handleCreateEvent(token);
     }
+    console.log("clicked");
   };
 
   return (
     <>
-      <div
-        className={
-          step === 4 || step === 5 ? "create-event-background" : "none"
-        }
-      ></div>
+      {(step === 4 || step === 5) && (
+        <BlurBackground
+          event_picture={
+            formData.picture ? URL.createObjectURL(formData.picture) : null
+          }
+          defaultImg={poster}
+        />
+      )}
+      {/* {console.log(formData.picture)} */}
       <div className="form-header">
         <EventCreationBack step={step} setStep={setStep} />
+        {step === 2 || step === 3 ? (
+          <p
+            onClick={() => {
+              setStep(step + 1);
+            }}
+          >
+            Passer
+          </p>
+        ) : step === 5 ? (
+          <p
+            onClick={() => {
+              handleSubmit();
+            }}
+          >
+            Passer
+          </p>
+        ) : null}
       </div>
-      <div className="create-event-container">
-        <form
-          className={
-            step !== 4 && step !== 5 ? "form-container" : "form-container2"
+      <div
+        className="create-event-container"
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            if (step !== 5) {
+              setStep(step + 1);
+            } else {
+              handleSubmit;
+            }
           }
-        >
+        }}
+      >
+        <div className={"form-container"}>
+          <div></div>
           {step === 1 && (
             <div className="step1-screen">
               <TitleEvent title={formData.title} setTitle={setFormData} />
@@ -78,8 +110,6 @@ const CreateEvent = () => {
           )}
           {step === 2 && (
             <div className="step2-screen">
-              {/* <Input type="date" />
-                <Input type="time" /> */}
               <DateEvent date={formData.date} setDate={setFormData} />
               <TimeEvent
                 type="time"
@@ -87,25 +117,6 @@ const CreateEvent = () => {
                 time={formData.time}
                 setTime={setFormData}
               />
-              {/* <div className="hours">
-                  <TimeEvent
-                    label="Heure de début"
-                    time={formData.time}
-                    setTime={setFormData}
-                  /> */}
-              {/* <TimeEvent
-                    label="Heure de fin"
-                    endTime={formData.endTime}
-                    setEndTime={setFormData}
-                  /> */}
-              {/* </div> */}
-              {/* <EventFormButton
-                  className="form-button"
-                  text="Continuer"
-                  data={formData.date}
-                  setStep={setStep}
-                  step={step}
-                /> */}
             </div>
           )}
           {step === 3 && (
@@ -121,34 +132,34 @@ const CreateEvent = () => {
                   }))
                 }
               />
-              <EventFormButton
+              {/* <EventFormButton
                 className="form-button"
                 text="Continuer"
                 data={formData.address}
                 setStep={setStep}
                 step={step}
-              />
+              /> */}
             </div>
           )}
           {step === 4 && (
-            <div className="step4-screen">
-              <Poster
-                picture={formData.picture}
-                setPicture={(newPicture) =>
-                  setFormData((prevData) => ({
-                    ...prevData,
-                    picture: newPicture,
-                  }))
-                }
-              />
-              {/* <EventFormButton
-                className="form-button"
-                text="Continuer"
-                data={formData.picture ? formData.picture : poster}
-                setStep={setStep}
-                step={step}
-              /> */}
-            </div>
+            // <div className="step4-screen">
+            <Poster
+              picture={formData.picture}
+              setPicture={(newPicture) =>
+                setFormData((prevData) => ({
+                  ...prevData,
+                  picture: newPicture,
+                }))
+              }
+            />
+            // {/* <EventFormButton
+            //   className="form-button"
+            //   text="Continuer"
+            //   data={formData.picture ? formData.picture : poster}
+            //   setStep={setStep}
+            //   step={step}
+            // /> */}
+            // </div>
           )}
           {step === 5 && (
             <div className="step5-screen">
@@ -209,29 +220,29 @@ const CreateEvent = () => {
               </div>
             </div>
           )}
-        </form>
+          {step !== 5 ? (
+            <EventFormButton
+              className="form-button"
+              text="Continuer"
+              data={
+                step === 1
+                  ? formData.title
+                  : step === 2
+                  ? formData.date
+                  : step === 3
+                  ? formData.address
+                  : step === 4
+                  ? formData.picture || poster
+                  : null
+              }
+              setStep={setStep}
+              step={step}
+            />
+          ) : (
+            <MainButton text="Valider" onClick={handleSubmit} />
+          )}
+        </div>
       </div>
-      {step !== 5 ? (
-        <EventFormButton
-          className="form-button"
-          text="Continuer"
-          data={
-            step === 1
-              ? formData.title
-              : step === 2
-              ? formData.date
-              : step === 3
-              ? formData.address
-              : step === 4
-              ? formData.picture || poster
-              : null
-          }
-          setStep={setStep}
-          step={step}
-        />
-      ) : (
-        <MainButton text="Valider" onClick={handleSubmit} />
-      )}
     </>
   );
 };

@@ -2,7 +2,7 @@ import "./EventFormButton.css";
 
 const EventFormButton = ({ text, setStep, step, data }) => {
   return (
-    <footer>
+    <>
       <button
         type="button"
         disabled={!data}
@@ -10,14 +10,12 @@ const EventFormButton = ({ text, setStep, step, data }) => {
           setStep(step + 1);
           console.log(step);
         }}
-        className={data ? "form-button" : "empty-form-button"}
+        className={data ? "event-form-button" : "empty-event-form-button"}
       >
         {text}
       </button>
-      <p className={step === 4 ? "hidden" : "browse-poster"}>
-        Choisir parmis notre collection
-      </p>
-    </footer>
+      <p className="none">Choisir parmis notre collection</p>
+    </>
   );
 };
 

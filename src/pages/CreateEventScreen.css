@@ -2,53 +2,30 @@
 /*     CONTAINER      */
 /**********************/
 
-.create-event-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background-image: url(../assets/img/life_is_a_party.jpg);
-  background-size: cover;
-  background-position: center;
-  filter: blur(120px); /* Blurs only the background */
-  z-index: -1;
-}
-
 .create-event-container {
-  height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* position: fixed; */
+  justify-content: space-between;
 }
 
 .form-header {
   height: 40px;
-  padding-top: 16px;
   display: flex;
-  position: fixed;
+  /* position: fixed; */
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: red; */
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  flex-grow: 1;
-  padding-bottom: 80px;
-  padding-top: 40px;
-}
-
-.form-container2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-grow: 1;
-  padding-bottom: 80px;
-  margin-top: 64px;
-  position: fixed;
+  height: calc(100vh - 40px);
+  max-height: calc(100vh - 160px);
 }
 
 .step1-screen {
@@ -198,7 +175,7 @@
 
 .preview {
   width: 90vw;
-  height: 112.5vw; /* height:width ratio = 9/16 = .5625  */
+  height: 112.5vw; /* height:width ratio = 4/5 */
 }
 
 .icon-overlay {
@@ -225,7 +202,11 @@
 /**********************/
 
 /* Desktop*/
-@media only screen and (min-width: 1350px) {
+@media only screen and (min-width: 1024px) {
+  .preview {
+    width: calc(300 * 1.2px);
+    height: calc(375px * 1.2); /* height:width ratio = 9/16 = .5625  */
+  }
 }
 
 /* Téléphone */

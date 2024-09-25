@@ -1,4 +1,4 @@
-footer {
+/* footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,9 +11,10 @@ footer {
   left: 0px;
   right: 0px;
   margin-bottom: 0px;
-}
+  background-color: green;
+} */
 
-.form-button {
+.event-form-button {
   width: 342px;
   height: 64px;
   flex-shrink: 0;
@@ -28,7 +29,7 @@ footer {
   font-family: "Raleway", sans-serif;
 }
 
-.empty-form-button {
+.empty-event-form-button {
   width: 342px;
   height: 64px;
   flex-shrink: 0;
