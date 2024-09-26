@@ -42,9 +42,11 @@ const Chat = ({ chat, response, isUserHost, eventId }) => {
           !isUserHost && (response === null ? "blur-feed" : "")
         }`}
       >
-        {chat.messages.map((message, index) => {
-          return <Message key={index} message={message} />;
-        })}
+        {chat.messages
+          .sort((a, b) => new Date(b.creation_date) - new Date(a.creation_date))
+          .map((message, index) => {
+            return <Message key={index} message={message} />;
+          })}
       </div>
     </>
   );
