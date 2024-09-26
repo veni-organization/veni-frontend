@@ -35,9 +35,8 @@ const SignInScreen = () => {
         `${import.meta.env.VITE_API_URL}/auth/signin`,
         { phoneNumber: userPhone }
       );
-      if (response.status === 200) {
-        setShowVerification(true);
-      }
+
+      setShowVerification(true);
     } catch (error) {
       setErrorMessage(
         error.response.data.message === "User not found" &&
@@ -62,7 +61,13 @@ const SignInScreen = () => {
       if (!data) {
         navigate("/");
       } else {
-        handleCreateEvent(response.data.token);
+        if (data.event) {
+          navigate(`/event/${data.event.event}`);
+        }
+        if (data.isCreateEvent) {
+          console.log("CREATE EVENT");
+          handleCreateEvent(response.data.token);
+        }
       }
       // navigate("/event/:id");
     } catch (error) {

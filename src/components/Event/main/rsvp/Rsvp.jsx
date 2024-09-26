@@ -9,6 +9,7 @@ const Rsvp = ({
   response,
   setResponse,
   handleUserResponse,
+  isUserHost,
 }) => {
   useEffect(() => {
     const checkRsvp = () => {
@@ -32,7 +33,7 @@ const Rsvp = ({
     handleUserResponse,
   ]);
 
-  if (response === null) {
+  if (!isUserHost && response === null) {
     return (
       <RsvpChoice response={response} handleUserResponse={handleUserResponse} />
     );
@@ -43,6 +44,7 @@ const Rsvp = ({
       response={response}
       setResponse={setResponse}
       handleUserResponse={handleUserResponse}
+      isUserHost={isUserHost}
     />
   );
 };

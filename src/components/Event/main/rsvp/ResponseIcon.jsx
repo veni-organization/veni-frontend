@@ -1,11 +1,26 @@
 import { IoCheckmarkOutline, IoCloseOutline } from "react-icons/io5";
+import { MdOutlineStar } from "react-icons/md";
 
 import "./ResponseIcon.css";
 
-const ResponseIcon = ({ response, handleUserResponse }) => {
+const ResponseIcon = ({ response, handleUserResponse, isUserHost }) => {
   const changeResponse = (newChoice) => {
     handleUserResponse(newChoice);
   };
+  if (isUserHost) {
+    return (
+      <div
+        className="display-response-container"
+        style={{
+          border: "1px solid #ffbb12",
+          boxShadow: "0px 0px 30px 0px #ffbb1233",
+        }}
+        onClick={() => changeResponse(false)}
+      >
+        <MdOutlineStar size={26} color="#ffbb12" />
+      </div>
+    );
+  }
 
   return response ? (
     <div

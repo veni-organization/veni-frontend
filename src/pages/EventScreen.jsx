@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Lottie from "react-lottie";
 import confettiData from "../assets/animation/confetti.json";
 import { AuthContext } from "../context/AuthContext";
@@ -21,8 +21,6 @@ const Event = () => {
   const [isPaused, setIsPaused] = useState(true); // L'animation est en pause au départ
   const [isAnimationVisible, setIsAnimationVisible] = useState(false); // Nouvel état pour gérer la visibilité
 
-  // const lottieRef = useRef();
-
   const defaultOptions = {
     loop: false,
     autoplay: false,
@@ -33,6 +31,11 @@ const Event = () => {
   };
 
   const handleUserResponse = async (newResponse) => {
+    // Check if the user is logged
+    if (!userId) {
+      navigate(`/signup`, { state: { event: event._id } });
+      return;
+    }
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/guest/response/${id}`,
@@ -96,10 +99,7 @@ const Event = () => {
   }, [id, userId, isUserHost, response]);
 
   return (
-    <div
-      className="event-container"
-      // style={{ overflow: isStopped ? "hidden" : "visible" }}
-    >
+    <div className="event-container">
       {event && (
         <div className="event-content">
           <div
@@ -123,14 +123,6 @@ const Event = () => {
             isUserHost={isUserHost}
           />
           <Feed eventId={id} response={response} isUserHost={isUserHost} />
-
-          <div
-            onClick={() => {
-              navigate(`/edit/${id}`, { state: { event: event } });
-            }}
-          >
-            <p>Go to edit</p>
-          </div>
         </div>
       )}
     </div>

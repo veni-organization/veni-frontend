@@ -17,6 +17,7 @@ import { AuthContext } from "../context/AuthContext";
 const SignUpScreen = () => {
   const location = useLocation();
   const data = location.state;
+  console.log("DATA ===>", data);
 
   const navigate = useNavigate();
 
@@ -109,7 +110,12 @@ const SignUpScreen = () => {
       if (!data) {
         navigate("/");
       } else {
-        handleCreateEvent(response.data.token);
+        if (data.event) {
+          navigate(`/event/${data.event}`);
+        }
+        if (data.isCreateEvent) {
+          handleCreateEvent(response.data.token);
+        }
       }
       setStep(step + 1);
     } catch (error) {
@@ -124,7 +130,12 @@ const SignUpScreen = () => {
   };
 
   const handleSignIn = () => {
-    navigate("/signin", { state: { isCreateEvent: true } });
+    navigate("/signIn", {
+      state: {
+        ...(data?.isCreateEvent && { isCreateEvent: data.isCreateEvent }),
+        ...(data && { event: data }),
+      },
+    });
   };
 
   return (
@@ -162,7 +173,7 @@ const SignUpScreen = () => {
               data={username}
               setData={setUsername}
             />
-            <h3 onClick={handleSignIn}>J'ai déjà un compte</h3>
+            <div onClick={handleSignIn}>J'ai déjà un compte</div>
             <FormButton
               text="Continuer"
               data={username}
