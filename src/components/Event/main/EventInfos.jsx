@@ -3,6 +3,7 @@ import defaultImg from "../../../assets/img/life_is_a_party.jpg";
 import ProfileCard from "../../profile/ProfileCard";
 import BlurBackground from "./img/BlurBackground";
 import EventPicture from "./img/eventPicture";
+import PhotosPreview from "../photos/PhotosPreview";
 import Rsvp from "./rsvp/Rsvp";
 import "./EventInfos.css";
 
@@ -14,6 +15,7 @@ const EventInfos = ({
   userId,
   isUserHost,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [top, setTop] = useState("385px");
   const {
     name,
@@ -24,8 +26,8 @@ const EventInfos = ({
     event_picture,
     guests,
     refused_guests,
+    guests_pictures,
   } = event;
-
   const dateObj = new Date(event_date);
   const formattedDate = new Intl.DateTimeFormat("fr-FR", {
     year: "numeric",
@@ -34,8 +36,6 @@ const EventInfos = ({
     hour: "numeric",
     minute: "numeric",
   }).format(dateObj);
-
-  console.log(event_picture);
 
   useEffect(() => {
     const handleResize = () => {
@@ -79,6 +79,7 @@ const EventInfos = ({
           <h1 className="event-name">{name}</h1>
           <ProfileCard users={hosts} />
         </div>
+        <PhotosPreview guests_pictures={guests_pictures} eventId={event._id} />
         <div className="event-details-container">
           <div className="event-date-container">
             <p
@@ -96,7 +97,6 @@ const EventInfos = ({
             >
               {formattedDate}
             </p>
-
             <Rsvp
               guests={guests}
               refused_guests={refused_guests}

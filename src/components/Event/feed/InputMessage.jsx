@@ -29,7 +29,6 @@ const InputMessage = ({ eventId, isUserHost, typeChat, response }) => {
       if (response.status === 201) {
         setContentMessage("");
       }
-      console.log(response);
     } catch (error) {
       console.error(error.response.data);
     }
