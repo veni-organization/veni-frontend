@@ -18,7 +18,7 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [typeEvent, setTypeEvent] = useState("actual");
 
-  const { token } = useContext(AuthContext);
+  const { token, id } = useContext(AuthContext);
 
   useEffect(() => {
     const getUser = async () => {
@@ -32,7 +32,6 @@ const Profile = () => {
             },
           }
         );
-        // console.log(response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -60,7 +59,7 @@ const Profile = () => {
           <button
             className="avatar-button"
             onClick={() => {
-              navigate("/edit-profile");
+              navigate(`/edit-profile/${data._id}`);
             }}
           >
             <Avatar user={[data]} size={"40px"} />
@@ -81,10 +80,11 @@ const Profile = () => {
           >
             <FaPlus className="profile-plus" />
           </button>
+          {console.log(id)}
           <button
             className="avatar-button"
             onClick={() => {
-              navigate("/edit-profile");
+              navigate(`/edit-profile/${data._id}`);
             }}
           >
             <Avatar user={[data]} size={"40px"} />{" "}
