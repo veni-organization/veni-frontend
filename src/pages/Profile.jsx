@@ -6,6 +6,7 @@ import { FaPlus } from "react-icons/fa6";
 
 // import "../components/profile/avatar.css";
 import "./Profile.css";
+import defaultImage from "../assets/img/life_is_a_party.jpg";
 import EventList from "../components/profile/EventList";
 import ProfileCard from "../components/profile/ProfileCard";
 import Avatar from "../components/profile/Avatar";
@@ -44,7 +45,7 @@ const Profile = () => {
   return isLoading ? (
     <p>Chargement ...</p>
   ) : (
-    <>
+    <div className="profile-container">
       <div className="top-profile">
         <span className="edit-veni-logo">veni</span>
         <div className="top-right">
@@ -68,13 +69,32 @@ const Profile = () => {
           </button>
         </div>
       </div>
-      <div>
-        <p className="profile-title">Bonjour {data.name} !</p>
-        <div className="profile-button">
-          <EventList typeEvent={typeEvent} setTypeEvent={setTypeEvent} />
+      <p className="profile-title">Bonjour {data.name} !</p>
+      <div className="top-desktop">
+        <p className="profile-title-desktop">Bonjour {data.name} !</p>
+        <div className="button-desktop">
+          <button
+            className="button-plus"
+            onClick={() => {
+              navigate("/create");
+            }}
+          >
+            <FaPlus className="profile-plus" />
+          </button>
+          <button
+            className="avatar-button"
+            onClick={() => {
+              navigate("/edit-profile");
+            }}
+          >
+            <Avatar user={[data]} size={"40px"} />{" "}
+          </button>
         </div>
       </div>
-      <div className="event-container">
+      <div className="profile-button">
+        <EventList typeEvent={typeEvent} setTypeEvent={setTypeEvent} />
+      </div>
+      <div className="event-profile-container">
         {data.participating_events.map((event) => {
           const dateObj = new Date(event.event_date);
           const formattedDate = new Intl.DateTimeFormat("fr-FR", {
@@ -86,20 +106,35 @@ const Profile = () => {
           }).format(dateObj);
 
           return (
-            <div key={event._id} className="event-card">
-              <img src={event.event_picture} />
-              <div className="profile-event">
-                <p className="profile-event-title">{event.name}</p>
-                <ProfileCard users={event.hosts} />
-                <p className="profile-event-date">{formattedDate}</p>
-                <p>{event.location}</p>
-                <ProfileCard users={event.guests} />
+            <div
+              key={event._id}
+              className="event-card"
+              onClick={() => {
+                navigate(`/event/${event._id}`);
+              }}
+            >
+              <div className="profile-event-description">
+                <img src={event.event_picture} />
+                <div className="event-top">
+                  <p className="profile-event-title">{event.name}</p>
+                  <ProfileCard
+                    users={event.hosts}
+                    defaultImage={defaultImage}
+                  />
+                </div>
+              </div>
+              <div style={{}}>
+                <div className="event-bottom">
+                  <p className="profile-event-date">{formattedDate}</p>
+                  <p>{event.location}</p>
+                  <ProfileCard users={event.guests} />
+                </div>
               </div>
             </div>
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
