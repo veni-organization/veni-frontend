@@ -51,6 +51,9 @@
   border-radius: 50%;
   background-color: #182825;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .top-profile {

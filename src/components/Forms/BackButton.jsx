@@ -1,10 +1,9 @@
 import { IoIosArrowBack } from "react-icons/io";
-
 import { useNavigate } from "react-router-dom";
 
 import "./BackButton.css";
 
-const BackButton = ({ step, setStep }) => {
+const BackButton = ({ step, setStep, page }) => {
   const navigate = useNavigate();
   return (
     <>
@@ -23,7 +22,11 @@ const BackButton = ({ step, setStep }) => {
       ) : (
         <button
           onClick={() => {
-            navigate("/");
+            if (page) {
+              navigate(page);
+            } else {
+              navigate("/");
+            }
           }}
           className="back-button"
         >

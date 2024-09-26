@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLocation, useParams } from "react-router-dom";
@@ -17,7 +17,7 @@ const EditEvent = () => {
   const navigate = useNavigate();
   const today = new Date().toISOString().split("T")[0];
   const { id } = useParams();
-  const { userId, token } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
   const location = useLocation();
   const data = location.state;
   //   console.log("DATA= >>>>", data);
@@ -29,11 +29,13 @@ const EditEvent = () => {
   // format the date from the back correctly to display in the input
   const eventDate = new Date(data.event.event_date);
   const formattedDate = eventDate.toISOString().split("T")[0];
+  //   console.log(formattedDate);
   //format the time
-  const hours = String(eventDate.getUTCHours()).padStart(2, "0"); // Extract hours
-  const minutes = String(eventDate.getUTCMinutes()).padStart(2, "0"); // Extract minutes
+  const hours = String(eventDate.getHours()).padStart(2, "0");
+  const minutes = String(eventDate.getMinutes()).padStart(2, "0");
   const formattedTime = `${hours}:${minutes}`;
 
+  //   console.log(formattedTime);
   // set initiam values
   const [initialValues] = useState({
     eventName: data.event.name,
@@ -66,13 +68,20 @@ const EditEvent = () => {
     links.length !== initialValues.links.length ||
     picture !== initialValues.picture;
 
+  //   console.log(eventDate);
+
   const handleEditEvent = async () => {
     try {
+      const updatedDate = new Date(dateEvent);
+      const [hours, minutes] = timeEvent.split(":");
+      updatedDate.setHours(hours);
+      updatedDate.setMinutes(minutes);
+
       const formData = new FormData();
 
       formData.append("name", eventName);
-      formData.append("eventDate", dateEvent);
-      formData.append("eventTime", timeEvent);
+      formData.append("eventDate", updatedDate);
+      //   formData.append("eventTime", timeEvent);
       formData.append("location", address);
       formData.append("description", description);
       formData.append("links", JSON.stringify(links));
@@ -102,6 +111,7 @@ const EditEvent = () => {
 
   return (
     <>
+      {/* {window.scrollTo(0, 0)} */}
       <BlurBackground
         event_picture={
           isCloudinaryUrl(picture) ? picture : URL.createObjectURL(picture)
@@ -110,7 +120,7 @@ const EditEvent = () => {
       />
       {/* {console.log("picture --->", picture)} */}
       <header className="edit-event-header">
-        <BackButton />
+        <BackButton page={`/event/${id}`} />
         <h2>Modifier</h2>
         <button
           className={isModified ? "confirm-edit-cta" : "hidden"}
@@ -159,11 +169,13 @@ const EditEvent = () => {
             </div>
           </div>
           <div className="location-event-edit">
+            <label htmlFor="location-edit">Adresse</label>
             <AddressInput
               searchBox={searchBox}
               setSearchBox={setSearchBox}
               address={address}
               setAddress={setAddress}
+              id="location-edit"
             />
           </div>
           <div className="description-event-edit">
