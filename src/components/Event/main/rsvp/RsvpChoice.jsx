@@ -1,5 +1,4 @@
 import { IoCheckmarkOutline, IoCloseOutline } from "react-icons/io5";
-
 import "./RsvpChoice.css";
 
 const RsvpChoice = ({ handleUserResponse }) => {
