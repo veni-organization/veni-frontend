@@ -13,7 +13,7 @@
 /* Desktop */
 @media only screen and (min-width: 1024px) {
   .feed-container {
-    flex: 1;
     padding: 0 50px;
+    max-width: 664px;
   }
 }

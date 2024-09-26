@@ -3,7 +3,7 @@ import axios from "axios";
 import "./SharePhotosButton.css";
 import { AuthContext } from "../../../context/AuthContext";
 
-const SharePhotosButton = ({ setIsLoading, eventId }) => {
+const SharePhotosButton = ({ eventId }) => {
   const { token } = useContext(AuthContext);
 
   const handleFileChange = async (event) => {
@@ -20,10 +20,10 @@ const SharePhotosButton = ({ setIsLoading, eventId }) => {
   };
 
   const handleSendNewPhoto = async (file) => {
+    console.log("file", file);
     try {
       // If a file is selected
       if (file) {
-        setIsLoading(true);
         const formData = new FormData();
         formData.append("pictures", file);
 
@@ -36,25 +36,25 @@ const SharePhotosButton = ({ setIsLoading, eventId }) => {
             },
           }
         );
-        if (response.status === 201) {
-          setIsLoading(false);
-        }
+        console.log(response.data);
       }
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error);
     }
   };
 
   return (
-    <div className="share-my-photos-button" onClick={handleButtonClick}>
-      <input
-        type="file"
-        accept="image/*"
-        id="new-photo-input"
-        style={{ display: "none" }} // hide the input file
-        onChange={handleFileChange}
-      />
-      Partagez mes photos
+    <div className="share-button-container">
+      <div className="share-my-photos-button" onClick={handleButtonClick}>
+        <input
+          type="file"
+          accept="image/*"
+          id="new-photo-input"
+          style={{ display: "none" }} // hide the input file
+          onChange={handleFileChange}
+        />
+        Partagez mes photos
+      </div>
     </div>
   );
 };

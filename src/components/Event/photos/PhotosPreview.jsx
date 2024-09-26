@@ -1,18 +1,25 @@
 import SharePhotosButton from "./SharePhotosButton";
-import { IoArrowForward } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 import "./PhotosPreview.css";
 
-const PhotosPreview = ({
-  guests_pictures,
-  eventId,
-  setIsLoading,
-  isLoading,
-}) => {
+const PhotosPreview = ({ guests_pictures, eventId, type }) => {
+  const navigate = useNavigate();
   return (
-    <div className="photos-preview-container">
+    <div
+      className={`photos-preview-container ${
+        type === "desktop" ? "desktop-photos-preview" : "mobile-photos-preview"
+      }`}
+    >
       <div className="header-photos-preview-container">
         <span>Photos</span>
-        {guests_pictures.length > 0 && <span>Voir tout</span>}
+        {guests_pictures.length > 0 && (
+          <span
+            onClick={() => navigate(`/galery/${eventId}`)}
+            style={{ cursor: "pointer" }}
+          >
+            Voir tout
+          </span>
+        )}
       </div>
       {guests_pictures.length > 0 && (
         <div className="photos-preview">
@@ -24,7 +31,10 @@ const PhotosPreview = ({
             />
           ))}
           {guests_pictures.length > 3 && (
-            <div className="more-photos">
+            <div
+              className="more-photos"
+              onClick={() => navigate(`/galery/${eventId}`)}
+            >
               <img
                 src={guests_pictures[3].url}
                 className="preview-photo-event-page blur-preview"
@@ -36,8 +46,7 @@ const PhotosPreview = ({
           )}
         </div>
       )}
-
-      <SharePhotosButton setIsLoading={setIsLoading} eventId={eventId} />
+      <SharePhotosButton eventId={eventId} />
     </div>
   );
 };

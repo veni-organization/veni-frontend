@@ -6,6 +6,7 @@ import confettiData from "../assets/animation/confetti.json";
 import { AuthContext } from "../context/AuthContext";
 import EventInfos from "../components/Event/main/EventInfos";
 import Feed from "../components/Event/feed/Feed";
+import PhotosPreview from "../components/Event/photos/PhotosPreview";
 import "./EventScreen.css";
 
 const Event = () => {
@@ -122,7 +123,14 @@ const Event = () => {
             userId={userId}
             isUserHost={isUserHost}
           />
-          <Feed eventId={id} response={response} isUserHost={isUserHost} />
+          <div className="feed-photos-container">
+            <PhotosPreview
+              guests_pictures={event.guests_pictures}
+              eventId={event._id}
+              type={"desktop"}
+            />
+            <Feed eventId={id} response={response} isUserHost={isUserHost} />
+          </div>
         </div>
       )}
     </div>
