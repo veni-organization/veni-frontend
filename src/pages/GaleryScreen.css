@@ -37,6 +37,7 @@
   height: 250px;
   object-fit: cover;
   border-radius: 16px;
+  margin-top: 10px;
 }
 
 .fixed-button-galery {
