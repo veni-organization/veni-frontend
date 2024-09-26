@@ -1,0 +1,152 @@
+@import "../assets/colors/colors.css";
+
+/**********************/
+/*  HEADER-CONTAINER  */
+/**********************/
+
+.header-container-home {
+  display: flex;
+  justify-content: center;
+  height: 32px;
+  align-items: center;
+  margin-bottom: 24px;
+  width: 100vw;
+}
+.header-content-home {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.veni-logo-home {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--white);
+}
+
+.header-content-home button {
+  border: none;
+  color: white;
+  background-color: transparent;
+  font-size: 16px;
+  padding: 8px;
+}
+
+/**********************/
+/*   MAIN-CONTAINER   */
+/**********************/
+
+.main-content-home {
+  padding: 0 16px;
+}
+
+.main-content-home h2 {
+  text-align: left;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.home-paragraph-1 {
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 48px;
+}
+
+.home-image-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 24px 0;
+}
+
+.home-image-1 img {
+  width: 100%;
+  margin: 0 20px;
+}
+
+.home-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-button a {
+  text-decoration: none;
+}
+
+.home-event-code-link {
+  color: var(--green);
+  font-size: 16px;
+  text-align: center;
+  margin: 16px 0;
+}
+
+.home-event-code-link strong {
+  font-weight: 700;
+}
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+  /**********************/
+  /*  HEADER-RESPONSIVE */
+  /**********************/
+  .header-container-home {
+    display: none;
+  }
+  .main-content-home {
+    padding: 0;
+    width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .home-container-text {
+    width: 45%;
+    padding-right: 50px;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  .main-content-home h2 {
+    text-align: left;
+    font-size: 40px;
+    margin: 32px 0;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  .home-paragraph-1 {
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 48px;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  .home-paragraph-1 p:first-child {
+    margin-bottom: 8px;
+  }
+  .home-image-1 {
+    width: 55%;
+    justify-content: flex-end;
+  }
+  .home-image-1 img {
+    width: 100%;
+    margin: 0 20px;
+  }
+  .home-button-link {
+    margin: -150px 0 0 0;
+  }
+  /* .home-event-code-link {
+    margin: 24px 0;
+  }
+  .home-button-container {
+    margin-top: -220px;
+  } */
+}
