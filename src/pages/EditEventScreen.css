@@ -103,3 +103,108 @@
 .location-event-edit {
   padding-left: 16px;
 }
+
+/* ---------------------- */
+/* ---------------------- */
+/* ---------------------- */
+
+@media only screen and (max-width: 389px) {
+  .form-edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .event-name-edit,
+  .location-event-edit {
+    align-items: center;
+    /* width: calc(100vw + 16px); */
+  }
+
+  .date-event-edit {
+    align-items: center;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+  .description-event-edit {
+    width: calc(100vw + 16px);
+  }
+  .links-event-edit {
+    width: calc(100vw + 16px);
+  }
+}
+
+@media only screen and (min-width: 391px) {
+  label {
+    align-self: flex-start;
+    padding-bottom: 4px;
+  }
+
+  .preview {
+    width: 400px;
+    height: 500px;
+  }
+  .event-name-edit,
+  .location-event-edit {
+    align-items: center;
+  }
+
+  .event-name-edit input {
+    width: calc(100vw - 32px);
+  }
+
+  .location-event-edit input {
+    width: calc(100vw - 32px);
+  }
+
+  .date-event-edit input {
+    width: 100vw;
+  }
+
+  .date-event-edit {
+    padding: 0;
+    align-items: center;
+    width: calc(100vw - 32px);
+  }
+
+  .date-hours-block-edit {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .date-event-edit input {
+    font-size: 24px;
+    border: none;
+    background-color: #ffffff10;
+    /* padding: 16px; */
+    /* width: calc(100vw); */
+    border-radius: 8px;
+    color: white;
+    width: calc(100vw - 32px);
+    font-family: "Raleway", sans-serif;
+  }
+
+  .description-event-edit {
+    width: calc(100vw);
+    align-items: center;
+    padding: 0;
+  }
+
+  .location-event-edit {
+    padding-left: 16px;
+  }
+
+  .form-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .links-event-edit {
+    width: 100vw;
+  }
+}
