@@ -17,7 +17,6 @@ import { AuthContext } from "../context/AuthContext";
 const SignUpScreen = () => {
   const location = useLocation();
   const data = location.state;
-  console.log("DATA ===>", data);
 
   const navigate = useNavigate();
 
