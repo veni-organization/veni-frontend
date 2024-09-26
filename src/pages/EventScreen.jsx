@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Lottie from "react-lottie";
 import confettiData from "../assets/animation/confetti.json";
 import { AuthContext } from "../context/AuthContext";

@@ -3,7 +3,6 @@
 .edit-veni-logo {
   font-size: 34px;
   font-weight: bold;
-  /* color: var(--green); */
 }
 
 .event-card {
@@ -17,17 +16,17 @@
 }
 
 .event-card img {
-  height: 65%;
-  width: 300px;
+  height: 100%;
+  width: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 20px 20px 0 0;
 }
 
-.event-container {
+.event-profile-container {
   display: flex;
   overflow: scroll;
   gap: 20px;
-  margin-left: 30px;
+  padding: 0 30px;
 }
 
 .avatar-button {
@@ -80,16 +79,62 @@
   margin: 15px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
 
 .profile-event-title {
-  font-size: 30px;
+  font-size: 32px;
 }
 
 .profile-event-date {
   color: var(--green);
-  font-size: 18px;
+  font-size: 20px;
+}
+
+.profile-event-description {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 65%;
+  background-color: #ffffff20;
+  position: relative;
+  border-radius: 20px;
+}
+
+.event-top {
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 10px;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(to top, #2a2e2e, rgba(255, 255, 255, 0));
+  width: 100%;
+  height: 30%;
+}
+
+.event-bottom {
+  margin: 20px 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.top-desktop {
+  display: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.event-profile-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.event-profile-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 /**********************/
@@ -109,13 +154,36 @@
 /**********************/
 
 /* Desktop*/
-@media only screen and (min-width: 1350px) {
-  .edit-veni-logo {
+@media only screen and (min-width: 1024px) {
+  .top-profile {
     display: none;
-    /* visibility: hidden; */
   }
-}
-
-/* Téléphone */
-@media only screen and (max-width: 768px) {
+  .profile-container {
+    width: 1024px;
+    margin: 0 auto;
+  }
+  .top-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .profile-title {
+    display: none;
+  }
+  .profile-title-desktop {
+    margin: 20px 0px;
+    font-size: 30px;
+  }
+  .button-desktop {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  .profile-button {
+    margin: 20px 0;
+  }
+  .event-profile-container {
+    margin: 20px 0;
+    padding: 0;
+  }
 }
