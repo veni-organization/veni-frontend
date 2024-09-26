@@ -64,7 +64,7 @@
   margin: 24px 0;
 }
 
-.home-image-1 img {
+.home-image-1 > img {
   width: 100%;
   margin: 0 20px;
 }
@@ -75,19 +75,128 @@
   justify-content: center;
 }
 
-.home-button a {
-  text-decoration: none;
-}
-
 .home-event-code-link {
   color: var(--green);
   font-size: 16px;
   text-align: center;
   margin: 16px 0;
+  cursor: pointer;
 }
 
 .home-event-code-link strong {
   font-weight: 700;
+}
+
+/***********************/
+/* SECTION 1-CONTAINER */
+/***********************/
+
+.home-section-event {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.home-section-event h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.home-section-event h3 span {
+  color: var(--secondary);
+}
+
+.blur-iphone {
+  width: 220px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: #c4796c;
+  filter: blur(180px);
+  margin: 200px 0;
+}
+
+.iphone15 {
+  position: absolute;
+  margin-top: 80px;
+  width: 300px;
+}
+
+/***********************/
+/* SECTION 2-CONTAINER */
+/***********************/
+
+.home-section-messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.home-section-messages h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  padding: 0 5%;
+  text-align: center;
+}
+
+.home-section-messages h3 span {
+  color: var(--secondary);
+}
+
+.home-section-messages p {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 24px;
+  text-align: center;
+  line-height: 24px;
+}
+
+.home-section-messages img {
+  width: 100vw;
+  margin-bottom: 40px;
+}
+
+/***********************/
+/* SECTION 3-CONTAINER */
+/***********************/
+
+.home-section-share {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.home-section-share h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.home-section-share h3 span {
+  color: var(--green);
+}
+
+.home-section-share img {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.home-button-container:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
 }
 
 /* Desktop */
