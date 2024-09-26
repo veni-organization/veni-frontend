@@ -10,6 +10,10 @@
   /* background-color: aqua; */
 }
 
+.desktop-photos-preview {
+  display: none;
+}
+
 /* Desktop */
 @media only screen and (min-width: 1024px) {
   .event-container {
@@ -29,5 +33,17 @@
     top: 150px;
     height: 600px;
     width: 600px;
+  }
+
+  .desktop-photos-preview {
+    display: block;
+  }
+
+  .mobile-photos-preview {
+    display: none;
+  }
+
+  .feed-photos-container {
+    width: 664px;
   }
 }

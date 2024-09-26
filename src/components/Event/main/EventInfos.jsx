@@ -59,7 +59,7 @@ const EventInfos = ({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [name, response, setResponse, handleUserResponse]); // Re-run when the name length changes
+  }, [name, response, setResponse, handleUserResponse, isLoading]); // Re-run when the name length changes
 
   return (
     <div className="event-infos-container">

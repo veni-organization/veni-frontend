@@ -3,20 +3,20 @@
 .photos-preview-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px 20px;
+  padding: 0 20px;
 }
 
 .header-photos-preview-container {
   display: flex;
   justify-content: space-between;
   font-weight: bold;
+  margin: 20px 0;
 }
 
 .photos-preview {
   display: flex;
   gap: 15px;
-  max-width: 100%;
+  flex: 1;
   overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -61,7 +61,8 @@
 /* Desktop */
 @media only screen and (min-width: 1024px) {
   .photos-preview-container {
-    padding: 0;
+    max-width: 664px;
+    padding: 0 50px;
   }
 
   .preview-photo-event-page:hover {
