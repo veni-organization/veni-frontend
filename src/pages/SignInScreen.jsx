@@ -61,12 +61,16 @@ const SignInScreen = () => {
       if (!data) {
         navigate("/");
       } else {
-        if (data.event) {
+        if (data.event.event) {
           navigate(`/event/${data.event.event}`);
+        } else {
+          navigate("/");
         }
         if (data.isCreateEvent) {
           console.log("CREATE EVENT");
           handleCreateEvent(response.data.token);
+        } else {
+          navigate("/");
         }
       }
       // navigate("/event/:id");

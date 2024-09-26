@@ -1,0 +1,20 @@
+.share-my-photos-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  border-radius: 20px;
+  font-weight: 680;
+  font-size: 20px;
+  color: var(--black);
+  background-color: var(--white);
+}
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+  .share-my-photos-button:hover {
+    cursor: pointer;
+    color: var(--white);
+    background-color: var(--black);
+  }
+}

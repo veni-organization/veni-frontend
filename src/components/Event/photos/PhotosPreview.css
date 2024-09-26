@@ -1,0 +1,74 @@
+@import url("../../../assets/colors/colors.css");
+
+.photos-preview-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 20px;
+}
+
+.header-photos-preview-container {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.photos-preview {
+  display: flex;
+  gap: 15px;
+  max-width: 100%;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.more-photos {
+  position: relative;
+}
+.overlay-preview-photo span {
+  font-size: 38px;
+  font-weight: 500;
+}
+
+.overlay-preview-photo {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75); /* ajustez l'alpha pour l'intensité */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  height: 200px;
+  width: 200px;
+}
+
+.photos-preview::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.preview-photo-event-page {
+  height: 200px;
+  width: 200px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+  .photos-preview-container {
+    padding: 0;
+  }
+
+  .preview-photo-event-page:hover {
+    cursor: pointer;
+  }
+
+  .overlay-preview-photo {
+    cursor: pointer;
+  }
+}
