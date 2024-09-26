@@ -1,7 +1,25 @@
+@import url("../../../../assets/colors/colors.css");
+
 .event-picture {
   width: 100%;
   height: 490px;
   background-size: cover;
+  position: relative;
+}
+
+.edit-event-button {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  position: absolute;
+  background-color: rgb(18, 24, 24, 0.33);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 15px;
+  border-radius: 24px;
+  top: 20px;
+  right: 20px;
+  /* font-size: 14px; */
 }
 
 /* Desktop */
@@ -10,5 +28,9 @@
     width: 360px;
     height: 450px;
     background-size: cover;
+  }
+
+  .edit-event-button {
+    font-size: 12px;
   }
 }

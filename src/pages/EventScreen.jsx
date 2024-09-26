@@ -123,14 +123,6 @@ const Event = () => {
             isUserHost={isUserHost}
           />
           <Feed eventId={id} response={response} isUserHost={isUserHost} />
-
-          <div
-            onClick={() => {
-              navigate(`/edit/${id}`, { state: { event: event } });
-            }}
-          >
-            <p>Go to edit</p>
-          </div>
         </div>
       )}
     </div>

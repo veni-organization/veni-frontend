@@ -65,7 +65,11 @@ const EventInfos = ({
     <div className="event-infos-container">
       <BlurBackground event_picture={event_picture} defaultImg={defaultImg} />
       <div className="event-main-infos-container">
-        <EventPicture event_picture={event_picture} defaultImg={defaultImg} />
+        <EventPicture
+          event_picture={event_picture}
+          defaultImg={defaultImg}
+          event={event}
+        />
         <div
           className="host-title-container"
           style={{

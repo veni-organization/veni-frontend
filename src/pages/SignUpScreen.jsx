@@ -130,8 +130,11 @@ const SignUpScreen = () => {
   };
 
   const handleSignIn = () => {
-    navigate("/signin", {
-      state: { isCreateEvent: data.isCreateEvent, event: data },
+    navigate("/signIn", {
+      state: {
+        ...(data?.isCreateEvent && { isCreateEvent: data.isCreateEvent }),
+        ...(data && { event: data }),
+      },
     });
   };
 
@@ -170,7 +173,7 @@ const SignUpScreen = () => {
               data={username}
               setData={setUsername}
             />
-            <h3 onClick={handleSignIn}>J'ai déjà un compte</h3>
+            <div onClick={handleSignIn}>J'ai déjà un compte</div>
             <FormButton
               text="Continuer"
               data={username}
