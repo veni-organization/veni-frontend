@@ -86,7 +86,9 @@ const EventInfos = ({
               style={{
                 color:
                   response === null
-                    ? "#FFBB12"
+                    ? isUserHost
+                      ? "#FFBB12"
+                      : "#e193ee"
                     : response
                     ? "#56dbbb"
                     : "#ed4343",
@@ -94,16 +96,16 @@ const EventInfos = ({
             >
               {formattedDate}
             </p>
-            {!isUserHost && (
-              <Rsvp
-                guests={guests}
-                refused_guests={refused_guests}
-                userId={userId}
-                response={response}
-                setResponse={setResponse}
-                handleUserResponse={handleUserResponse}
-              />
-            )}
+
+            <Rsvp
+              guests={guests}
+              refused_guests={refused_guests}
+              userId={userId}
+              isUserHost={isUserHost}
+              response={response}
+              setResponse={setResponse}
+              handleUserResponse={handleUserResponse}
+            />
           </div>
           <div className="event-location-container">
             <p className="event-location">{location}</p>
