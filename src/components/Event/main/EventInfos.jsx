@@ -29,6 +29,7 @@ const EventInfos = ({
     guests_pictures,
   } = event;
   const dateObj = new Date(event_date);
+
   const formattedDate = new Intl.DateTimeFormat("fr-FR", {
     year: "numeric",
     month: "long",
@@ -66,6 +67,7 @@ const EventInfos = ({
       <BlurBackground event_picture={event_picture} defaultImg={defaultImg} />
       <div className="event-main-infos-container">
         <EventPicture
+          isUserHost={isUserHost}
           event_picture={event_picture}
           defaultImg={defaultImg}
           event={event}
@@ -79,7 +81,11 @@ const EventInfos = ({
           <h1 className="event-name">{name}</h1>
           <ProfileCard users={hosts} />
         </div>
-        <PhotosPreview guests_pictures={guests_pictures} eventId={event._id} />
+        <PhotosPreview
+          guests_pictures={guests_pictures}
+          eventId={event._id}
+          eventDate={event_date}
+        />
         <div className="event-details-container">
           <div className="event-date-container">
             <p

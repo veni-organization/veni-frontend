@@ -29,12 +29,14 @@ const Header = () => {
           <span className="veni-logo">veni</span>
         </Link>
         {token ? (
-          <Link
-            to="/profile"
-            style={{ textDecoration: "none", color: "white" }}
-          >
-            <span>Profil</span>
-          </Link>
+          path !== "/profile" && (
+            <Link
+              to="/profile"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <span>Profil</span>
+            </Link>
+          )
         ) : (
           <span
             style={{

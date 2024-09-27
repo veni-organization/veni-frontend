@@ -17,9 +17,7 @@ import { CreateEventContext } from "../context/CreateEventContext";
 const SignInScreen = () => {
   const location = useLocation();
   const data = location.state;
-
   const navigate = useNavigate();
-
   const { setToken, setUserId } = useContext(AuthContext);
   const { handleCreateEvent } = useContext(CreateEventContext);
 
@@ -58,22 +56,15 @@ const SignInScreen = () => {
       setUserId(response.data.id);
       Cookies.set("token", response.data.token, { expires: 365 });
       Cookies.set("id", response.data.id, { expires: 365 });
-      if (!data) {
-        navigate("/");
-      } else {
-        if (data.event.event) {
-          navigate(`/event/${data.event.event}`);
-        } else {
-          navigate("/");
-        }
-        if (data.isCreateEvent) {
-          console.log("CREATE EVENT");
-          handleCreateEvent(response.data.token);
-        } else {
-          navigate("/");
-        }
+      if (data?.isCreateEvent) {
+        handleCreateEvent(response.data.token);
+        return;
       }
-      // navigate("/event/:id");
+      if (data?.event) {
+        navigate(`/event/${data.event}`);
+        return;
+      }
+      navigate("/");
     } catch (error) {
       setErrorMessage(
         error.response.data.message === "Wrong code" &&

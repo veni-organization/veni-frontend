@@ -128,6 +128,7 @@ const Event = () => {
               guests_pictures={event.guests_pictures}
               eventId={event._id}
               type={"desktop"}
+              eventDate={event.event_date}
             />
             <Feed eventId={id} response={response} isUserHost={isUserHost} />
           </div>
