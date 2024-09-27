@@ -41,6 +41,7 @@ const SignUpScreen = () => {
   // This function send username and phonenumber to the server, to be able to continue the process with the code to verify identity
   const handleSignUp = async () => {
     // setIsLoading(true);
+    setErrorMessage("");
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/signup`,
@@ -53,6 +54,9 @@ const SignUpScreen = () => {
         setShowVerification(true);
       }
     } catch (error) {
+      if (error.response.data.message === "Phone number already registered") {
+        setErrorMessage("Numéro déjà utilisé");
+      }
       console.log(error.response.data);
     }
   };
@@ -78,14 +82,13 @@ const SignUpScreen = () => {
       setShowVerification(false);
       Cookies.remove("phone");
     } catch (error) {
-      setErrorMessage(
-        (error.response.data.message === "User not found" &&
-          "Merci de renvoyer ton numéro de téléphone") ||
-          (error.response.data.message === "Phone number already registered" &&
-            "Numéro déjà utilisé") ||
-          (error.response.data.message === "Wrong code" &&
-            "Veuillez vérifier le code saisi")
-      );
+      if (error.response.data.message === "Wrong code") {
+        setErrorMessage("Veuillez vérifier le code saisi");
+      }
+      if (error.response.data.message === "User not found") {
+        setErrorMessage("Merci de renvoyer ton numéro de téléphone");
+        return;
+      }
       console.log(error.response.data);
     }
   };
@@ -220,7 +223,7 @@ const SignUpScreen = () => {
                 />
               </div>
             )}
-            <p>{errorMessage}</p>
+            <p style={{ color: "red" }}>{errorMessage}</p>
             <FormButton
               data={userPhone}
               text="Envoyer"
