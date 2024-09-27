@@ -15,6 +15,7 @@ const EventInfos = ({
   userId,
   isUserHost,
 }) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
   const [isLoading, setIsLoading] = useState(false);
   const [top, setTop] = useState("385px");
   const {
@@ -41,10 +42,15 @@ const EventInfos = ({
   useEffect(() => {
     const handleResize = () => {
       const isMobile = window.innerWidth < 1024;
+      setIsMobile(isMobile);
 
       // Dynamic based on the name length and window width
       if (isMobile) {
-        setTop(name.length > 23 ? "355px" : "385px");
+        if (window.innerWidth < 676) {
+          setTop(name.length <= 22 ? "387px" : "357px");
+        } else {
+          setTop("387px");
+        }
       } else {
         setTop(""); // No need for specific top for desktop
       }
@@ -61,7 +67,13 @@ const EventInfos = ({
       window.removeEventListener("resize", handleResize);
     };
   }, [name, response, setResponse, handleUserResponse, isLoading]); // Re-run when the name length changes
-
+  const dynamicStyle = {
+    top: top,
+    ...(isMobile && {
+      backdropFilter: "blur(6px)",
+      background: "linear-gradient(to top, #2a2e2e, rgba(255, 255, 255, 0))",
+    }),
+  };
   return (
     <div className="event-infos-container">
       <BlurBackground event_picture={event_picture} defaultImg={defaultImg} />
@@ -72,12 +84,7 @@ const EventInfos = ({
           defaultImg={defaultImg}
           event={event}
         />
-        <div
-          className="host-title-container"
-          style={{
-            top,
-          }}
-        >
+        <div className="host-title-container" style={dynamicStyle}>
           <h1 className="event-name">{name}</h1>
           <ProfileCard users={hosts} />
         </div>
