@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./BackButton.css";
 
-const BackButton = ({ step, setStep, page }) => {
+const BackButton = ({ step, setStep, page, eventId }) => {
   const navigate = useNavigate();
   return (
     <>
@@ -25,7 +25,11 @@ const BackButton = ({ step, setStep, page }) => {
             if (page) {
               navigate(page);
             } else {
-              navigate("/");
+              if (eventId) {
+                navigate(`/event/${eventId}`);
+              } else {
+                navigate("/");
+              }
             }
           }}
           className="back-button"
