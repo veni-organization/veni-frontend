@@ -4,7 +4,11 @@ import "./ProfileCard.css";
 const ProfileCard = ({ users }) => {
   // Check if alone
   if (!users) {
-    return <div></div>;
+    return (
+      <div>
+        <p>Aucun invité 😭</p>
+      </div>
+    );
   }
 
   // Check if alone
