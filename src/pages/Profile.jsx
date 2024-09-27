@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
@@ -39,14 +39,16 @@ const Profile = () => {
       }
     };
     getUser();
-  }, []);
+  }, [token]);
 
   return isLoading ? (
     <p>Chargement ...</p>
   ) : (
     <div className="profile-container">
       <div className="top-profile">
-        <span className="edit-veni-logo">veni</span>
+        <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+          <span className="edit-veni-logo">veni</span>
+        </Link>
         <div className="top-right">
           <button
             className="button-plus"

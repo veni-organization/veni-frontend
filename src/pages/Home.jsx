@@ -7,16 +7,27 @@ import hostMessages from "../assets/img/host_messages.png";
 import guestMessages from "../assets/img/guests_only.png";
 import messages from "../assets/img/Messages.png";
 import poolParty from "../assets/img/pool_party.png";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { CgProfile } from "react-icons/cg";
 
 const Home = () => {
+  const { userId } = useContext(AuthContext);
+
   return (
     <>
       <div className="header-container-home">
         <div className="header-content-home">
           <span className="veni-logo-home">veni</span>
-          <Link to={"/signIn"}>
-            <button>Se connecter</button>
-          </Link>
+          {userId ? (
+            <Link to={"/profile"}>
+              <CgProfile color="white" size={30} />
+            </Link>
+          ) : (
+            <Link to={"/signIn"}>
+              <button>Se connecter</button>
+            </Link>
+          )}
         </div>
       </div>
       <div className="main-container-home">
