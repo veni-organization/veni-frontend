@@ -208,7 +208,6 @@ const SignUpScreen = () => {
             </p>
 
             <PhoneNumber userPhone={userPhone} setUserPhone={setUserPhone} />
-
             {showVerification && (
               <div className="verification-block">
                 <Title text="Code de vérification" title="false" />
