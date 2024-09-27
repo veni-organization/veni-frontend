@@ -146,7 +146,7 @@ const SignUpScreen = () => {
           onClick={() => {
             handleCompleteProfile();
           }}
-          style={{ visibility: step !== 4 && "hidden" }}
+          style={{ visibility: step !== 4 && "hidden", width: "32px" }}
         >
           Passer
         </p>
@@ -197,7 +197,22 @@ const SignUpScreen = () => {
               }
             }}
           >
+            <p
+              style={{
+                textAlign: "center",
+                marginTop: "24px",
+                padding: "0 16px 0 16px",
+                lineHeight: "20px",
+                fontSize: "14px",
+                color: "#d9dddd",
+              }}
+            >
+              Ton numéro servira uniquement pour te connecter et pour tes
+              évènements. Pas de Spam.
+            </p>
+
             <PhoneNumber userPhone={userPhone} setUserPhone={setUserPhone} />
+
             {showVerification && (
               <div className="verification-block">
                 <Title text="Code de vérification" title="false" />

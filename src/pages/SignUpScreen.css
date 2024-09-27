@@ -142,7 +142,8 @@
   }
   .birthday-input {
     margin-bottom: 0;
-    margin-top: 150px;
+    margin-top: 250px;
+    width: 200px;
   }
   .signup-header p {
     right: 780px;
@@ -153,7 +154,7 @@
   }
   .file-input {
     margin-bottom: 0;
-    margin-top: 150px;
+    margin-top: 200px;
   }
   .avatar {
     margin-bottom: 0;
