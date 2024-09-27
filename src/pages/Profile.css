@@ -116,6 +116,7 @@
   background: linear-gradient(to top, #2a2e2e, rgba(255, 255, 255, 0));
   width: 100%;
   height: 30%;
+  word-wrap: break-word;
 }
 
 .event-bottom {
