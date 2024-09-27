@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -106,17 +106,16 @@ const SignUpScreen = () => {
           },
         }
       );
-      if (!data) {
-        navigate("/");
-      } else {
-        if (data.event) {
-          navigate(`/event/${data.event}`);
-        }
-        if (data.isCreateEvent) {
-          handleCreateEvent(response.data.token);
-        }
-      }
       setStep(step + 1);
+      if (data?.isCreateEvent) {
+        handleCreateEvent(response.data.token);
+        return;
+      }
+      if (data?.event) {
+        navigate(`/event/${data.event}`);
+        return;
+      }
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -130,10 +129,7 @@ const SignUpScreen = () => {
 
   const handleSignIn = () => {
     navigate("/signIn", {
-      state: {
-        ...(data?.isCreateEvent && { isCreateEvent: data.isCreateEvent }),
-        ...(data && { event: data }),
-      },
+      state: { event: data?.event, isCreateEvent: data?.isCreateEvent },
     });
   };
 
@@ -302,17 +298,6 @@ const SignUpScreen = () => {
           </div>
         )}
       </form>
-
-      {step === 5 && (
-        <div
-          className="going-screen"
-          onClick={() => {
-            navigate("/event/");
-          }}
-        >
-          <p>going</p>
-        </div>
-      )}
     </div>
   );
 };
