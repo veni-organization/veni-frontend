@@ -1,6 +1,6 @@
 import "./FeedList.css";
 
-const FeedList = ({ actualFeed, setActualFeed }) => {
+const FeedList = ({ actualFeed, setActualFeed, isUserHost }) => {
   return (
     <div className="feed-list-container">
       <div
@@ -9,16 +9,18 @@ const FeedList = ({ actualFeed, setActualFeed }) => {
         }`}
         onClick={() => setActualFeed("host")}
       >
-        Hôte 🔔
+        Actualités 🔔
       </div>
-      <div
-        className={`feed-button ${
-          actualFeed === "global" ? "feed-selected" : ""
-        }`}
-        onClick={() => setActualFeed("global")}
-      >
-        Chat général
-      </div>
+      {!isUserHost && (
+        <div
+          className={`feed-button ${
+            actualFeed === "global" ? "feed-selected" : ""
+          }`}
+          onClick={() => setActualFeed("global")}
+        >
+          Entre invités 🤫
+        </div>
+      )}
     </div>
   );
 };
