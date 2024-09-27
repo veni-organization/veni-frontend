@@ -24,7 +24,7 @@ const Home = () => {
               <CgProfile color="white" size={30} />
             </Link>
           ) : (
-            <Link to={"/signIn"}>
+            <Link to={"/signUp"}>
               <button>Se connecter</button>
             </Link>
           )}
