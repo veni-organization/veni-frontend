@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -18,7 +18,6 @@ const SignInScreen = () => {
   const location = useLocation();
   const data = location.state;
   const navigate = useNavigate();
-  console.log("data ==>", data);
   const { setToken, setUserId } = useContext(AuthContext);
   const { handleCreateEvent } = useContext(CreateEventContext);
 
