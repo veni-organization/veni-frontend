@@ -136,7 +136,7 @@ const SignUpScreen = () => {
   return (
     <div className="signup-container">
       <div className="signup-header">
-        <BackButton step={step} setStep={setStep} />
+        <BackButton step={step} setStep={setStep} eventId={data?.event} />
         <Title text="Entre ton nom ici !" step={step} />
         <p
           onClick={() => {
