@@ -80,9 +80,23 @@ const SignInScreen = () => {
         <Link to={"/signUp"}>
           <BackButton />
         </Link>
-        <Title text="Entre ton numéro de téléphone !" />
+        <Title text="Quel est ton numéro de téléphone ?" />
+        <div style={{ visibility: "hidden", width: 32 }}></div>
       </div>
       <div className="form-signin-container">
+        <p
+          style={{
+            textAlign: "center",
+            marginTop: "24px",
+            padding: "0 16px 0 16px",
+            lineHeight: "20px",
+            fontSize: "14px",
+            color: "#d9dddd",
+          }}
+        >
+          Ton numéro servira uniquement pour te connecter et pour tes
+          évènements. Pas de Spam.
+        </p>
         <PhoneNumber userPhone={userPhone} setUserPhone={setUserPhone} />
         {showVerification && (
           <div className="verification-input">

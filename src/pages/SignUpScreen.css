@@ -114,7 +114,7 @@
 /**********************/
 
 /* Desktop*/
-@media only screen and (min-width: 1350px) {
+@media only screen and (min-width: 1024px) {
   .signup-container {
     position: initial;
   }
@@ -142,17 +142,19 @@
   }
   .birthday-input {
     margin-bottom: 0;
-    margin-top: 150px;
+    margin-top: 250px;
+    width: 200px;
   }
   .signup-header p {
     right: 780px;
   }
   .signup-step4 {
     height: auto;
+    margin: 0 auto;
   }
   .file-input {
     margin-bottom: 0;
-    margin-top: 150px;
+    margin-top: 200px;
   }
   .avatar {
     margin-bottom: 0;
@@ -161,13 +163,13 @@
 }
 
 /* Téléphone */
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .signup-container {
     position: initial;
   }
-  /* .signup-header {
+  .signup-header {
     margin-top: 100px;
-  } */
+  }
   .signup-step1 {
     height: auto;
     margin-top: 250px;
@@ -205,4 +207,4 @@
     margin-bottom: 0;
     margin-top: 250px;
   }
-}
+} */
