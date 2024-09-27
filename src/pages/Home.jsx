@@ -53,7 +53,11 @@ const Home = () => {
               Garde tes invités <span>chauds</span> 🔥
             </h3>
             <p>Envoie des messages dans le canal de ton événement</p>
-            <img src={hostMessages} alt="host messages preview" />
+            <img
+              src={hostMessages}
+              alt="host messages preview"
+              id="host-messages"
+            />
             <p>
               ou organise une surprise pour l'organisateur en secret avec les
               autres invités 🤫
