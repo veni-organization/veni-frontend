@@ -10,17 +10,9 @@ import poolParty from "../assets/img/pool_party.png";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { CgProfile } from "react-icons/cg";
-import Cookies from "js-cookie";
 
 const Home = () => {
-  const { userId, setToken, setUserId } = useContext(AuthContext);
-
-  const decconect = () => {
-    setToken(null);
-    setUserId(null);
-    Cookies.remove("token");
-    Cookies.remove("userId");
-  };
+  const { userId } = useContext(AuthContext);
 
   return (
     <>
@@ -97,13 +89,6 @@ const Home = () => {
           </section>
         </div>
       </div>
-      <button
-        onClick={() => {
-          decconect();
-        }}
-      >
-        Se déconnecter
-      </button>
     </>
   );
 };
