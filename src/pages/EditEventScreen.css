@@ -136,7 +136,7 @@
 }
 
 @media only screen and (min-width: 391px) {
-  label {
+  .edit-event label {
     align-self: flex-start;
     padding-bottom: 4px;
   }
